@@ -1,0 +1,73 @@
+@mixin borderanimate {
+  position: relative;
+  overflow: hidden;
+
+   &:before {
+     content: "";
+     position: absolute;
+     top: -2px;
+     left: -2px;
+     width: calc(100% + 4px);
+     height: calc(100% + 4px);
+     z-index: 0;
+     animation: borders 1s linear infinite;
+     background: radial-gradient($green 33%, transparent, transparent);
+
+     @keyframes borders {
+       0% {
+         transform: translate3d(-50%,-50%,0);
+       }
+       25% {
+         transform: translate3d(50%, -50%,0);
+       }
+       50% {
+         transform: translate3d(50%, 50%,0);
+       }
+       75% {
+         transform: translate3d(-50%, 50%,0);
+       }
+       100% {
+         transform: translate3d(-50%, -50%,0);
+       }
+     }
+    }
+
+   &:after {
+     content: "";
+     position: absolute;
+     top: 2px;
+     left: 2px;
+     z-index: 0;
+     width: calc(100% - 4px);
+     height: calc(100% - 4px);
+     background-color: inherit;
+   }
+}
+
+@mixin loadingBorder {
+
+  &:before {
+    position: absolute;
+    top: 0;
+    content: "";
+    width: 200%;
+    height: 4px;
+    background-image: linear-gradient(to right, transparent, transparent, #4579FF, #50E3C2, #4579FF, transparent, transparent);
+    background-size: 200%;
+    animation: borders 0.5s linear infinite;
+
+    @keyframes borders {
+      0% {
+        background-position: -100% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+  }
+}
+
+
+.loading {
+  @include loadingBorder;
+}

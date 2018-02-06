@@ -1,0 +1,43 @@
+h1,h2,h3,h4 {
+  font-weight: 500;
+  margin-top: 1rem;
+  line-height: 150%;
+}
+
+h1 {
+  font-size: 3.157rem;
+}
+
+h2 {
+  font-size: 2.369rem;
+}
+
+h3 {
+  font-size: 1.777rem;
+}
+
+h4 {
+  margin-top: 3rem;
+  font-size: 1.333rem;
+}
+
+p {
+  margin-top: 1rem;
+  line-height: 140%;
+}
+
+p.note {
+  color: $darkgray;
+  font-size: 0.85rem;
+  // font-style: italic;
+}
+
+b {
+  font-weight: 700;
+}
+
+.tooltip-underline {
+  display: inline-block;
+  border-bottom: 1px dotted $blue;
+  cursor: help;
+}

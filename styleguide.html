@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <link rel="stylesheet" href="css/style.css" media="screen">
+    <link rel="stylesheet" href="css/styleguide.css" media="screen">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	  <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+  </head>
+  <body>
+    <div class="wrapper">
+      <section>
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <p>Paragraph<p>
+        <p class="note">Note<p>
+        <small>Small</small>
+      </section>
+      <section>
+          <div class="color"></div>
+          <div class="color"></div>
+          <div class="color"></div>
+          <div class="color"></div>
+          <div class="color"></div>
+          <div class="color"></div>
+          <div class="color"></div>
+          <div class="color"></div>
+      </section>
+      <section>
+        <div class="form-group">
+          <label>Text input</label>
+          <input type="text" placeholder="Your name">
+        </div>
+        <div class="form-group two-col">
+          <div class="form-group">
+            <label>Split text input</label>
+            <input type="text" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label>Split text input</label>
+            <input type="text" placeholder="Your name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Dropdown</label>
+          <select>
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Range slider</label>
+          <form class="range-slider" oninput="result.value=a.value">
+            <input type="range" name="a" value="0" max="50"/>
+            <output name="result">0</output>
+          </form>
+        </div>
+        <div class="form-group">
+          <label>Number input</label>
+          <div class="number-input">
+            <input class="quantity" placeholder="0" type="number">
+            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
+            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Money input</label>
+          <input type="text" placeholder="$" data-oninput="maskMoney">
+        </div>
+        <div class="form-group">
+          <label>Date picker</label>
+          <input type="date">
+        </div>
+        <div class="form-group">
+          <label>Radio button group</label>
+          <div class="radio-group radio-group--text">
+						<div class="radio-button">
+							<input id="radio1" type="radio" name="radiobuttons">
+							<label for="radio1">Yes</label>
+						</div>
+						<div class="radio-button">
+							<input id="radio2" type="radio" name="radiobuttons">
+							<label for="radio2">No</label>
+						</div>
+					</div>
+        </div>
+        <div class="form-group">
+          <label>Checkbox input</label>
+          <input id="box1" type="checkbox" />
+          <label for="box1">Assault and battery</label>
+          <input id="box2" type="checkbox" />
+          <label for="box2">Pollution</label>
+          <input id="box3" type="checkbox" />
+          <label for="box3">Liquor</label>
+        </div>
+      </section>
+      <section>
+        <div class="button button-big button-primary">Next</div>
+        <div class="button button-small button-primary">Next</div>
+        <div class="button button-big button-secondary">Next</div>
+        <div class="button button-small button-secondary">Next</div>
+        <div class="button button-big button-confirm">Next</div>
+        <div class="button button-small button-confirm">Next</div>
+        <div class="button button-big button-warning">Next</div>
+        <div class="button button-small button-warning">Next</div>
+      </section>
+    </div>
+    <script type="javascript">
+      const maskMoney = (event) => {
+        let val = event.target.value.toString();
+        let commator = 3;
+        val = val.replace(/\,/g,'');
+        val = val.replace(/\$/g,'');
+        val = val.replace(/\D/g,'');
+        let len = val.length;
+        while(commator < len) {
+          let comma = len - commator;
+          val = val.splice(comma, 0, ',');
+          commator += 3;
+        }
+        event.target.value = '$' + val;
+      }
+    </script>
+  </body>
+</html>
