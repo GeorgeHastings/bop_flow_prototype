@@ -59,12 +59,63 @@ const getClosest = function ( elem, selector ) {
 	}
 
 	return null;
+};
 
+const getInputValue = (e) => {
+  const el = e.target || e;
+  const type = el.getAttribute('type') || 'select';
+  let id;
+  let value = el.value;
+  switch(type) {
+    case 'radio':
+      id = el.getAttribute('name', 'radio');
+      value = getRadioValue(document.querySelectorAll(`[name=${el.getAttribute('name')}]`));
+      break;
+    case 'range':
+      id = el.getAttribute('name');
+      break;
+    case 'number':
+      id = el.getAttribute('name');
+      break;
+    case 'text':
+      id = el.getAttribute('id');
+      break;
+    case 'date':
+      id = el.getAttribute('id');
+      break;
+    case 'select':
+      id = el.getAttribute('id');
+      break;
+    case 'checkbox':
+      id = el.getAttribute('id');
+      value = 'Yes';
+      break;
+  }
+  return {
+    id: id,
+    value: value
+  };
+};
+
+const sanitizeInputs = (inputs) => {
+  inputs.forEach(input => {
+    delete STATE.quote[input];
+  });
+};
+
+const deselectAccounts = () => {
+  const accounts = document.querySelectorAll('#accountsList li');
+  accounts.forEach(account => {
+    account.classList.remove('account-selected');
+  });
 };
 
 export {
   createNode,
   getRadioValue,
   getFormElement,
-  getClosest
+  getClosest,
+  getInputValue,
+  sanitizeInputs,
+  deselectAccounts
 };

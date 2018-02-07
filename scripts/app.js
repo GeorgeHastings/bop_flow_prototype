@@ -1,129 +1,23 @@
+import { STATE } from './state.js';
 import { STEPS, ACTION_COMPONENTS } from './steps.js';
+import { SCHEMA } from './bopschema.js';
+import { ACTIONS } from './actions.js';
 import { COMPONENTS } from './components.js';
-import { createNode, getRadioValue, getFormElement, getClosest } from './helpers.js';
+import { createNode, getRadioValue, getFormElement, getClosest, getInputValue } from './helpers.js';
 import { tippet } from './libs/tippet.js';
 
-const STATE = {
-  index: 0,
-  quote: {}
-};
-
-const APP = document.getElementById('app');
+const ACCOUNT_LIST = document.getElementById('accountsList');
+const QUOTE_FLOW = document.getElementById('quoteFlow');
 const PROGRESSBAR = document.getElementById('progressBar');
-
-const ACTIONS = {
-  navigate: (direction) => {
-    const scrollElement = document.documentElement || document.body;
-    let progress;
-    scrollElement.scrollTop = 0;
-    STATE.index += direction;
-    progress = (((STATE.index) / (SCHEMA.length - 1)) * 100).toFixed(0);
-    animateStepTransition();
-    setTimeout(function() {
-      render(APP, COMPONENTS.views.step(SCHEMA[STATE.index]));
-      PROGRESSBAR.setAttribute('style', `transform: translate3d(${progress}%, 0, 0)`);
-    }, 150);
-  },
-  advanceStep: () => {
-    ACTIONS.navigate(1);
-  },
-  previousStep: () => {
-    ACTIONS.navigate(-1);
-  },
-  addAdditionalInsured: () => {
-    STATE.quote.additionalInsureds = STATE.quote.additionalInsureds || [];
-    if(STATE.quote.additionalInsuredType) {
-      STATE.quote.additionalInsureds.push({
-        name: STATE.quote.additionalInsuredBizName || STATE.quote.additionalInsuredFirstName + STATE.quote.additionalInsuredLastName,
-        address: STATE.quote.additionalInsuredBizAddress || STATE.quote.additionalInsuredPersonAddress
-      });
-      sanitizeInputs(SCHEMA[8].inputs);
-    }
-    ACTIONS.navigate(0);
-  },
-  maskMoney: (event) => {
-    let val = event.target.value.toString();
-    let commator = 3;
-    val = val.replace(/\,/g,'');
-    val = val.replace(/\$/g,'');
-    val = val.replace(/\D/g,'');
-    let len = val.length;
-    while(commator < len) {
-      let comma = len - commator;
-      val = val.splice(comma, 0, ',');
-      commator += 3;
-    }
-    event.target.value = '$' + val;
-  },
-  maskTelephone: (event) => {
-    let val = event.target.value.toString();
-    val = val.replace(/\,/g,'');
-    val = val.replace(/\$/g,'');
-    val = val.replace(/\D/g,'');
-    let len = val.length;
-    if(len >= 3) {
-      val = val.splice(3, 0, '-');
-    }
-    if(len >= 7) {
-      val = val.splice(7, 0, '-');
-    }
-    event.target.value = val;
-  },
-  bindGoogleSearchAPI: (el) => {
-    const locationAddress = new google.maps.places.Autocomplete(
-    /** @type {!HTMLInputElement} */ (
-        el), {
-      componentRestrictions: {country: "US"}
-    });
-  }
-};
+const BOP_CONTAINER = document.getElementById('bopQuote');
+const ACCOUNT_WRAPPER = document.getElementById('accountWrapper');
 
 const animateStepTransition = () => {
-  APP.classList.remove('animate-transition');
-  APP.setAttribute('width', APP.offsetWidth);
-  APP.classList.add('animate-transition');
+  QUOTE_FLOW.classList.remove('animate-transition');
+  QUOTE_FLOW.setAttribute('width', QUOTE_FLOW.offsetWidth);
+  QUOTE_FLOW.classList.add('animate-transition');
 };
 
-
-const getInputValue = (e) => {
-  const el = e.target || e;
-  const type = el.getAttribute('type') || 'select';
-  let id;
-  const value = type === 'radio' ? getRadioValue(document.querySelectorAll(`[name=${el.getAttribute('name')}]`)) : el.value;
-  switch(type) {
-    case 'radio':
-      id = el.getAttribute('name', 'radio');
-      break;
-    case 'range':
-      id = el.getAttribute('name');
-      break;
-    case 'number':
-      id = el.getAttribute('name');
-      break;
-    case 'text':
-      id = el.getAttribute('id');
-      break;
-    case 'date':
-      id = el.getAttribute('id');
-      break;
-    case 'select':
-      id = el.getAttribute('id');
-      break;
-    case 'checkbox':
-      id = el.getAttribute('id');
-      break;
-  }
-  return {
-    id: id,
-    value: value
-  };
-};
-
-const sanitizeInputs = (inputs) => {
-  inputs.forEach(input => {
-    delete STATE.quote[input];
-  });
-};
 
 const handleInput = (e) => {
   const inputResult = getInputValue(e);
@@ -223,183 +117,16 @@ const bindInputEvents = (inputs) =>
     input.onchange = handleInput;
   });
 
-const SCHEMA = [
-  {
-    title: 'New Account',
-    inputs: [
-      'legalBusinessName',
-      'doesBusinessAs',
-      'legalEntityType',
-      'policyHolderPhoneNumber',
-      'policyHolderEmail',
-      'mailingAddress'
-    ],
-    actions: [
-      'createAccount'
-    ]
-  },
-  {
-    title: 'New Quote',
-    inputs: [
-      'locationSameAsMailing',
-      'locationAddress'
-    ],
-    actions: [
-      'previousStep',
-      'nextStep'
-    ]
-  },
-  {
-    title: 'Building Eligibility',
-    inputs: [
-      'buildingClassCode',
-      'numEmployees',
-      'yearBuilt',
-      'yearRoofReplaced',
-      'constructionType',
-      'areaSquareFeet',
-      'numStories',
-      'plumbingElectricalUpdated',
-      'sprinklerSystem',
-      'burglerAlarm',
-      'fireAlarm',
-      'totalSales',
-      'liquorSales',
-      'payroll',
-    ],
-    actions: [
-      'previousStep',
-      'nextStep'
-    ],
-  },
-  {
-    title: 'Building Coverage',
-    inputs: [
-      'buildingDeductible',
-      'buildingCoverage',
-      'buildingPersonalPropertyCoverage',
-      'businessIncomeExtraExpensePeriod',
-    ],
-    actions: [
-      'previousStep',
-      'nextStep'
-    ],
-  },
-  {
-    title: 'Additional Building Coverage',
-    inputs: [
-      'equipmentBreakdown',
-      'greenUpgrades',
-      'utilityServicesTimeElement',
-      'utilityServicesDirectDamage',
-      'additionalDebrisRemoval',
-      'spoilage',
-      'Ordinance or Law Coverage',
-      'ordinanceOrLawOne',
-      'ordinanceOrLawTwoThree',
-    ],
-    actions: [
-      'previousStep',
-      'nextStep'
-    ],
-  },
-  {
-    title: 'Additional Building',
-    inputs: [
-      'additionalBuilding'
-    ],
-    actions: [
-      'previousStep',
-      'nextStep'
-    ],
-  },
-  {
-    title: 'Additional Building',
-    inputs: [
-      'additionalLocation'
-    ],
-    actions: [
-      'previousStep',
-      'nextStep'
-    ],
-  },
-  {
-    title: 'Liability Coverages',
-    inputs: [
-      'liabilityAndMedical',
-      'glAggregateLimit',
-      'medicalExpenses',
-      'glDamageToRentedPremises',
-      'eblCoverage',
-      'eblCoverageRetroactiveDate',
-      'eblEachEmployeeLimit',
-      'eblAggregateLimit',
-      'eblDeductible',
-      'eblConsecutiveYears',
-      'eplCoverage',
-      'eplCoverageRetroactiveDate',
-      'eplEachEmployeeLimit',
-      'eplAggregateLimit',
-      'eplDeductible',
-      'eplConsecutiveYears',
-      'actsOfTerror',
-      'cyberLiability',
-      'cyberRetroactiveDate',
-      'cyberAggregateLimit',
-      'cyberDeductible',
-      'employeeDishonestyLimit',
-      'Class Coverages',
-      'professionalLiability',
-      'snowPlowProducts',
-      'hiredNonOwnedAutoCoverage',
-    ],
-    actions: [
-      'previousStep',
-      'nextStep'
-    ],
-  },
-  {
-    title: 'Additional Insureds',
-    elements: [
-      'additionalInsuredAdded'
-    ],
-    inputs: [
-      'additionalInsuredType',
-      'additionalInsuredBizName',
-      'additionalInsuredBizAddress',
-      'additionalInsuredBizAddressType',
-      'addAdditionalInsured',
-      'additionalInsuredFirstName',
-      'additionalInsuredLastName',
-      'additionalInsuredPersonAddress',
-      'additionalInsuredPersonAddressType',
-      'addAdditionalInsured'
-    ],
-    actions: [
-      'previousStep',
-      'reviewSummary'
-    ],
-  },
-  {
-    title: 'Quote Summary',
-    elements: [
-      'summary'
-    ],
-    actions: [
-      'previousStep',
-      'reviewSummary'
-    ],
-  }
-];
-
 const render = (container, component) => {
   container.innerHTML = component;
 
   const inputs = container.querySelectorAll('input, select');
-  const actions = container.querySelectorAll('.button');
+  const buttons = container.querySelectorAll('.button');
+  const clickeEvents = container.querySelectorAll('[data-onclick]');
 
-  if(actions) {
-    bindActionEvents(actions);
+  if(buttons) {
+    bindActionEvents(buttons);
+    bindActionEvents(clickeEvents);
   }
   if(inputs){
     bindInputEvents(inputs);
@@ -411,6 +138,17 @@ const render = (container, component) => {
   tippet.init();
 };
 
-render(APP, COMPONENTS.views.step(SCHEMA[STATE.index]));
+document.getElementById('newQuote').onclick = () => {
+  BOP_CONTAINER.classList.remove('hidden');
+  ACCOUNT_WRAPPER.classList.add('quote-open');
+  render(QUOTE_FLOW, COMPONENTS.views.step(SCHEMA[0]));
+};
 
-export { STATE, SCHEMA, sanitizeInputs };
+document.getElementById('closeQuote').onclick = () => {
+  BOP_CONTAINER.classList.add('hidden');
+  ACCOUNT_WRAPPER.classList.remove('quote-open');
+};
+
+render(ACCOUNT_LIST, COMPONENTS.views.accounts());
+
+export { STATE, SCHEMA, animateStepTransition, render, QUOTE_FLOW, PROGRESSBAR };

@@ -1,24 +1,23 @@
 h1,h2,h3,h4 {
   font-weight: 500;
-  margin-top: 1rem;
+  margin: 1.414em 0 0;
   line-height: 150%;
 }
 
 h1 {
-  font-size: 3.157rem;
+  font-size: 2.441rem;
 }
 
 h2 {
-  font-size: 2.369rem;
+  font-size: 1.953rem;
 }
 
 h3 {
-  font-size: 1.777rem;
+  font-size: 1.563rem;
 }
 
 h4 {
-  margin-top: 3rem;
-  font-size: 1.333rem;
+  font-size: 1.25rem;
 }
 
 p {
@@ -29,7 +28,12 @@ p {
 p.note {
   color: $darkgray;
   font-size: 0.85rem;
-  // font-style: italic;
+}
+
+p.tooltip {
+  color: $black;
+  font-size: 1rem;
+  margin-top: 0;
 }
 
 b {
@@ -38,6 +42,15 @@ b {
 
 .tooltip-underline {
   display: inline-block;
+  color: $blue;
   border-bottom: 1px dotted $blue;
   cursor: help;
+}
+
+.mini-label {
+  margin-top: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: $darkgray;
 }

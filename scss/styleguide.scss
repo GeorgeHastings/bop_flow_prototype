@@ -2,7 +2,10 @@
 @import 'forms';
 
 .wrapper {
+  max-width: 700px;
   margin: 50px auto;
+  padding: 50px;
+  background-color: white;
 }
 
 .color {

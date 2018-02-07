@@ -1,5 +1,9 @@
 import { STEPS, ACTION_COMPONENTS } from './steps.js';
-import { STATE, SCHEMA, sanitizeInputs } from './app.js';
+import { STATE } from './state.js';
+import { sanitizeInputs } from './helpers.js';
+import { SCHEMA } from './bopschema.js';
+import { ACCOUNTS } from './accounts.js';
+import { generateAccount } from './accountgen.js';
 import { tippet } from './libs/tippet.js';
 
 export const COMPONENTS = {
@@ -74,6 +78,18 @@ export const COMPONENTS = {
         }).join(' ');
       }
     },
+    quoteListing: (options) => {
+      return `
+        <div class="policy">
+          <div class="policy-icon"></div>
+          <div class="policy-info">
+            <span>${options.type}</span>
+            <span>${options.status}</span>
+            <b>${options.premium}</b>
+          </div>
+        </div>
+      `;
+    },
     summary: () => {
       let summary = '';
       for(let prop in STATE.quote) {
@@ -118,6 +134,46 @@ export const COMPONENTS = {
             return COMPONENTS.actions[action.component](action);
           }).join(' ')}
         </div>`;
+    },
+    accountPolicyList: (quotes) => {
+      return `${quotes.map(quote => {
+        return COMPONENTS.elements.quoteListing(quote);
+      }).join(' ')}
+      `;
+    },
+    accounts: () => {
+      return `
+        ${ACCOUNTS.map((account, index) => {
+          return `<li data-index="${index}" data-onclick="showAccountDetail">${account.name}</li>`;
+        }).join(' ')}
+      `;
+    },
+    accountDetail: (account) => {
+      return `
+        <div class="header full-pad">
+          <h4>${account.name}</h4>
+          <div class="button button-small button-secondary">Edit</div>
+        </div>
+        <div class="account-detail-content">
+          <div class="account-info">
+            <h2>${account.name}</h2>
+            <div class="account-info-wrapper">
+              <div class="account-summary">
+                <h4>Summary</h4>
+                <p>${account.summary}</p>
+              </div>
+              <div class="account-contact-info">
+                <h4>Contact info</h4>
+                <ul class="contact-info">
+                  <li>${account.contactInfo.phone}</li>
+                  <li>${account.contactInfo.email}</li>
+                  <li>${account.contactInfo.mailingAddress}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      `
     }
   }
 };

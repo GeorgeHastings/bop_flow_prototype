@@ -51,7 +51,7 @@ export const STEPS = {
       placeholder: 'policyholder@email.com'
   },
   locationSameAsMailing: {
-      label: 'Is the business\'s location the same as the mailing address?',
+      label: 'Is the business address the same as the mailing address?',
       component: 'radioGroup',
       id: 'locationSameAsMailing',
       values: ['Yes', 'No']
@@ -95,14 +95,6 @@ export const STEPS = {
       type: 'text',
       placeholder: '1970'
   },
-  yearRoofReplaced: {
-    label: 'Year roof replaced',
-      component: 'input',
-      size: 'form-group-half-size',
-      id: 'yearRoofReplaced',
-      type: 'text',
-      placeholder: '1970'
-  },
   plumbingElectricalUpdated: {
       label: 'Was the plumbing, HVAC, and electrical updated within past 30 years?',
       component: 'radioGroup',
@@ -113,6 +105,7 @@ export const STEPS = {
       label: 'Construction type',
       component: 'dropDown',
       id: 'constructionType',
+      size: 'form-group-half-size',
       values: [
         'Fire-Resistive',
         'Frame Construction',
@@ -136,6 +129,12 @@ export const STEPS = {
       size: 'form-group-half-size',
       id: 'numStories',
       min: 0
+  },
+  yearRoofReplaced: {
+    label: 'Has the roof been replaced?',
+    component: 'radioGroup',
+    id: 'yearRoofReplaced',
+    values: ['Yes', 'No']
   },
   sprinklerSystem: {
       label: 'Is there an automatic sprinkler system in palce?',
@@ -203,8 +202,9 @@ export const STEPS = {
   },
   buildingPersonalPropertyCoverage: {
     label: 'Building personal property coverage',
-    component: 'money',
+    component: 'dropDown',
     id: 'buildingPersonalPropertyCoverage',
+    values: ['$0'],
     value: '$0'
   },
   buildingPersonalPropertyCoverageAmount: {
@@ -251,9 +251,10 @@ export const STEPS = {
     values: ['Yes', 'No']
   },
   greenUpgrades: {
-    label: 'Does the building have green upgrades?',
+    label: 'Include <span class="tooltip-underline" data-tippet="*tooltip*">Green Upgrades</span>?',
     component: 'radioGroup',
     id: 'greenUpgrades',
+    tooltip: `<span class='mini-label'>Tip</span><p class='tooltip'>Option to rebuild using environmentally friendly materials and processes</p>`,
     values: ['Yes', 'No']
   },
   ordinanceOrLaw: {
@@ -269,41 +270,44 @@ export const STEPS = {
     values: ['Yes', 'No']
   },
   ordinanceOrLawTwoThree: {
-    label: 'Would you like Demolition Costs and Increased Cost of Construction coverage? (Coverage 2 and 3)',
-    component: 'money',
+    label: 'Demolition Costs and Increased Cost of Construction coverage (Coverage 2 and 3)',
+    component: 'dropDown',
     id: 'ordinanceOrLawTwoThree',
-    placeholder: '$0'
+    values: ['$0'],
+    value: '$0',
   },
   utilityServicesTimeElement: {
     label: 'Utility Services - Time Element limit',
-    component: 'money',
+    component: 'dropDown',
     size: 'form-group-half-size',
     id: 'utilityServicesTimeElement',
     placeholder: '$0',
+    values: ['$0'],
     value: '$0',
-    description: 'Cannot be more than $25,000'
   },
   utilityServicesDirectDamage: {
     label: 'Utility Services - Direct Damage limit',
-    component: 'money',
+    component: 'dropDown',
     size: 'form-group-half-size',
     id: 'utilityServicesDirectDamage',
     placeholder: '$0',
+    values: ['$0'],
     value: '$0',
-    description: 'Must be between $5,000 and $100,000'
   },
   additionalDebrisRemoval: {
     label: 'Additional Debris Removal',
-    component: 'money',
+    component: 'dropDown',
+    size: 'form-group-half-size',
     id: 'additionalDebrisRemoval',
-    placeholder: '$0',
+    values: ['$0'],
     value: '$0'
   },
   spoilage: {
     label: 'Spoilage',
-    component: 'money',
+    component: 'dropDown',
+    size: 'form-group-half-size',
     id: 'spoilage',
-    placeholder: '$0',
+    values: ['$0'],
     value: '$0'
   },
   additionalBuilding: {

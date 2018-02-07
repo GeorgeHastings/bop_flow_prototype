@@ -67,7 +67,13 @@
   }
 }
 
+@mixin flex-row {
+  display: flex;
+  justify-content: space-between;
+}
 
-.loading {
-  @include loadingBorder;
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

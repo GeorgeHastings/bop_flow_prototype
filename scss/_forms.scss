@@ -48,9 +48,13 @@ select,
     display: inline-block;
     width: calc(50% - 0.6rem);
 
-    & + .form-group-half-size {
+    & + .form-group-half-size:nth-child(2n + 1) {
       margin-left: 15px;
     }
+
+    // & + .form-group-half-size:nth-child(2n + 1) {
+    //   margin-left: 15px;
+    // }
 
     @media screen and (max-width: 480px) {
       width: 100%;
