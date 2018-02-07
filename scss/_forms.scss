@@ -40,29 +40,9 @@ select,
 .form-group {
   margin-top: 2rem;
 
-  .form-group {
-    margin-top: 0;
-  }
-
   &-half-size {
     display: inline-block;
-    width: calc(50% - 0.6rem);
-
-    & + .form-group-half-size:nth-child(2n + 1) {
-      margin-left: 15px;
-    }
-
-    // & + .form-group-half-size:nth-child(2n + 1) {
-    //   margin-left: 15px;
-    // }
-
-    @media screen and (max-width: 480px) {
-      width: 100%;
-
-      & + .form-group-half-size {
-        margin-left: 0px;
-      }
-    }
+    width: calc(50% - 2px);
   }
 
   &.two-col,
@@ -84,6 +64,7 @@ select,
     }
   }
 }
+
 
 label {
   display: inline-block;

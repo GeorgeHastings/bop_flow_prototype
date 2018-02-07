@@ -44,18 +44,9 @@ select,
 
 .form-group {
   margin-top: 2rem; }
-  .form-group .form-group {
-    margin-top: 0; }
   .form-group-half-size {
     display: inline-block;
-    width: calc(50% - 0.6rem); }
-    .form-group-half-size + .form-group-half-size:nth-child(2n + 1) {
-      margin-left: 15px; }
-    @media screen and (max-width: 480px) {
-      .form-group-half-size {
-        width: 100%; }
-        .form-group-half-size + .form-group-half-size {
-          margin-left: 0px; } }
+    width: calc(50% - 2px); }
   .form-group.two-col, .form-group.three-col {
     display: flex;
     flex-direction: row;
@@ -254,13 +245,13 @@ class for each line of the result
   .color:nth-child(1) {
     background-color: #303344; }
   .color:nth-child(2) {
-    background-color: #95A4B3; }
+    background-color: #545A6B; }
   .color:nth-child(3) {
-    background-color: #E2EAF0; }
+    background-color: #95A4B3; }
   .color:nth-child(4) {
-    background-color: #EFF4F8; }
+    background-color: #E2EAF0; }
   .color:nth-child(5) {
-    background-color: white; }
+    background-color: #EFF4F8; }
   .color:nth-child(6) {
     background-color: #4579FF; }
   .color:nth-child(7) {
