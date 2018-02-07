@@ -343,12 +343,12 @@ class for each line of the result
   cursor: pointer; }
   .button-big {
     height: 50px;
-    padding: 0 3rem;
+    padding: 0 2rem;
     line-height: 50px; }
   .button-small {
     height: 35px;
-    padding: 0 2rem;
-    font-size: 0.75rem;
+    padding: 0 1rem;
+    font-size: 0.85rem;
     line-height: 35px; }
   .button-primary {
     background-color: #4579FF;

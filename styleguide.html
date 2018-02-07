@@ -18,7 +18,6 @@
         <h4>Heading 4</h4>
         <p>Paragraph<p>
         <p class="note">Note<p>
-        <small>Small</small>
       </section>
       <section>
           <div class="color"></div>
@@ -70,6 +69,12 @@
           </div>
         </div>
         <div class="form-group">
+          <label>Number input (no increment)</label>
+          <div class="number-input">
+            <input class="quantity" placeholder="0" type="number">
+          </div>
+        </div>
+        <div class="form-group">
           <label>Money input</label>
           <input type="text" placeholder="$" data-oninput="maskMoney">
         </div>
@@ -101,14 +106,22 @@
         </div>
       </section>
       <section>
-        <div class="button button-big button-primary">Next</div>
-        <div class="button button-small button-primary">Next</div>
-        <div class="button button-big button-secondary">Next</div>
-        <div class="button button-small button-secondary">Next</div>
-        <div class="button button-big button-confirm">Next</div>
-        <div class="button button-small button-confirm">Next</div>
-        <div class="button button-big button-warning">Next</div>
-        <div class="button button-small button-warning">Next</div>
+        <div>
+          <div class="button button-big button-primary">Primary big</div>
+          <div class="button button-small button-primary">Primary small</div>
+        </div>
+        <div>
+          <div class="button button-big button-secondary">Secondary big</div>
+          <div class="button button-small button-secondary">Secondary small</div>
+        </div>
+        <div>
+          <div class="button button-big button-confirm">Confirm big</div>
+          <div class="button button-small button-confirm">Confirm small</div>
+        </div>
+        <div>
+          <div class="button button-big button-warning">Warning big</div>
+          <div class="button button-small button-warning">Warning small</div>
+        </div>
       </section>
     </div>
     <script type="javascript">
