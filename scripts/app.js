@@ -150,5 +150,6 @@ document.getElementById('closeQuote').onclick = () => {
 };
 
 render(ACCOUNT_LIST, COMPONENTS.views.accounts());
+ACTIONS.showAccountDetail(0);
 
 export { STATE, SCHEMA, animateStepTransition, render, QUOTE_FLOW, PROGRESSBAR };

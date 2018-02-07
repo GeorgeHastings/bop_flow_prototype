@@ -84,7 +84,7 @@ export const COMPONENTS = {
           <div class="policy-icon"></div>
           <div class="policy-info">
             <span>${options.type}</span>
-            <span>${options.status}</span>
+            <span class="tag">${options.status}</span>
             <b>${options.premium}</b>
           </div>
         </div>

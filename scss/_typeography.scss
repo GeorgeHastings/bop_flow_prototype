@@ -1,5 +1,5 @@
 h1,h2,h3,h4 {
-  font-weight: 500;
+  font-weight: 700;
   margin: 1.414em 0 0;
   line-height: 150%;
 }
@@ -53,4 +53,14 @@ b {
   font-weight: 700;
   text-transform: uppercase;
   color: $darkgray;
+}
+
+.tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  color: white;
+  border-radius: 1rem;
+  background-color: $green;
 }

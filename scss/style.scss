@@ -58,6 +58,10 @@ section {
   }
 }
 
+.main-wrapper {
+  overflow-y: hidden;
+}
+
 .main-wrapper,
 .account-wrapper {
   position: relative;
@@ -66,8 +70,13 @@ section {
   @include flex-row;
 }
 
+.nav-bar {
+  min-width: 60px;
+  height: 100%;
+  background-color: $black;
+}
+
 .account-wrapper {
-  // overflow: hidden;
   &.quote-open {
     &:before {
       content: "";
@@ -101,9 +110,11 @@ section {
 
 .accounts-list li {
   color: $black;
-  padding: 1rem;
-  margin: 0.5rem;
+  padding: 0.85rem;
+  margin: 0.25rem;
   background-color: white;
+  // font-size: 0.85rem;
+  line-height: 150%;
   cursor: pointer;
 
   &.account-selected {
@@ -143,6 +154,11 @@ section {
   max-width: 600px;
   border-left: 1px solid $gray;
   background-color: $lightgray;
+}
+
+.policy-container {
+  height: calc(100% - 60px);
+  overflow-y: scroll;
 }
 
 .policy {

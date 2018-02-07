@@ -57,7 +57,7 @@ table {
   color: #303344; }
 
 h1, h2, h3, h4 {
-  font-weight: 500;
+  font-weight: 700;
   margin: 1.414em 0 0;
   line-height: 150%; }
 
@@ -101,6 +101,15 @@ b {
   font-weight: 700;
   text-transform: uppercase;
   color: #95A4B3; }
+
+.tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  color: white;
+  border-radius: 1rem;
+  background-color: #50E3C2; }
 
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
@@ -393,14 +402,13 @@ class for each line of the result
   .quote-flow-container.hidden {
     position: absolute;
     left: -99999rem;
-    transform: translate3d(0, 1em, 0);
-    opacity: 0; }
+    visibility: hidden; }
   .quote-flow-container h4 {
     margin-top: 3rem; }
   .quote-flow-container .header,
   .quote-flow-container .prog-bar {
     z-index: 99999;
-    width: calc(100% - 300px);
+    width: calc(100% - 360px);
     overflow-x: hidden; }
   @media screen and (max-width: 480px) {
     .quote-flow-container {
@@ -517,6 +525,9 @@ section + section {
   .header.sticky {
     position: fixed; }
 
+.main-wrapper {
+  overflow-y: hidden; }
+
 .main-wrapper,
 .account-wrapper {
   position: relative;
@@ -524,6 +535,11 @@ section + section {
   height: inherit;
   display: flex;
   justify-content: space-between; }
+
+.nav-bar {
+  min-width: 60px;
+  height: 100%;
+  background-color: #303344; }
 
 .account-wrapper.quote-open:before {
   content: "";
@@ -548,9 +564,10 @@ section + section {
 
 .accounts-list li {
   color: #303344;
-  padding: 1rem;
-  margin: 0.5rem;
+  padding: 0.85rem;
+  margin: 0.25rem;
   background-color: white;
+  line-height: 150%;
   cursor: pointer; }
   .accounts-list li.account-selected {
     background-color: #4579FF;
@@ -582,6 +599,10 @@ section + section {
   max-width: 600px;
   border-left: 1px solid #E2EAF0;
   background-color: #EFF4F8; }
+
+.policy-container {
+  height: calc(100% - 60px);
+  overflow-y: scroll; }
 
 .policy {
   color: #303344;

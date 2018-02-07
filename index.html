@@ -10,6 +10,7 @@
   </head>
   <body>
     <div class="main-wrapper">
+      <div class="nav-bar"></div>
       <div class="accounts-list">
         <div class="header small-pad sticky">
           <h4>Accounts</h4>
@@ -18,51 +19,25 @@
         <ul id="accountsList"></ul>
       </div>
       <div id="accountWrapper" class="account-wrapper">
-        <div id="accountDetail" class="account-detail">
-          <div class="header full-pad">
-            <h4>Carbon 5</h4>
-            <div class="button button-small button-secondary">Edit</div>
-          </div>
-          <div class="account-detail-content">
-            <div class="account-info">
-              <h2>Carbon 5</h2>
-              <div class="account-info-wrapper">
-                <div class="account-summary">
-                  <h4>Summary</h4>
-                  <p>A dev shop and a design studio, all-in-one. We help startups and enterprise companies design and build web sites and mobile apps. With offices in San Francisco, Los Angeles, New York, Chattanooga and Seattle, we not only build great products, but also help hire and train your agile team.</p>
-                </div>
-                <div class="account-contact-info">
-                  <h4>Contact info</h4>
-                  <ul class="contact-info">
-                    <li>(124) 456 - 7890</li>
-                    <li>courtney@carbonfive.com</li>
-                    <li>65 Greene St. New York, NY 10012</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id="accountDetail" class="account-detail"></div>
         <div class="account-policies">
           <div class="header small-pad">
-            <h4>Policies</h4>
+            <h4>Quotes</h4>
             <div class="button button-primary button-small" id="newQuote">New Quote</div>
           </div>
-          <div class="policy-container" id="policyContainer">
-            <div class="policy">
-              <div class="policy-icon"></div>
-              <div class="policy-info">
-                <span>Business Owners Policy</span>
-                <span>Quoted</span>
-                <b>$1,400</b>
-              </div>
+          <div class="policy-container">
+            <div id="policyContainer"></div>
+            <div class="header small-pad">
+              <h4>In-force policies</h4>
             </div>
-            <div class="policy">
-              <div class="policy-icon"></div>
-              <div class="policy-info">
-                <span>Business Owners Policy</span>
-                <span>Quoted</span>
-                <b>$1,500</b>
+            <div>
+              <div class="policy">
+                <div class="policy-icon"></div>
+                <div class="policy-info">
+                  <span>Business Owners Policy</span>
+                  <span class="tag">Bound</span>
+                  <b>$1,400</b>
+                </div>
               </div>
             </div>
           </div>
