@@ -7,7 +7,7 @@ export const STEPS = {
       type: 'text',
   },
   doesBusinessAs: {
-    label: 'Does business as',
+    label: 'Doing business as',
     component: 'input',
     size: 'form-group-half-size',
     id: 'doesBusinessAs',
@@ -131,67 +131,65 @@ export const STEPS = {
       min: 0
   },
   yearRoofReplaced: {
-    label: 'Has the roof been replaced?',
+    label: 'Has the roof been updated?',
     component: 'radioGroup',
     id: 'yearRoofReplaced',
     values: ['Yes', 'No']
   },
   sprinklerSystem: {
-      label: 'Is there an automatic sprinkler system in palce?',
-      component: 'radioGroup',
-      id: 'sprinklerSystem',
-      values: ['Yes', 'No']
+    label: 'Is there an automatic sprinkler system in palce?',
+    component: 'radioGroup',
+    id: 'sprinklerSystem',
+    values: ['Yes', 'No']
   },
   burglerAlarm: {
-      label: 'Is there a central station burglar alarm?',
-      component: 'radioGroup',
-      id: 'burglerAlarm',
-      values: ['Yes', 'No']
+    label: 'Is there a central station burglar alarm?',
+    component: 'radioGroup',
+    id: 'burglerAlarm',
+    values: ['Yes', 'No']
   },
   fireAlarm: {
-      label: 'Is there a central station fire alarm?',
-      component: 'radioGroup',
-      id: 'fireAlarm',
-      values: ['Yes', 'No']
+    label: 'Is there a central station fire alarm?',
+    component: 'radioGroup',
+    id: 'fireAlarm',
+    values: ['Yes', 'No']
   },
   totalSales: {
     label: 'Total sales',
-      component: 'money',
-      size: 'form-group-half-size',
-      id: 'totalSales',
-      placeholder: '$0'
+    component: 'money',
+    id: 'totalSales',
+    placeholder: '$0'
   },
-  liquorSales: {
-    label: 'Liquor sales',
-      component: 'money',
-      size: 'form-group-half-size',
-      id: 'liquorSales',
-      placeholder: '$0'
+  alcoholSales: {
+    label: 'Alcohol sales',
+    component: 'money',
+    id: 'alcoholSales',
+    placeholder: '$0'
   },
   payroll: {
-      label: 'Payroll',
-      component: 'money',
-      id: 'payroll',
-      placeholder: '$0'
+    label: 'Payroll',
+    component: 'money',
+    id: 'payroll',
+    placeholder: '$0'
   },
   buildingDeductible: {
-      label: 'Property Deductible',
-      component: 'dropDown',
-      id: 'buildingDeductible',
-      values: [
-        '$1,000',
-        '$2,500',
-        '$5,000',
-        '$7,500',
-        '$10,000'
-      ],
-      value: '$1,000'
+    label: 'All Other Perils Deductible',
+    component: 'dropDown',
+    id: 'buildingDeductible',
+    values: [
+      '$1,000',
+      '$2,500',
+      '$5,000',
+      '$7,500',
+      '$10,000'
+    ],
+    value: '$1,000'
   },
   buildingCoverage: {
-      label: 'Building limit',
-      component: 'money',
-      id: 'buildingCoverage',
-      value: '$0'
+    label: 'Building limit',
+    component: 'money',
+    id: 'buildingCoverage',
+    value: '$0'
   },
   buildingCoverageAmount: {
     label: 'Building coverage limit',
@@ -200,17 +198,17 @@ export const STEPS = {
     placeholder: '$0',
     hidden: true
   },
-  buildingPersonalPropertyCoverage: {
-    label: 'Building personal property coverage',
+  buildingPersonalPropertyLimit: {
+    label: 'Building Personal Property limit',
     component: 'dropDown',
-    id: 'buildingPersonalPropertyCoverage',
+    id: 'buildingPersonalPropertyLimit',
     values: ['$0'],
     value: '$0'
   },
-  buildingPersonalPropertyCoverageAmount: {
+  buildingPersonalPropertyLimitAmount: {
       label: 'Building personal property coverage limit',
       component: 'money',
-      id: 'buildingPersonalPropertyCoverageAmount',
+      id: 'buildingPersonalPropertyLimitAmount',
       placeholder: '$0',
     hidden: true
   },
@@ -251,7 +249,7 @@ export const STEPS = {
     values: ['Yes', 'No']
   },
   greenUpgrades: {
-    label: 'Include <span class="tooltip-underline" data-tippet="*tooltip*">Green Upgrades</span>?',
+    label: 'Apply <span class="tooltip-underline" data-tippet="*tooltip*">Green Upgrades</span>?',
     component: 'radioGroup',
     id: 'greenUpgrades',
     tooltip: `<span class='mini-label'>Tip</span><p class='tooltip'>Option to rebuild using environmentally friendly materials and processes</p>`,
@@ -264,13 +262,13 @@ export const STEPS = {
     values: ['Yes', 'No']
   },
   ordinanceOrLawOne: {
-    label: 'Would you coverage for the loss to the undamaged portion of the building? (Coverage 1)',
+    label: 'Apply Coverage 1? (Undamaged portion of the building)',
     component: 'radioGroup',
     id: 'ordinanceOrLawOne',
     values: ['Yes', 'No']
   },
   ordinanceOrLawTwoThree: {
-    label: 'Demolition Costs and Increased Cost of Construction coverage (Coverage 2 and 3)',
+    label: 'Apply Coverage 2 and 3? (Demolition Costs and Increased Cost of Construction coverage)',
     component: 'dropDown',
     id: 'ordinanceOrLawTwoThree',
     values: ['$0'],
@@ -333,7 +331,8 @@ export const STEPS = {
       '$500,000',
       '$1,000,000',
       '$2,000,000'
-    ]
+    ],
+    value: '$1,000,000'
   },
   glAggregateLimit: {
     label: 'Aggregate Limit',
@@ -342,16 +341,17 @@ export const STEPS = {
     values: [
       '$1,000,000',
       '$2,000,000'
-    ]
+    ],
+    value: '$2,000,000'
   },
   glDamageToRentedPremises: {
     label: 'Damage to premises rented to you',
-    component: 'radioGroup',
+    component: 'rangeSlider',
     id: 'glDamageToRentedPremises',
-    values: [
-      '$1,000,000',
-      '$2,000,000'
-    ]
+    min: 50000,
+    max: 1000000,
+    step: 50000,
+    value: 50000
   },
   medicalExpenses: {
     label: 'Medical Expenses',
@@ -360,16 +360,17 @@ export const STEPS = {
     values: [
       '$5,000',
       '$10,000'
-    ]
+    ],
+    value: '$5,000'
   },
   actsOfTerror: {
-    label: 'Would you like to cover certified acts of terror?',
+    label: 'Certified Acts of Terror coverage?',
     component: 'radioGroup',
     id: 'actsOfTerror',
     values: ['Yes', 'No']
   },
   cyberLiability: {
-    label: 'Would you like Data Response and Cyber Liability?',
+    label: 'Data Response and Cyber Liability coverage?',
     component: 'radioGroup',
     id: 'cyberLiability',
     values: ['Yes', 'No']
@@ -387,8 +388,8 @@ export const STEPS = {
     hidden: true,
     id: 'cyberAggregateLimit',
     values: [
-      '$1,000,000',
-      '$2,000,000'
+      '$50,000',
+      '$100,000'
     ]
   },
   cyberDeductible: {
@@ -397,14 +398,12 @@ export const STEPS = {
     hidden: true,
     id: 'cyberDeductible',
     values: [
-      '$0',
       '$1,000',
       '$2,500',
-      '$5,000'
     ]
   },
   eblCoverage: {
-    label: 'Would you like Employee Benefits Liability Coverage?',
+    label: 'Employee Benefits Liability coverage?',
     component: 'radioGroup',
     id: 'eblCoverage',
     values: ['Yes', 'No']
@@ -463,7 +462,7 @@ export const STEPS = {
     ]
   },
   eplCoverage: {
-    label: 'Would you like Employee-Related Practices Liability Endorsement Coverage?',
+    label: 'Employee-Related Practices Liability coverage?',
     component: 'radioGroup',
     id: 'eplCoverage',
     values: ['Yes', 'No']

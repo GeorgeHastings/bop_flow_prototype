@@ -37,8 +37,7 @@ const NESTED_CONDITIONALS = {
       'eblCoverageRetroactiveDate',
       'eblEachEmployeeLimit',
       'eblAggregateLimit',
-      'eblDeductible',
-      'eblConsecutiveYears'
+      'eblDeductible'
     ]
   },
   'eplCoverage': {
@@ -46,8 +45,7 @@ const NESTED_CONDITIONALS = {
       'eplCoverageRetroactiveDate',
       'eplEachEmployeeLimit',
       'eplAggregateLimit',
-      'eplDeductible',
-      'eplConsecutiveYears'
+      'eplDeductible'
     ]
   },
   'cyberLiability': {

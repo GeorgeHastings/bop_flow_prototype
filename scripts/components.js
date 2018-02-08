@@ -84,7 +84,7 @@ export const COMPONENTS = {
           <div class="policy-icon"></div>
           <div class="policy-info">
             <span>${options.type}</span>
-            <span class="tag">${options.status}</span>
+            <span class="tag ${options.status}">${options.status}</span>
             <b>${options.premium}</b>
           </div>
         </div>
@@ -150,7 +150,7 @@ export const COMPONENTS = {
     },
     accountDetail: (account) => {
       return `
-        <div class="header full-pad">
+        <div class="header small-pad">
           <h4>${account.name}</h4>
           <div class="button button-small button-secondary">Edit</div>
         </div>
@@ -173,7 +173,7 @@ export const COMPONENTS = {
             </div>
           </div>
         </div>
-      `
+      `;
     }
   }
 };

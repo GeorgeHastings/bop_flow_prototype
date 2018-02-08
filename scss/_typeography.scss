@@ -60,7 +60,14 @@ b {
   font-weight: 700;
   text-transform: uppercase;
   padding: 0.25rem 0.5rem;
-  color: white;
   border-radius: 1rem;
-  background-color: $green;
+
+  &.quoted {
+    color: $green;
+    border: 1px solid $green;
+  }
+  &.bound {
+    color: white;
+    background-color: $green;
+  }
 }

@@ -43,6 +43,10 @@ section {
 
   h4 {
     margin-top: 0;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &.small-pad {
@@ -73,7 +77,7 @@ section {
 .nav-bar {
   min-width: 60px;
   height: 100%;
-  background-color: $black;
+  background-color: $blue;
 }
 
 .account-wrapper {
@@ -82,9 +86,9 @@ section {
       content: "";
       position: absolute;
       top: 0;
-      left: -300px;
+      left: -360px;
       height: 100%;
-      width: 300px;
+      width: 360px;
       background-color: rgba(0,0,0,.3);
       z-index: 9999;
     }
@@ -114,23 +118,26 @@ section {
   // margin: 0.25rem;
   border-bottom: 1px solid $gray;
   background-color: white;
-  // font-size: 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 500;
   line-height: 150%;
   cursor: pointer;
 
   &.account-selected {
-    background-color: $blue;
-    color: white;
-    border-bottom: 1px solid $blue;
+    background-color: $lightgray;
+    color: $black;
+    font-weight: 700;
+    // border-bottom: 1px solid $blue;
   }
 }
 
 .account-detail {
   width: 100%;
-  min-width: 600px;
+  // min-width: 600px;
+  max-width: 400px;
   height: inherit;
   background-color: white;
-  border-left: 1px solid $gray;
+  border-left: 5px solid $lightgray;
 }
 
 .account-detail-content {
@@ -140,7 +147,7 @@ section {
 .account-info {
   width: 100%;
   // max-width: 600px;
-  padding: 0 3rem;
+  padding: 0 2rem;
 }
 
 .contact-info {
@@ -153,7 +160,7 @@ section {
 .account-policies {
   width: 100%;
   min-width: 400px;
-  max-width: 600px;
+  // max-width: 600px;
   border-left: 1px solid $gray;
   background-color: $lightgray;
 }

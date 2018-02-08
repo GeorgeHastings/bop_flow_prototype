@@ -107,9 +107,13 @@ b {
   font-weight: 700;
   text-transform: uppercase;
   padding: 0.25rem 0.5rem;
-  color: white;
-  border-radius: 1rem;
-  background-color: #50E3C2; }
+  border-radius: 1rem; }
+  .tag.quoted {
+    color: #50E3C2;
+    border: 1px solid #50E3C2; }
+  .tag.bound {
+    color: white;
+    background-color: #50E3C2; }
 
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
@@ -451,6 +455,9 @@ class for each line of the result
 
 .summary-container {
   margin-top: 2rem; }
+  .summary-container p {
+    display: flex;
+    justify-content: space-between; }
 
 .coverage-table p {
   display: flex;
@@ -509,7 +516,11 @@ section + section {
   display: flex;
   justify-content: space-between; }
   .header h4 {
-    margin-top: 0; }
+    margin-top: 0;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
   .header.small-pad {
     padding: 0 1rem; }
   .header.full-pad {
@@ -531,15 +542,15 @@ section + section {
 .nav-bar {
   min-width: 60px;
   height: 100%;
-  background-color: #303344; }
+  background-color: #4579FF; }
 
 .account-wrapper.quote-open:before {
   content: "";
   position: absolute;
   top: 0;
-  left: -300px;
+  left: -360px;
   height: 100%;
-  width: 300px;
+  width: 360px;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 9999; }
 
@@ -559,19 +570,21 @@ section + section {
   padding: 0.85rem;
   border-bottom: 1px solid #E2EAF0;
   background-color: white;
+  font-size: 0.85rem;
+  font-weight: 500;
   line-height: 150%;
   cursor: pointer; }
   .accounts-list li.account-selected {
-    background-color: #4579FF;
-    color: white;
-    border-bottom: 1px solid #4579FF; }
+    background-color: #EFF4F8;
+    color: #303344;
+    font-weight: 700; }
 
 .account-detail {
   width: 100%;
-  min-width: 600px;
+  max-width: 400px;
   height: inherit;
   background-color: white;
-  border-left: 1px solid #E2EAF0; }
+  border-left: 5px solid #EFF4F8; }
 
 .account-detail-content {
   display: flex;
@@ -579,7 +592,7 @@ section + section {
 
 .account-info {
   width: 100%;
-  padding: 0 3rem; }
+  padding: 0 2rem; }
 
 .contact-info {
   margin-top: 1rem; }
@@ -589,7 +602,6 @@ section + section {
 .account-policies {
   width: 100%;
   min-width: 400px;
-  max-width: 600px;
   border-left: 1px solid #E2EAF0;
   background-color: #EFF4F8; }
 
