@@ -111,7 +111,8 @@ section {
 .accounts-list li {
   color: $black;
   padding: 0.85rem;
-  margin: 0.25rem;
+  // margin: 0.25rem;
+  border-bottom: 1px solid $gray;
   background-color: white;
   // font-size: 0.85rem;
   line-height: 150%;
@@ -120,6 +121,7 @@ section {
   &.account-selected {
     background-color: $blue;
     color: white;
+    border-bottom: 1px solid $blue;
   }
 }
 
@@ -163,7 +165,7 @@ section {
 
 .policy {
   color: $black;
-  padding: 2rem;
+  padding: 1.5rem;
   margin: 0.5rem;
   background-color: white;
   border: 1px solid $gray;
