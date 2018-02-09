@@ -12,14 +12,14 @@ export const COMPONENTS = {
       <input type="${options.type}" class="${options.style || ''}" id="${options.id}" placeholder="${options.placeholder || ''}" value="${options.value || ''}">
     `,
     location: (options) => `
-      <input type="text" class="${options.style}" id="${options.id}" value="${options.value || ''}" data-onload="bindGoogleSearchAPI">
+      <input type="text" class="${options.style || ''}" id="${options.id}" value="${options.value || ''}" data-onload="bindGoogleSearchAPI">
     `,
     naics: (options) => `
-      <input type="text" class="${options.style}" id="naicsInput" value="${options.value || ''}" data-onload="bindNaicsSelector">
+      <input type="text" class="${options.style || ''}" id="naicsInput" value="${options.value || ''}" data-onload="bindNaicsSelector">
       <div id="naicsResults"></div>
     `,
     money: (options) => `
-      <input type="text" class="${options.style}" id="${options.id}" placeholder="${options.placeholder}" value="${options.value || ''}" data-oninput="maskMoney">
+      <input type="text" class="${options.style || ''}" id="${options.id}" placeholder="${options.placeholder}" value="${options.value || ''}" data-oninput="maskMoney">
     `,
     number: (options) => `
       <div class="number-input">
@@ -63,7 +63,7 @@ export const COMPONENTS = {
     submit: (options) => COMPONENTS.actions.button(options)
   },
   actions: {
-    button: (options) => `<div id="${options.id}" class="button ${options.style}" data-onclick="${options.action}">${options.label}</div>`
+    button: (options) => `<div id="${options.id}" class="button ${options.style || ''}" data-onclick="${options.action}">${options.label}</div>`
   },
   elements: {
     progressBar: (options) => {
@@ -84,7 +84,7 @@ export const COMPONENTS = {
     },
     quoteListing: (options) => {
       return `
-        <div class="policy" data-onclick="openPolicyDetail">
+        <div class="policy ${options.style || ''}" data-onclick="openPolicyDetail">
           <div class="policy-icon"><img src="assets/images/store.svg"></div>
           <div class="policy-info">
             <span>${options.type}</span>
@@ -99,7 +99,9 @@ export const COMPONENTS = {
       let summary = '';
       for(let prop in STATE.quote) {
         if(!Array.isArray(STATE.quote[prop])) {
-          summary += `<p class="flex-row"><b>${STEPS[prop].label}:</b><span>${STATE.quote[prop]}</span></p>`;
+          if(STEPS[prop]) {
+            summary += `<p class="flex-row ${STEPS[prop].hidden ? 'indent' : ''}"><b>${STEPS[prop].label}:</b><span>${STATE.quote[prop]}</span></p>`;
+          }
         }
       }
       return `
@@ -156,24 +158,45 @@ export const COMPONENTS = {
     accountDetail: (account) => {
       return `
         <div class="header small-pad">
-          <h5>${account.name}</h5>
+          <h5>Account details</h5>
           <div class="button button-small button-secondary">Edit</div>
         </div>
         <div class="account-detail-content">
           <div class="account-info">
-            <h2>${account.name}</h2>
+            <h3>${account.name}</h3>
+            <span class="big-label">Account No. ${account.number}</span>
             <div class="account-info-wrapper">
               <div class="account-summary">
-                <h4>Summary</h4>
+                <h5>Summary</h5>
                 <p>${account.summary}</p>
               </div>
               <div class="account-contact-info">
-                <h4>Contact info</h4>
+                <h5>Contact info</h5>
                 <ul class="contact-info">
                   <li>${account.contactInfo.phone}</li>
-                  <li>${account.contactInfo.email}</li>
+                  <li><a>${account.contactInfo.email}</a></li>
                   <li>${account.contactInfo.mailingAddress}</li>
                 </ul>
+              </div>
+              <div class="account-detail-item">
+                <h5>Billing status</h5>
+                <span class="tag quoted">Paid</span>
+              </div>
+              <div class="account-detail-item">
+                <h5>NAICS code</h5>
+                <p>Coffee Merchant - 722515</p>
+              </div>
+              <div class="account-detail-item">
+                <h5>Annual Revenue</h5>
+                <p>$450,000</p>
+              </div>
+              <div class="account-detail-item">
+                <h5>Total Payroll</h5>
+                <p>$180,000</p>
+              </div>
+              <div class="account-detail-item">
+                <h5>Number of employees</h5>
+                <p>5</p>
               </div>
             </div>
           </div>

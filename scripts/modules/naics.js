@@ -1,4 +1,5 @@
 import { NAICS } from '../data/naics_data.js';
+import { STATE } from '../state.js';
 
 let naicsInput = document.getElementById('naicsInput');
 let naicsResults = document.getElementById('naicsResults');
@@ -21,6 +22,7 @@ var getNaics = function(event) {
   naicsInput = document.getElementById('naicsInput');
   naicsInput.value = event.target.innerText;
   naicsResults.style.display = 'none';
+  STATE.quote['naicsCode'] = naics;
 };
 
 function toTitleCase(str) {

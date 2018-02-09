@@ -54,7 +54,7 @@ table {
   z-index: 9999;
   box-shadow: 0 10px 30px -5px rgba(0, 0, 20, 0.3);
   background-color: white;
-  color: #303344; }
+  color: #373A4B; }
 
 h1, h2, h3, h4, h5 {
   font-weight: 700;
@@ -68,7 +68,8 @@ h2 {
   font-size: 1.953rem; }
 
 h3 {
-  font-size: 1.563rem; }
+  font-size: 1.563rem;
+  margin-bottom: 0.5rem; }
 
 h4 {
   font-size: 1.25rem; }
@@ -79,15 +80,21 @@ h5 {
 p {
   margin-top: 1rem;
   line-height: 140%; }
+  p.note {
+    color: #95A4B3;
+    font-size: 0.85rem; }
+  p.tooltip {
+    color: #373A4B;
+    font-size: 1rem;
+    margin-top: 0; }
+  p.indent {
+    margin-left: 2rem; }
 
-p.note {
-  color: #95A4B3;
-  font-size: 0.85rem; }
-
-p.tooltip {
-  color: #303344;
-  font-size: 1rem;
-  margin-top: 0; }
+a {
+  color: #4579FF;
+  cursor: pointer; }
+  a:hover {
+    text-decoration: underline; }
 
 b {
   font-weight: 700; }
@@ -123,7 +130,7 @@ b {
     color: white;
     background-color: #50E3C2; }
   .tag.referred {
-    color: #303344;
+    color: #373A4B;
     background-color: yellow; }
   .tag.declined {
     color: white;
@@ -173,7 +180,7 @@ select,
   input[type="date"]:focus,
   select:focus,
   .radio-button label:focus {
-    border: 1px solid #303344; }
+    border: 1px solid #373A4B; }
 
 .form-group {
   margin-top: 2rem; }
@@ -251,7 +258,7 @@ input[type=number]::-webkit-outer-spin-button {
   content: '';
   width: 1rem;
   height: 2px;
-  background-color: #303344;
+  background-color: #373A4B;
   transform: translate(-50%, -50%); }
 
 .number-input button.plus:after {
@@ -303,8 +310,8 @@ input[type=checkbox]:checked + label:before {
     text-align: center;
     cursor: pointer; }
   .radio-group input[type="radio"]:checked + label {
-    box-shadow: inset 0 0 0 1px #303344;
-    border: 1px solid #303344;
+    box-shadow: inset 0 0 0 1px #373A4B;
+    border: 1px solid #373A4B;
     font-weight: 500; }
 
 .range-slider {
@@ -329,7 +336,7 @@ input[type=range] {
 
 input[type=range]::-webkit-slider-runnable-track {
   height: 1px;
-  background: #303344;
+  background: #373A4B;
   background-size: 0 0;
   border-radius: 5px;
   -webkit-appearance: none;
@@ -338,7 +345,7 @@ input[type=range]::-webkit-slider-runnable-track {
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  border: 2px solid #303344;
+  border: 2px solid #373A4B;
   height: 25px;
   width: 25px;
   border-radius: 50%;
@@ -419,7 +426,11 @@ class for each line of the result
     color: white; }
   .button-secondary {
     border: 2px solid #E2EAF0;
-    color: #303344; }
+    color: #373A4B; }
+    .button-secondary.button-small {
+      line-height: 31px; }
+    .button-secondary.button-big {
+      line-height: 46px; }
 
 .quote-flow-container {
   position: absolute;
@@ -475,9 +486,9 @@ class for each line of the result
 
 .prog-bar {
   position: absolute;
-  top: 56px;
-  left: calc(-100% + 360px);
-  width: calc(100% - 360px);
+  top: 0px;
+  left: 0;
+  width: 0%;
   height: 3px;
   background-color: #50E3C2;
   transition: all 0.3s cubic-bezier(0, 0, 0, 1); }
@@ -538,7 +549,7 @@ body {
   font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-size: 16px;
-  color: #303344;
+  color: #373A4B;
   background-color: #EFF4F8; }
 
 section + section {
@@ -602,7 +613,7 @@ section + section {
     overflow-y: scroll; }
 
 .accounts-list li {
-  color: #303344;
+  color: #373A4B;
   padding: 0.85rem;
   border-bottom: 1px solid #E2EAF0;
   background-color: white;
@@ -610,17 +621,19 @@ section + section {
   font-weight: 500;
   line-height: 150%;
   cursor: pointer; }
+  .accounts-list li:hover {
+    background-color: #fafbfd; }
   .accounts-list li.account-selected {
     background-color: #EFF4F8;
-    color: #303344;
+    color: #373A4B;
     font-weight: 700; }
 
 .account-detail {
   width: 100%;
-  max-width: 450px;
+  max-width: 470px;
   height: inherit;
   background-color: white;
-  border-left: 5px solid #EFF4F8; }
+  border-left: 1px solid #E2EAF0; }
 
 .account-detail-content {
   display: flex;
@@ -635,6 +648,14 @@ section + section {
   .contact-info li {
     line-height: 2rem; }
 
+.account-detail-item {
+  margin-top: 1rem;
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between; }
+  .account-detail-item p, .account-detail-item h5 {
+    margin-top: 0; }
+
 .account-policies {
   position: relative;
   width: 100%;
@@ -647,7 +668,7 @@ section + section {
   overflow-y: scroll; }
 
 .policy {
-  color: #303344;
+  color: #373A4B;
   padding: 1.5rem;
   margin: 1rem;
   background-color: white;
@@ -656,7 +677,7 @@ section + section {
   display: flex;
   justify-content: space-between; }
   .policy:hover {
-    border: 1px solid #4579FF; }
+    background-color: #fafbfd; }
 
 .policy-icon {
   min-width: 50px;
@@ -683,20 +704,24 @@ section + section {
   right: 0;
   width: 100%;
   background-color: white;
-  height: 100%; }
+  height: 100%;
+  transform: translate3d(0rem, 0, 0);
+  opacity: 1; }
   .policy-detail-wrapper.hidden {
-    position: absolute;
     left: -99999rem;
-    visibility: hidden; }
+    transform: translate3d(2rem, 0, 0);
+    opacity: 0;
+    pointer-events: none; }
 
 .policy-detail {
-  padding: 2rem; }
+  padding: 2rem;
+  height: calc(100% - 60px);
+  overflow-y: scroll; }
 
 .policy-header {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
-  margin-top: 1rem; }
+  align-items: flex-start; }
   .policy-header .policy-icon {
     width: 80px;
     height: 80px;
@@ -734,3 +759,42 @@ section + section {
 
 .policy-actions .button + .button {
   margin-top: 0.5rem; }
+
+.quote-quoting {
+  background-color: #f8faff;
+  position: relative;
+  overflow: hidden; }
+  .quote-quoting:before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    z-index: 0;
+    animation: borders 0.75s linear infinite;
+    background: radial-gradient(#4579FF 33%, transparent, transparent); }
+
+@keyframes borders {
+  0% {
+    transform: translate3d(-50%, -50%, 0); }
+  25% {
+    transform: translate3d(50%, -50%, 0); }
+  50% {
+    transform: translate3d(50%, 50%, 0); }
+  75% {
+    transform: translate3d(-50%, 50%, 0); }
+  100% {
+    transform: translate3d(-50%, -50%, 0); } }
+  .quote-quoting:after {
+    content: "Preparing your quote...";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    z-index: 0;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    color: #4579FF;
+    line-height: 100px;
+    text-align: center;
+    background-color: white; }

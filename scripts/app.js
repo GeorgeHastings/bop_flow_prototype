@@ -56,16 +56,10 @@ const NESTED_CONDITIONALS = {
       'cyberDeductible'
     ]
   },
-  'additionalInsuredType': {
-    'Person': [
-      'additionalInsuredFirstName',
-      'additionalInsuredLastName',
-      'additionalInsuredPersonAddress',
-      'additionalInsuredPersonAddressType',
-      'addAdditionalInsured'
-    ],
-    'Business': [
+  'additionalInsuredOption': {
+    'Yes': [
       'additionalInsuredBizName',
+      'additionalInsuredBizType',
       'additionalInsuredBizAddress',
       'additionalInsuredBizAddressType',
       'addAdditionalInsured'
@@ -164,4 +158,4 @@ const init = () => {
 
 init();
 
-export { STATE, SCHEMA, animateStepTransition, render, QUOTE_FLOW, PROGRESSBAR, POLICY_DETAIL_WRAPPER };
+export { STATE, SCHEMA, animateStepTransition, render, QUOTE_FLOW, BOP_CONTAINER, PROGRESSBAR, POLICY_DETAIL_WRAPPER };

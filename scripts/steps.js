@@ -206,9 +206,8 @@ export const STEPS = {
   },
   buildingPersonalPropertyLimit: {
     label: 'Building Personal Property limit',
-    component: 'dropDown',
+    component: 'money',
     id: 'buildingPersonalPropertyLimit',
-    values: ['$0'],
     value: '$0'
   },
   buildingPersonalPropertyLimitAmount: {
@@ -553,25 +552,11 @@ export const STEPS = {
     id: 'snowPlowProducts',
     label: 'Snow plow products/Completed ops'
   },
-  additionalInsuredType: {
-    label: 'Additional insured type',
+  additionalInsuredOption: {
+    label: 'Would you like to add an additional insured?',
     component: 'radioGroup',
-    id: 'additionalInsuredType',
-    values: ['Person', 'Business']
-  },
-  additionalInsuredFirstName: {
-    label: 'First Name',
-    component: 'input',
-    id: 'additionalInsuredFirstName',
-    type: 'text',
-    hidden: true
-  },
-  additionalInsuredLastName: {
-    label: 'Last Name',
-    component: 'input',
-    id: 'additionalInsuredLastName',
-    type: 'text',
-    hidden: true
+    id: 'additionalInsuredOption',
+    values: ['Yes', 'No']
   },
   additionalInsuredBizAddress: {
     label: 'Address',
@@ -579,28 +564,35 @@ export const STEPS = {
     id: 'additionalInsuredBizAddress',
     hidden: true
   },
-  additionalInsuredPersonAddress: {
-    label: 'Address',
-    component: 'location',
-    id: 'additionalInsuredPersonAddress',
+  additionalInsuredBizType: {
+    label: 'Type',
+    component: 'dropDown',
+    id: 'additionalInsuredBizType',
+    values: [
+      'Controlling Interest',
+      'Designated Person or Organization',
+      'Engineers, Architects or Surveyors',
+      'Engineers, Architects or Surveyors not engaged by the Named Insured',
+      'State or Political Subdivisions - Permits Relating to Premises',
+      'Grantor of Franchise ',
+      'Owners, Lessees or Contractors - With Additional Insured Requirement in Construction Contract',
+      'State or Political Subdivision - Permits or Authorizations',
+      'Vendors',
+      'Co-Owner of Insured Premises',
+      'Lessor of Leased Equipment',
+      'Managers or Lessors of Premises',
+      'Owners or Other Interests From Whom Land Has Been leased',
+      'Owners, lessees or contractors - Scheduled Person or Organization',
+      'Owners, lessees or contractors - Completed Operations',
+      'Loss of rental value - Landlord as Designated Payee',
+      'Mortgagee, Assignee or Receiver'
+    ],
     hidden: true
   },
   additionalInsuredBizAddressType: {
     label: 'Address type',
     component: 'dropDown',
     id: 'additionalInsuredBizAddressType',
-    values: [
-      'Billing',
-      'Business',
-      'Home',
-      'Other'
-    ],
-    hidden: true
-  },
-  additionalInsuredPersonAddressType: {
-    label: 'Address type',
-    component: 'dropDown',
-    id: 'additionalInsuredPersonAddressType',
     values: [
       'Billing',
       'Business',
@@ -634,7 +626,7 @@ export const ACTION_COMPONENTS = {
     component: 'button',
     style: 'button-big button-confirm',
     label: 'Get quote',
-    action: ''
+    action: 'getQuote'
   },
   createAccount: {
     component: 'button',
@@ -644,7 +636,7 @@ export const ACTION_COMPONENTS = {
   },
   reviewSummary: {
     component: 'button',
-    style: 'button-big button-confirm',
+    style: 'button-big button-primary',
     label: 'Review summary',
     action: 'advanceStep'
   },

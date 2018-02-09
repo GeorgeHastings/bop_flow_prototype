@@ -10,7 +10,7 @@
      width: calc(100% + 4px);
      height: calc(100% + 4px);
      z-index: 0;
-     animation: borders 1s linear infinite;
+     animation: borders 0.75s linear infinite;
      background: radial-gradient($blue 33%, transparent, transparent);
 
      @keyframes borders {
@@ -33,14 +33,17 @@
     }
 
    &:after {
-     content: "";
+     content: "Preparing your quote...";
      position: absolute;
      top: 2px;
      left: 2px;
      z-index: 0;
      width: calc(100% - 4px);
      height: calc(100% - 4px);
-     background-color: inherit;
+     color: $blue;
+     line-height: 100px;
+     text-align: center;
+     background-color: white;
    }
 }
 

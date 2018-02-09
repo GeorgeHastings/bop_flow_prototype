@@ -115,7 +115,6 @@ section {
 .accounts-list li {
   color: $black;
   padding: 0.85rem;
-  // margin: 0.25rem;
   border-bottom: 1px solid $gray;
   background-color: white;
   font-size: 0.85rem;
@@ -123,20 +122,23 @@ section {
   line-height: 150%;
   cursor: pointer;
 
+  &:hover {
+    background-color: lighten($lightgray, 3%);
+  }
+
   &.account-selected {
     background-color: $lightgray;
     color: $black;
     font-weight: 700;
-    // border-bottom: 1px solid $blue;
   }
 }
 
 .account-detail {
   width: 100%;
-  max-width: 450px;
+  max-width: 470px;
   height: inherit;
   background-color: white;
-  border-left: 5px solid $lightgray;
+  border-left: 1px solid $gray;
 }
 
 .account-detail-content {
@@ -145,7 +147,6 @@ section {
 
 .account-info {
   width: 100%;
-  // max-width: 600px;
   padding: 0 2rem;
 }
 
@@ -153,6 +154,16 @@ section {
   margin-top: 1rem;
   li {
     line-height: 2rem;
+  }
+}
+
+.account-detail-item {
+  margin-top: 1rem;
+  align-items: baseline;
+  @include flex-row;
+
+  p,h5 {
+    margin-top: 0;
   }
 }
 
@@ -179,7 +190,7 @@ section {
   @include flex-row;
 
   &:hover {
-    border: 1px solid $blue;
+    background-color: lighten($lightgray, 3%);
   }
 }
 
@@ -212,23 +223,27 @@ section {
   width: 100%;
   background-color: white;
   height: 100%;
+  transform: translate3d(0rem, 0, 0);
+  opacity: 1;
 
   &.hidden {
-    position: absolute;
     left: -99999rem;
-    visibility: hidden;
+    transform: translate3d(2rem, 0, 0);
+    opacity: 0;
+    pointer-events: none;
   }
 }
 
 .policy-detail {
   padding: 2rem;
+  height: calc(100% - 60px);
+  overflow-y: scroll;
 }
 
 .policy-header {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  margin-top: 1rem;
 
   .policy-icon {
     width: 80px;
@@ -283,4 +298,9 @@ section {
   .button + .button {
     margin-top: 0.5rem;
   }
+}
+
+.quote-quoting {
+  background-color: lighten($blue, 35%);
+  @include borderanimate;
 }

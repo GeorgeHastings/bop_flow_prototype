@@ -50,6 +50,12 @@
   &-secondary {
     border: 2px solid $gray;
     color: $black;
-  }
 
+    &.button-small {
+      line-height: 31px;
+    }
+    &.button-big {
+      line-height: 46px;
+    }
+  }
 }
