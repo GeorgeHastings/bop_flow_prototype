@@ -12,8 +12,8 @@
     <div class="main-wrapper">
       <div class="nav-bar"></div>
       <div class="accounts-list">
-        <div class="header small-pad sticky">
-          <h4>Accounts</h4>
+        <div class="header small-pad">
+          <h5>Accounts</h5>
           <div class="button button-small button-secondary">New</div>
         </div>
         <ul id="accountsList"></ul>
@@ -22,13 +22,13 @@
         <div id="accountDetail" class="account-detail"></div>
         <div class="account-policies">
           <div class="header small-pad">
-            <h4>Quotes</h4>
+            <h5>Quotes</h5>
             <div class="button button-confirm button-small" id="newQuote">New Quote</div>
           </div>
           <div class="policy-container">
             <div id="policyContainer"></div>
             <div class="header small-pad">
-              <h4>In-force policies</h4>
+              <h5>In-force policies</h5>
             </div>
             <div>
               <div class="policy">
@@ -36,15 +36,74 @@
                 <div class="policy-info">
                   <span>Business Owners Policy</span>
                   <span class="tag bound">bound</span>
+                  <span>2/15/18</span>
                   <b>$1,400</b>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="policy-detail-wrapper hidden">
+            <div class="header small-pad">
+              <h5>Quote Detail</h5>
+              <div class="button button-secondary button-small" id="closeQuoteDetail">Close</div>
+            </div>
+            <div class="policy-detail" id="policyDetail">
+              <div class="policy-header">
+                <div class="policy-icon"></div>
+                <div class="policy-details">
+                  <h3>Business Owners Policy</h3>
+                  <span class="big-label">Quote No. 7665594</span>
+                </div>
+              </div>
+              <div class="policy-numbers">
+                <div>
+                  <span class="big-label">Premium</span>
+                  <h3>$2,755</h3>
+                </div>
+                <div>
+                  <span class="big-label">Limit</span>
+                  <h3>$2,000,000</h3>
+                </div>
+                <div>
+                  <span class="big-label">Deductible</span>
+                  <h3>$5,000</h3>
+                </div>
+                <div>
+                  <span class="big-label">Period</span>
+                  <h3>2/8/18</h3>
+                </div>
+              </div>
+              <hr>
+              <h5>Payment Options</h5>
+              <div class="payment-options">
+                <div class="payment-option">
+                  <p>One payment of $2,755</p>
+                  <p class="note">20% down + Installment Fee</p>
+                </div>
+                <div class="payment-option">
+                  <p>One payment of $2,755</p>
+                  <p class="note">20% down + Installment Fee</p>
+                </div>
+                <div class="payment-option">
+                  <p>One payment of $2,755</p>
+                  <p class="note">20% down + Installment Fee</p>
+                </div>
+                <div class="payment-option">
+                  <p>One payment of $2,755</p>
+                  <p class="note">20% down + Installment Fee</p>
+                </div>
+              </div>
+              <hr>
+              <div class="policy-actions">
+                <div class="button button-secondary button-big">Download quote letter</div>
+                <div class="button button-primary-ghost button-big">Bind Policy</div>
               </div>
             </div>
           </div>
         </div>
         <div id="bopQuote" class="quote-flow-container hidden">
           <div class="header full-pad sticky">
-            <h4>Carbon 5 - New Bop Quote</h4>
+            <h5>Carbon 5 - New Bop Quote</h5>
             <div class="button button-secondary button-small" id="closeQuote">Cancel</div>
             <div class="prog-bar" id="progressBar"></div>
           </div>

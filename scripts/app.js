@@ -11,6 +11,7 @@ const QUOTE_FLOW = document.getElementById('quoteFlow');
 const PROGRESSBAR = document.getElementById('progressBar');
 const BOP_CONTAINER = document.getElementById('bopQuote');
 const ACCOUNT_WRAPPER = document.getElementById('accountWrapper');
+const POLICY_DETAIL_WRAPPER = document.querySelector('.policy-detail-wrapper');
 
 const animateStepTransition = () => {
   QUOTE_FLOW.classList.remove('animate-transition');
@@ -122,9 +123,11 @@ const render = (container, component) => {
   const buttons = container.querySelectorAll('.button');
   const clickeEvents = container.querySelectorAll('[data-onclick]');
 
+  if(clickeEvents) {
+    bindActionEvents(clickeEvents);
+  }
   if(buttons) {
     bindActionEvents(buttons);
-    bindActionEvents(clickeEvents);
   }
   if(inputs){
     bindInputEvents(inputs);
@@ -147,7 +150,11 @@ document.getElementById('closeQuote').onclick = () => {
   ACCOUNT_WRAPPER.classList.remove('quote-open');
 };
 
+document.getElementById('closeQuoteDetail').onclick = () => {
+  POLICY_DETAIL_WRAPPER.classList.add('hidden');
+};
+
 render(ACCOUNT_LIST, COMPONENTS.views.accounts());
 ACTIONS.showAccountDetail(0);
 
-export { STATE, SCHEMA, animateStepTransition, render, QUOTE_FLOW, PROGRESSBAR };
+export { STATE, SCHEMA, animateStepTransition, render, QUOTE_FLOW, PROGRESSBAR, POLICY_DETAIL_WRAPPER };

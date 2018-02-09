@@ -80,11 +80,12 @@ export const COMPONENTS = {
     },
     quoteListing: (options) => {
       return `
-        <div class="policy">
+        <div class="policy" data-onclick="openPolicyDetail">
           <div class="policy-icon"></div>
           <div class="policy-info">
             <span>${options.type}</span>
             <span class="tag ${options.status}">${options.status}</span>
+            <span>2/15/18</span>
             <b>${options.premium}</b>
           </div>
         </div>
@@ -151,7 +152,7 @@ export const COMPONENTS = {
     accountDetail: (account) => {
       return `
         <div class="header small-pad">
-          <h4>${account.name}</h4>
+          <h5>${account.name}</h5>
           <div class="button button-small button-secondary">Edit</div>
         </div>
         <div class="account-detail-content">

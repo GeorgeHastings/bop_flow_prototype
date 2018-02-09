@@ -1,4 +1,4 @@
-h1,h2,h3,h4 {
+h1,h2,h3,h4,h5 {
   font-weight: 700;
   margin: 1.414em 0 0;
   line-height: 150%;
@@ -19,6 +19,11 @@ h3 {
 h4 {
   font-size: 1.25rem;
 }
+
+h5 {
+  font-size: 1rem;
+}
+
 
 p {
   margin-top: 1rem;
@@ -47,10 +52,19 @@ b {
   cursor: help;
 }
 
+.big-label {
+  margin-top: 0;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $darkgray;
+}
+
 .mini-label {
   margin-top: 0;
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
   color: $darkgray;
 }
@@ -63,8 +77,16 @@ b {
   border-radius: 1rem;
 
   &.quoted {
-    color: $green;
-    border: 1px solid $green;
+    color: white;
+    background-color: $green;
+  }
+  &.referred {
+    color: $black;
+    background-color: yellow;
+  }
+  &.declined {
+    color: white;
+    background-color: $red;
   }
   &.bound {
     color: white;
