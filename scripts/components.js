@@ -14,6 +14,10 @@ export const COMPONENTS = {
     location: (options) => `
       <input type="text" class="${options.style}" id="${options.id}" value="${options.value || ''}" data-onload="bindGoogleSearchAPI">
     `,
+    naics: (options) => `
+      <input type="text" class="${options.style}" id="naicsInput" value="${options.value || ''}" data-onload="bindNaicsSelector">
+      <div id="naicsResults"></div>
+    `,
     money: (options) => `
       <input type="text" class="${options.style}" id="${options.id}" placeholder="${options.placeholder}" value="${options.value || ''}" data-oninput="maskMoney">
     `,
@@ -81,7 +85,7 @@ export const COMPONENTS = {
     quoteListing: (options) => {
       return `
         <div class="policy" data-onclick="openPolicyDetail">
-          <div class="policy-icon"></div>
+          <div class="policy-icon"><img src="assets/images/store.svg"></div>
           <div class="policy-info">
             <span>${options.type}</span>
             <span class="tag ${options.status}">${options.status}</span>
@@ -122,7 +126,7 @@ export const COMPONENTS = {
           input.value = valueHasBeenEntered || input.value;
           input.label = input.label && input.tooltip ? input.label.replace('*tooltip*', input.tooltip) : input.label;
           return `
-            <div class="form-group ${input.hidden ? 'hidden' : ''} ${conditional ? 'child-indent' : ''} ${input.size ? input.size : ''}">
+            <div class="form-group ${input.hidden ? 'hidden' : ''} ${conditional ? 'child-indent' : ''} ${input.size ? input.size : 'skip'}">
               ${input.label && input.component !== 'checkBox' && input.component !== 'submit' ? `<label>${input.label}</label>` : ''}
               ${COMPONENTS.inputs[input.component](input ? input : '')}
               ${input.description ? `<p class="note">${input.description}</p>` : ''}

@@ -114,7 +114,24 @@ const bindInputEvents = (inputs) =>
       ACTIONS[fn](input);
     }
     input.onchange = handleInput;
-  });
+});
+
+const bindStaticEvents = () => {
+  document.getElementById('newQuote').onclick = () => {
+    BOP_CONTAINER.classList.remove('hidden');
+    ACCOUNT_WRAPPER.classList.add('quote-open');
+    render(QUOTE_FLOW, COMPONENTS.views.step(SCHEMA[0]));
+  };
+
+  document.getElementById('closeQuote').onclick = () => {
+    BOP_CONTAINER.classList.add('hidden');
+    ACCOUNT_WRAPPER.classList.remove('quote-open');
+  };
+
+  document.getElementById('closeQuoteDetail').onclick = () => {
+    POLICY_DETAIL_WRAPPER.classList.add('hidden');
+  };
+};
 
 const render = (container, component) => {
   container.innerHTML = component;
@@ -139,22 +156,12 @@ const render = (container, component) => {
   tippet.init();
 };
 
-document.getElementById('newQuote').onclick = () => {
-  BOP_CONTAINER.classList.remove('hidden');
-  ACCOUNT_WRAPPER.classList.add('quote-open');
-  render(QUOTE_FLOW, COMPONENTS.views.step(SCHEMA[0]));
+const init = () => {
+  render(ACCOUNT_LIST, COMPONENTS.views.accounts());
+  ACTIONS.showAccountDetail(0);
+  bindStaticEvents();
 };
 
-document.getElementById('closeQuote').onclick = () => {
-  BOP_CONTAINER.classList.add('hidden');
-  ACCOUNT_WRAPPER.classList.remove('quote-open');
-};
-
-document.getElementById('closeQuoteDetail').onclick = () => {
-  POLICY_DETAIL_WRAPPER.classList.add('hidden');
-};
-
-render(ACCOUNT_LIST, COMPONENTS.views.accounts());
-ACTIONS.showAccountDetail(0);
+init();
 
 export { STATE, SCHEMA, animateStepTransition, render, QUOTE_FLOW, PROGRESSBAR, POLICY_DETAIL_WRAPPER };

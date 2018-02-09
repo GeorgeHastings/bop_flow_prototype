@@ -186,8 +186,16 @@ section {
 .policy-icon {
   min-width: 50px;
   min-height: 50px;
+  max-width: 50px;
+  max-height: 50px;
   background-color: $lightblue;
   border-radius: 50%;
+  text-align: center;
+
+  img {
+    width: 70%;
+    padding: 30% 10%;
+  }
 }
 
 .policy-info {
@@ -225,6 +233,8 @@ section {
   .policy-icon {
     width: 80px;
     height: 80px;
+    max-width: 80px;
+    max-height: 80px;
   }
 
   .policy-details {

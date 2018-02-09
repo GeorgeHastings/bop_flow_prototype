@@ -177,9 +177,9 @@ select,
 
 .form-group {
   margin-top: 2rem; }
-  .form-group-half-size {
+  .form-group.half-size {
     display: inline-block;
-    width: calc(50% - 2px); }
+    width: calc(50% - (0.5rem + 2px)); }
   .form-group.two-col, .form-group.three-col {
     display: flex;
     flex-direction: row;
@@ -188,6 +188,15 @@ select,
     width: calc(50% - 1rem); }
   .form-group.three-col .form-group {
     width: calc(33.3% - 1rem); }
+
+.skip + .half-size,
+.half-size:first-of-type,
+.half-size:not(.skip) + .half-size:not(.skip) + .half-size:not(.skip) {
+  margin-left: 0; }
+
+.half-size:not(.skip) + .half-size:not(.skip),
+.half-size:not(.skip) + .half-size:not(.skip) + .half-size:not(.skip) + .half-size:not(.skip) {
+  margin-left: 1rem; }
 
 label {
   display: inline-block;
@@ -345,19 +354,29 @@ input[type=range]:focus::-webkit-slider-thumb {
 /*
 The div that holds all the lines
 */
-.pac-container {
+.pac-container,
+#naicsResults {
+  list-style: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); }
-  .pac-container:after {
+  .pac-container:after,
+  #naicsResults:after {
     display: none; }
 
 /*
 class for each line of the result
 */
-.pac-item {
+.pac-item,
+#naicsResults li {
   font: inherit;
   height: 50px;
   line-height: 50px;
   padding: 0 1rem; }
+
+#naicsResults li {
+  border-bottom: 1px solid #EFF4F8;
+  cursor: pointer; }
+  #naicsResults li:hover {
+    background-color: #EFF4F8; }
 
 .pac-icon-marker {
   display: none; }
@@ -642,8 +661,14 @@ section + section {
 .policy-icon {
   min-width: 50px;
   min-height: 50px;
+  max-width: 50px;
+  max-height: 50px;
   background-color: #E5ECFF;
-  border-radius: 50%; }
+  border-radius: 50%;
+  text-align: center; }
+  .policy-icon img {
+    width: 70%;
+    padding: 30% 10%; }
 
 .policy-info {
   width: 100%;
@@ -674,7 +699,9 @@ section + section {
   margin-top: 1rem; }
   .policy-header .policy-icon {
     width: 80px;
-    height: 80px; }
+    height: 80px;
+    max-width: 80px;
+    max-height: 80px; }
   .policy-header .policy-details {
     margin-left: 2rem; }
   .policy-header h3 {

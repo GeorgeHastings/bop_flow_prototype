@@ -2,133 +2,139 @@ export const STEPS = {
   legalBusinessName: {
     label: 'Legal business name',
       component: 'input',
-      size: 'form-group-half-size',
+      size: 'half-size',
       id: 'legalBusinessName',
       type: 'text',
   },
   doesBusinessAs: {
     label: 'Doing business as',
     component: 'input',
-    size: 'form-group-half-size',
+    size: 'half-size',
     id: 'doesBusinessAs',
       type: 'text'
-    },
+  },
+  naicsCode: {
+    label: 'Naics code',
+    component: 'naics',
+    id: 'naicsCode',
+    placeholder: 'Search business type'
+  },
   legalEntityType: {
-      label: 'Legal entity type',
-      component: 'dropDown',
-      id: 'legalEntityType',
-      values: [
-        'Common Ownership',
-        'Corporation',
-        'Executor Trustee',
-        'Government',
-        'Individual',
-        'Joint Venture',
-        'Limited Partnership',
-        'LLC',
-        'LLP',
-        'Non-Profit',
-        'Other',
-        'Partnership',
-        'Religious',
-        'Sole Proprietorship',
-        'Trust Estate'
-      ]
+    label: 'Legal entity type',
+    component: 'dropDown',
+    id: 'legalEntityType',
+    values: [
+      'Common Ownership',
+      'Corporation',
+      'Executor Trustee',
+      'Government',
+      'Individual',
+      'Joint Venture',
+      'Limited Partnership',
+      'LLC',
+      'LLP',
+      'Non-Profit',
+      'Other',
+      'Partnership',
+      'Religious',
+      'Sole Proprietorship',
+      'Trust Estate'
+    ]
   },
   policyHolderPhoneNumber: {
     label: 'Policyholder phone number',
-      component: 'phoneNumber',
-      size: 'form-group-half-size',
-      id: 'policyHolderPhoneNumber',
-      placeholder: '555-555-5555'
+    component: 'phoneNumber',
+    size: 'half-size',
+    id: 'policyHolderPhoneNumber',
+    placeholder: '555-555-5555'
   },
   policyHolderEmail: {
     label: 'Policyholder email',
-      component: 'input',
-      size: 'form-group-half-size',
-      id: 'policyHolderEmail',
-      type: 'text',
-      placeholder: 'policyholder@email.com'
+    component: 'input',
+    size: 'half-size',
+    id: 'policyHolderEmail',
+    type: 'text',
+    placeholder: 'policyholder@email.com'
   },
   locationSameAsMailing: {
-      label: 'Is the business address the same as the mailing address?',
-      component: 'radioGroup',
-      id: 'locationSameAsMailing',
-      values: ['Yes', 'No']
+    label: 'Is the business address the same as the mailing address?',
+    component: 'radioGroup',
+    id: 'locationSameAsMailing',
+    values: ['Yes', 'No']
   },
   locationAddress: {
-      label: 'What\'s the locations\' address?',
-      component: 'location',
-      id: 'locationAddress',
-      placeholder: 'Search street address',
-      type:'text',
-      hidden: true
+    label: 'What\'s the locations\' address?',
+    component: 'location',
+    id: 'locationAddress',
+    placeholder: 'Search street address',
+    type:'text',
+    hidden: true
   },
   mailingAddress: {
-      label: 'Business mailing address',
-      component: 'location',
-      id: 'mailingAddress',
-      placeholder: 'Search street address',
-      type:'text'
+    label: 'Business mailing address',
+    component: 'location',
+    id: 'mailingAddress',
+    placeholder: 'Search street address',
+    type:'text'
   },
   buildingClassCode: {
-      label: 'Type of business',
-      component: 'input',
-      id: 'buildingClassCode',
-      type: 'text',
-      placeholder: 'Search classification codes',
-      style: ''
+    label: 'Type of business',
+    component: 'input',
+    id: 'buildingClassCode',
+    type: 'text',
+    placeholder: 'Search classification codes',
+    style: ''
   },
   numEmployees: {
-      label: 'Number of employees',
-      component: 'number',
-      increment: true,
-      id: 'numEmployees',
-      min: 0,
-      max: 50
+    label: 'Number of employees',
+    component: 'number',
+    increment: true,
+    id: 'numEmployees',
+    min: 0,
+    max: 50
   },
   yearBuilt: {
     label: 'Year built',
-      component: 'input',
-      size: 'form-group-half-size',
-      id: 'yearBuilt',
-      type: 'text',
-      placeholder: '1970'
+    component: 'input',
+    size: 'half-size',
+    id: 'yearBuilt',
+    type: 'text',
+    placeholder: '1970'
   },
   plumbingElectricalUpdated: {
-      label: 'Was the plumbing, HVAC, and electrical updated within past 30 years?',
-      component: 'radioGroup',
-      id: 'plumbingElectricalUpdated',
-      values: ['Yes', 'No']
+    label: 'Was the plumbing, HVAC, and electrical updated within past 30 years?',
+    component: 'radioGroup',
+    id: 'plumbingElectricalUpdated',
+    values: ['Yes', 'No']
   },
   constructionType: {
-      label: 'Construction type',
-      component: 'dropDown',
-      id: 'constructionType',
-      size: 'form-group-half-size',
-      values: [
-        'Fire-Resistive',
-        'Frame Construction',
-        'Joisted Masonry',
-        'Masonry Non-Combustible',
-        'Modified Fire-Resistive',
-        'Non-Combustible'
-      ]
+    label: 'Construction type',
+    component: 'dropDown',
+    id: 'constructionType',
+    size: 'half-size',
+    values: [
+      'Fire-Resistive',
+      'Frame Construction',
+      'Joisted Masonry',
+      'Masonry Non-Combustible',
+      'Modified Fire-Resistive',
+      'Non-Combustible'
+    ]
   },
   areaSquareFeet: {
     label: 'Occupied area (square feet)',
-      component: 'number',
-      size: 'form-group-half-size',
-      id: 'areaSquareFeet',
-      min: 0
+    component: 'number',
+    size: 'half-size',
+    id: 'areaSquareFeet',
+    min: 0
   },
   numStories: {
     label: 'Number of stories',
-      component: 'number',
-      increment: true,
-      size: 'form-group-half-size',
-      id: 'numStories',
-      min: 0
+    component: 'number',
+    increment: true,
+    size: 'half-size',
+    id: 'numStories',
+    min: 0
   },
   yearRoofReplaced: {
     label: 'Has the roof been updated?',
@@ -277,7 +283,7 @@ export const STEPS = {
   utilityServicesTimeElement: {
     label: 'Utility Services - Time Element limit',
     component: 'dropDown',
-    size: 'form-group-half-size',
+    size: 'half-size',
     id: 'utilityServicesTimeElement',
     placeholder: '$0',
     values: ['$0'],
@@ -286,7 +292,7 @@ export const STEPS = {
   utilityServicesDirectDamage: {
     label: 'Utility Services - Direct Damage limit',
     component: 'dropDown',
-    size: 'form-group-half-size',
+    size: 'half-size',
     id: 'utilityServicesDirectDamage',
     placeholder: '$0',
     values: ['$0'],
@@ -295,7 +301,7 @@ export const STEPS = {
   additionalDebrisRemoval: {
     label: 'Additional Debris Removal',
     component: 'dropDown',
-    size: 'form-group-half-size',
+    size: 'half-size',
     id: 'additionalDebrisRemoval',
     values: ['$0'],
     value: '$0'
@@ -303,7 +309,7 @@ export const STEPS = {
   spoilage: {
     label: 'Spoilage',
     component: 'dropDown',
-    size: 'form-group-half-size',
+    size: 'half-size',
     id: 'spoilage',
     values: ['$0'],
     value: '$0'
