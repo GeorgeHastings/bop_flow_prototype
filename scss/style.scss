@@ -7,6 +7,7 @@
 @import 'buttons';
 @import 'quoteflow';
 
+@import url('https://fonts.googleapis.com/css?family=Arimo');
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
 
 * {box-sizing: border-box;}
@@ -114,7 +115,7 @@ section {
 
 .accounts-list li {
   color: $black;
-  padding: 0.85rem;
+  padding: 1rem;
   border-bottom: 1px solid $gray;
   background-color: white;
   font-size: 0.85rem;
@@ -145,6 +146,13 @@ section {
   @include flex-row;
 }
 
+.account-info,
+.contact-info {
+  p, li {
+    color: $darkgray;
+  }
+}
+
 .account-info {
   width: 100%;
   padding: 0 2rem;
@@ -152,6 +160,7 @@ section {
 
 .contact-info {
   margin-top: 1rem;
+
   li {
     line-height: 2rem;
   }

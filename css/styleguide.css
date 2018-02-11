@@ -67,7 +67,7 @@ select,
 
 label {
   display: inline-block;
-  font-weight: 500;
+  font-weight: 300;
   line-height: 140%;
   margin-bottom: 1rem; }
   input + label {
@@ -76,7 +76,7 @@ label {
 hr {
   margin: 2rem 0;
   border-top: transparent;
-  border-bottom: 1px solid #E2EAF0; }
+  border-bottom: 1px solid #EFF4F8; }
 
 select {
   -webkit-appearance: none;

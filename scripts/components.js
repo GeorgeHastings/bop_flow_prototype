@@ -164,12 +164,7 @@ export const COMPONENTS = {
         <div class="account-detail-content">
           <div class="account-info">
             <h3>${account.name}</h3>
-            <span class="big-label">Account No. ${account.number}</span>
             <div class="account-info-wrapper">
-              <div class="account-summary">
-                <h5>Summary</h5>
-                <p>${account.summary}</p>
-              </div>
               <div class="account-contact-info">
                 <h5>Contact info</h5>
                 <ul class="contact-info">
@@ -178,10 +173,16 @@ export const COMPONENTS = {
                   <li>${account.contactInfo.mailingAddress}</li>
                 </ul>
               </div>
+              <hr>
+              <div class="account-detail-item">
+                <h5>Account No.</h5>
+                <p>${account.number}</p>
+              </div>
               <div class="account-detail-item">
                 <h5>Billing status</h5>
                 <span class="tag quoted">Paid</span>
               </div>
+              <hr>
               <div class="account-detail-item">
                 <h5>NAICS code</h5>
                 <p>Coffee Merchant - 722515</p>

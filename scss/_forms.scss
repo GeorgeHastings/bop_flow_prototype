@@ -91,7 +91,7 @@ select,
 
 label {
   display: inline-block;
-  font-weight: 500;
+  font-weight: 300;
   line-height: 140%;
   margin-bottom: 1rem;
 
@@ -103,7 +103,7 @@ label {
 hr {
   margin: 2rem 0;
   border-top: transparent;
-  border-bottom: 1px solid #E2EAF0;
+  border-bottom: 1px solid $lightgray;
 }
 
 //select
