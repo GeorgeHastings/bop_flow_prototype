@@ -14,7 +14,7 @@ export const STEPS = {
       type: 'text'
   },
   naicsCode: {
-    label: 'Naics code',
+    label: 'Type of business',
     component: 'naics',
     id: 'naicsCode',
     placeholder: 'Search business type'
@@ -274,10 +274,10 @@ export const STEPS = {
   },
   ordinanceOrLawTwoThree: {
     label: 'Apply Coverage 2 and 3? (Demolition Costs and Increased Cost of Construction coverage)',
-    component: 'dropDown',
+    component: 'money',
     id: 'ordinanceOrLawTwoThree',
-    values: ['$0'],
     value: '$0',
+    description: 'Cannot exceed $100,000'
   },
   utilityServicesTimeElement: {
     label: 'Utility Services - Time Element limit',
@@ -285,7 +285,14 @@ export const STEPS = {
     size: 'half-size',
     id: 'utilityServicesTimeElement',
     placeholder: '$0',
-    values: ['$0'],
+    values: [
+      '$0',
+      '$10,000',
+      '$20,000',
+      '$30,000',
+      '$40,000',
+      '$50,000',
+    ],
     value: '$0',
   },
   utilityServicesDirectDamage: {
@@ -294,7 +301,13 @@ export const STEPS = {
     size: 'half-size',
     id: 'utilityServicesDirectDamage',
     placeholder: '$0',
-    values: ['$0'],
+    values: [
+      '$0',
+      '$25,000',
+      '$50,000',
+      '$75,000',
+      '$100,000',
+    ],
     value: '$0',
   },
   additionalDebrisRemoval: {
@@ -302,7 +315,13 @@ export const STEPS = {
     component: 'dropDown',
     size: 'half-size',
     id: 'additionalDebrisRemoval',
-    values: ['$0'],
+    values: [
+      '$0',
+      '$25,000',
+      '$50,000',
+      '$75,000',
+      '$100,000',
+    ],
     value: '$0'
   },
   spoilage: {
@@ -310,7 +329,14 @@ export const STEPS = {
     component: 'dropDown',
     size: 'half-size',
     id: 'spoilage',
-    values: ['$0'],
+    values: [
+      '$0',
+      '$10,000',
+      '$20,000',
+      '$30,000',
+      '$40,000',
+      '$50,000',
+    ],
     value: '$0'
   },
   additionalBuilding: {

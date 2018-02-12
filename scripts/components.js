@@ -15,7 +15,7 @@ export const COMPONENTS = {
       <input type="text" class="${options.style || ''}" id="${options.id}" value="${options.value || ''}" data-onload="bindGoogleSearchAPI">
     `,
     naics: (options) => `
-      <input type="text" class="${options.style || ''}" id="naicsInput" value="${options.value || ''}" data-onload="bindNaicsSelector">
+      <input type="text" class="${options.style || ''}" id="naicsInput" value="${options.value || ''}" data-onload="bindNaicsSelector" placeholder="${options.placeholder}">
       <div id="naicsResults"></div>
     `,
     money: (options) => `
@@ -100,7 +100,7 @@ export const COMPONENTS = {
       for(let prop in STATE.quote) {
         if(!Array.isArray(STATE.quote[prop])) {
           if(STEPS[prop]) {
-            summary += `<p class="flex-row ${STEPS[prop].hidden ? 'indent' : ''}"><b>${STEPS[prop].label}:</b><span>${STATE.quote[prop]}</span></p>`;
+            summary += `<p class="flex-row ${STEPS[prop].hidden ? 'indent' : ''}">${STEPS[prop].label}:<span>${STATE.quote[prop]}</span></p>`;
           }
         }
       }
