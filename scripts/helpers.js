@@ -112,6 +112,13 @@ const deselectAccounts = () => {
   });
 };
 
+const adjustProgressBar = (length) => {
+  const PROGRESSBAR = document.getElementById('progressBar');
+  let progress;
+  progress = (((STATE.index) / length) * 100).toFixed(0);
+  PROGRESSBAR.setAttribute('style', `width: ${progress}%`);
+};
+
 export {
   createNode,
   getRadioValue,
@@ -119,5 +126,6 @@ export {
   getClosest,
   getInputValue,
   sanitizeInputs,
-  deselectAccounts
+  deselectAccounts,
+  adjustProgressBar
 };

@@ -13,7 +13,11 @@
       <div class="accounts-list">
         <div class="header small-pad">
           <h5>Accounts</h5>
-          <div class="button button-small button-secondary">New</div>
+          <div class="button-group">
+            <img class="button" src="assets/images/search.svg">
+            <img id="newAccount" class="button" src="assets/images/plus.svg">
+          </div>
+          <!-- <div class="button button-small button-secondary">New</div> -->
         </div>
         <ul id="accountsList"></ul>
       </div>
@@ -29,17 +33,7 @@
             <div class="header small-pad">
               <h5>In-force policies</h5>
             </div>
-            <div>
-              <div class="policy">
-                <div class="policy-icon"><img src="assets/images/store.svg"></div>
-                <div class="policy-info">
-                  <span>Business Owners Policy</span>
-                  <span class="tag bound">bound</span>
-                  <span>2/15/18</span>
-                  <b>$1,400</b>
-                </div>
-              </div>
-            </div>
+            <div></div>
           </div>
           <div class="policy-detail-wrapper hidden">
             <div class="header small-pad">
@@ -102,7 +96,7 @@
         </div>
         <div id="bopQuote" class="quote-flow-container hidden">
           <div class="header small-pad sticky">
-            <h5>Carbon 5 - New Bop Quote</h5>
+            <h5 id="flowTitle">Carbon 5 - New Bop Quote</h5>
             <div class="button button-secondary button-small" id="closeQuote">Cancel</div>
             <div class="prog-bar" id="progressBar"></div>
           </div>

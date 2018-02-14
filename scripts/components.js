@@ -100,7 +100,7 @@ export const COMPONENTS = {
       for(let prop in STATE.quote) {
         if(!Array.isArray(STATE.quote[prop])) {
           if(STEPS[prop]) {
-            summary += `<p class="flex-row ${STEPS[prop].hidden ? 'indent' : ''}">${STEPS[prop].label}:<span>${STATE.quote[prop]}</span></p>`;
+            summary += `<p class="flex-row ${STEPS[prop].hidden ? 'indent' : ''}"><span>${STEPS[prop].label}</span>:<span>${STATE.quote[prop]}</span></p>`;
           }
         }
       }
@@ -143,10 +143,15 @@ export const COMPONENTS = {
         </div>`;
     },
     accountPolicyList: (quotes) => {
-      return `${quotes.map(quote => {
-        return COMPONENTS.elements.quoteListing(quote);
-      }).join(' ')}
-      `;
+      if(quotes.length > 0) {
+        return `${quotes.map(quote => {
+          return COMPONENTS.elements.quoteListing(quote);
+        }).join(' ')}
+        `;
+      }
+      else {
+        // return `<img src="assets/images/emptystate.png">`;
+      }
     },
     accounts: () => {
       return `
@@ -181,6 +186,10 @@ export const COMPONENTS = {
               <div class="account-detail-item">
                 <h5>Billing status</h5>
                 <span class="tag quoted">Paid</span>
+              </div>
+              <div class="account-detail-item">
+                <h5>Next invoice due:</h5>
+                <span>3/16/18</span>
               </div>
               <hr>
               <div class="account-detail-item">

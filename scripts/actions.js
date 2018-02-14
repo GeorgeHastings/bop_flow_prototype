@@ -1,22 +1,29 @@
-import { animateStepTransition, render, QUOTE_FLOW, PROGRESSBAR, POLICY_DETAIL_WRAPPER, BOP_CONTAINER } from './app.js';
+import {
+  animateStepTransition,
+  render,
+  QUOTE_FLOW,
+  POLICY_DETAIL_WRAPPER,
+  BOP_CONTAINER,
+  ACCOUNT_WRAPPER,
+  ACCOUNT_LIST
+} from './app.js';
 import { STATE } from './state.js';
 import { SCHEMA } from './bopschema.js';
 import { ACCOUNTS } from './accounts.js';
-import { deselectAccounts, sanitizeInputs } from './helpers.js';
+import { generateAccount } from './accountgen.js';
+import { deselectAccounts, sanitizeInputs, adjustProgressBar } from './helpers.js';
 import { COMPONENTS } from './components.js';
 import { bindNaicsEvents } from './modules/naics.js';
 
 export const ACTIONS = {
   navigate: (direction) => {
     const scrollElement = document.getElementById('bopQuote');
-    let progress;
     STATE.index += direction;
-    progress = (((STATE.index) / (SCHEMA.length - 1)) * 100).toFixed(0);
     animateStepTransition();
     setTimeout(function() {
       scrollElement.scrollTop = 0;
       render(QUOTE_FLOW, COMPONENTS.views.step(SCHEMA[STATE.index]));
-      PROGRESSBAR.setAttribute('style', `width: ${progress}%`);
+      adjustProgressBar(SCHEMA.length);
     }, 150);
   },
   advanceStep: () => {
@@ -86,6 +93,29 @@ export const ACTIONS = {
     render(document.getElementById('accountDetail'), COMPONENTS.views.accountDetail(account));
     render(document.getElementById('policyContainer'), COMPONENTS.views.accountPolicyList(account.quotes));
   },
+  closePanelModal: () => {
+    BOP_CONTAINER.classList.add('hidden');
+    BOP_CONTAINER.classList.remove('new-account-open');
+    ACCOUNT_WRAPPER.classList.remove('quote-open');
+    ACCOUNT_WRAPPER.classList.remove('account-open');
+    STATE.index = 1;
+    adjustProgressBar(SCHEMA.length);
+  },
+  startNewQuote: () => {
+    BOP_CONTAINER.classList.remove('hidden');
+    ACCOUNT_WRAPPER.classList.add('quote-open');
+    document.getElementById('flowTitle').innerText = 'New BOP Quote';
+    adjustProgressBar(SCHEMA.length);
+    render(QUOTE_FLOW, COMPONENTS.views.step(SCHEMA[1]));
+  },
+  createAccount: () => {
+    const newAccount = generateAccount();
+    newAccount.quotes = [];
+    ACCOUNTS.unshift(newAccount);
+    ACTIONS.closePanelModal();
+    render(ACCOUNT_LIST, COMPONENTS.views.accounts());
+    ACTIONS.showAccountDetail(0);
+  },
   getQuote: () => {
     BOP_CONTAINER.classList.add('hidden');
     document.getElementById('accountWrapper').classList.remove('quote-open');
@@ -105,6 +135,6 @@ export const ACTIONS = {
       sound.setAttribute('src', src);
       sound.play();
       sound.remove();
-    }, 8000);
+    }, 5000);
   }
 };

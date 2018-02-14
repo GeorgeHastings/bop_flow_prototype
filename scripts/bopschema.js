@@ -21,14 +21,15 @@ export const SCHEMA = [
       'locationAddress'
     ],
     actions: [
-      'previousStep',
       'nextStep'
     ]
   },
   {
-    title: 'Exposure',
+    title: 'Building Exposure',
     inputs: [
       'buildingClassCode',
+      'buildingCoverage',
+      'buildingPersonalPropertyLimit',
       'yearBuilt',
       'constructionType',
       'numEmployees',
@@ -51,9 +52,8 @@ export const SCHEMA = [
   {
     title: 'Building Coverage',
     inputs: [
-      'buildingCoverage',
-      'buildingPersonalPropertyLimit',
       'buildingDeductible',
+      'windPercentage',
       'businessIncomeExtraExpensePeriod',
     ],
     actions: [

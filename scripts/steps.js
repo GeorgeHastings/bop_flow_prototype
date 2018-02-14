@@ -237,6 +237,13 @@ export const STEPS = {
     values: [6,9,12,18,24],
     value: 12
   },
+  windPercentage: {
+    label: 'Wind Deductible',
+    component: 'dropDown',
+    id: 'windPercentage',
+    values: ['0%','1%','2%','3%','4%','5%','6%','7%','8%','9%','10%'],
+    value: '0%'
+  },
   equipmentBreakdown: {
     label: `Would you like <span class="tooltip-underline" data-tippet="*tooltip*">Equipment Breakdown</span> coverage?`,
     component: 'radioGroup',
@@ -657,8 +664,8 @@ export const ACTION_COMPONENTS = {
   createAccount: {
     component: 'button',
     style: 'button-big button-confirm',
-    label: 'Start quote',
-    action: 'advanceStep'
+    label: 'Create Account',
+    action: 'createAccount'
   },
   reviewSummary: {
     component: 'button',

@@ -3,15 +3,16 @@ import { STEPS, ACTION_COMPONENTS } from './steps.js';
 import { SCHEMA } from './bopschema.js';
 import { ACTIONS } from './actions.js';
 import { COMPONENTS } from './components.js';
+import { NESTED_CONDITIONALS } from './conditionals.js';
 import { createNode, getRadioValue, getFormElement, getClosest, getInputValue } from './helpers.js';
 import { tippet } from './libs/tippet.js';
 
 const ACCOUNT_LIST = document.getElementById('accountsList');
 const QUOTE_FLOW = document.getElementById('quoteFlow');
-const PROGRESSBAR = document.getElementById('progressBar');
 const BOP_CONTAINER = document.getElementById('bopQuote');
 const ACCOUNT_WRAPPER = document.getElementById('accountWrapper');
 const POLICY_DETAIL_WRAPPER = document.querySelector('.policy-detail-wrapper');
+const FLOW_TITLE = document.getElementById('flowTitle');
 
 const animateStepTransition = () => {
   QUOTE_FLOW.classList.remove('animate-transition');
@@ -25,46 +26,6 @@ const handleInput = (e) => {
   STATE.quote[inputResult.id] = inputResult.value;
   console.log(STATE.quote);
   handleConditionalLogic(inputResult);
-};
-
-const NESTED_CONDITIONALS = {
-  'locationSameAsMailing': {
-    'No': [
-      'locationAddress'
-    ]
-  },
-  'eblCoverage': {
-    'Yes': [
-      'eblCoverageRetroactiveDate',
-      'eblEachEmployeeLimit',
-      'eblAggregateLimit',
-      'eblDeductible'
-    ]
-  },
-  'eplCoverage': {
-    'Yes': [
-      'eplCoverageRetroactiveDate',
-      'eplEachEmployeeLimit',
-      'eplAggregateLimit',
-      'eplDeductible'
-    ]
-  },
-  'cyberLiability': {
-    'Yes': [
-      'cyberRetroactiveDate',
-      'cyberAggregateLimit',
-      'cyberDeductible'
-    ]
-  },
-  'additionalInsuredOption': {
-    'Yes': [
-      'additionalInsuredBizName',
-      'additionalInsuredBizType',
-      'additionalInsuredBizAddress',
-      'additionalInsuredBizAddressType',
-      'addAdditionalInsured'
-    ]
-  },
 };
 
 const handleConditionalLogic = (input) => {
@@ -111,16 +72,17 @@ const bindInputEvents = (inputs) =>
 });
 
 const bindStaticEvents = () => {
-  document.getElementById('newQuote').onclick = () => {
+  document.getElementById('newAccount').onclick = () => {
     BOP_CONTAINER.classList.remove('hidden');
-    ACCOUNT_WRAPPER.classList.add('quote-open');
+    BOP_CONTAINER.classList.add('new-account-open');
+    ACCOUNT_WRAPPER.classList.add('account-open');
+    FLOW_TITLE.innerText = 'New Account';
     render(QUOTE_FLOW, COMPONENTS.views.step(SCHEMA[0]));
   };
 
-  document.getElementById('closeQuote').onclick = () => {
-    BOP_CONTAINER.classList.add('hidden');
-    ACCOUNT_WRAPPER.classList.remove('quote-open');
-  };
+  document.getElementById('newQuote').onclick = ACTIONS.startNewQuote;
+
+  document.getElementById('closeQuote').onclick = ACTIONS.closePanelModal;
 
   document.getElementById('closeQuoteDetail').onclick = () => {
     POLICY_DETAIL_WRAPPER.classList.add('hidden');
@@ -158,4 +120,14 @@ const init = () => {
 
 init();
 
-export { STATE, SCHEMA, animateStepTransition, render, QUOTE_FLOW, BOP_CONTAINER, PROGRESSBAR, POLICY_DETAIL_WRAPPER };
+export {
+  STATE,
+  SCHEMA,
+  animateStepTransition,
+  render,
+  QUOTE_FLOW,
+  BOP_CONTAINER,
+  ACCOUNT_WRAPPER,
+  POLICY_DETAIL_WRAPPER,
+  ACCOUNT_LIST
+};

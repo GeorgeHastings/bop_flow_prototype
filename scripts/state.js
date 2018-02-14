@@ -1,4 +1,4 @@
 export const STATE = {
-  index: 0,
+  index: 1,
   quote: {}
 };
