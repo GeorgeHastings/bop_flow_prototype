@@ -25,6 +25,39 @@ export const SCHEMA = [
     ]
   },
   {
+    title: 'Liability Coverages',
+    inputs: [
+      'liabilityAndMedical',
+      'glAggregateLimit',
+      'medicalExpenses',
+      'glDamageToRentedPremises',
+      'eblCoverage',
+      'eblCoverageRetroactiveDate',
+      'eblEachEmployeeLimit',
+      'eblAggregateLimit',
+      'eblDeductible',
+      'eplCoverage',
+      'eplCoverageRetroactiveDate',
+      'eplEachEmployeeLimit',
+      'eplAggregateLimit',
+      'eplDeductible',
+      'actsOfTerror',
+      'cyberLiability',
+      'cyberRetroactiveDate',
+      'cyberAggregateLimit',
+      'cyberDeductible',
+      'employeeDishonestyLimit',
+      'Operations specific optional coverages',
+      'professionalLiability',
+      'snowPlowProducts',
+      'hiredNonOwnedAutoCoverage',
+    ],
+    actions: [
+      'previousStep',
+      'nextStep'
+    ],
+  },
+  {
     title: 'Building Exposure',
     inputs: [
       'buildingClassCode',
@@ -93,39 +126,6 @@ export const SCHEMA = [
     title: 'Additional Location',
     inputs: [
       'additionalLocation'
-    ],
-    actions: [
-      'previousStep',
-      'nextStep'
-    ],
-  },
-  {
-    title: 'Liability Coverages',
-    inputs: [
-      'liabilityAndMedical',
-      'glAggregateLimit',
-      'medicalExpenses',
-      'glDamageToRentedPremises',
-      'eblCoverage',
-      'eblCoverageRetroactiveDate',
-      'eblEachEmployeeLimit',
-      'eblAggregateLimit',
-      'eblDeductible',
-      'eplCoverage',
-      'eplCoverageRetroactiveDate',
-      'eplEachEmployeeLimit',
-      'eplAggregateLimit',
-      'eplDeductible',
-      'actsOfTerror',
-      'cyberLiability',
-      'cyberRetroactiveDate',
-      'cyberAggregateLimit',
-      'cyberDeductible',
-      'employeeDishonestyLimit',
-      'Operations specific optional coverages',
-      'professionalLiability',
-      'snowPlowProducts',
-      'hiredNonOwnedAutoCoverage',
     ],
     actions: [
       'previousStep',

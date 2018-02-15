@@ -449,6 +449,8 @@ class for each line of the result
       max-width: 770px; }
     .quote-flow-container.new-account-open .prog-bar {
       display: none; }
+    .quote-flow-container.new-account-open .question-container {
+      margin-left: 0px; }
   .quote-flow-container.hidden {
     position: absolute;
     left: -99999rem;
