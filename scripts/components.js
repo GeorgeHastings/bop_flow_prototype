@@ -45,7 +45,7 @@ export const COMPONENTS = {
     rangeSlider: (options) => `
       <form class="range-slider" data-oninput="sliderMaskMoney">
         <input type="range" name="${options.id}" value="${options.value || options.min}" min="${options.min}" max="${options.max}" step="${options.step}"/>
-        <output name="result">${options.value}</output>
+        <output name="result">$${options.value}</output>
       </form>
     `,
     dropDown: (options) => `
@@ -109,38 +109,57 @@ export const COMPONENTS = {
           ${summary}
         </div>
       `;
+    },
+    breadCrumbs: (selected) => {
+      return `
+        <ul class="breadcrumb-container" id="breadcrumbs">
+          ${SCHEMA.map((step, index) => {
+            if(index > 0) {
+              return `<li data-onclick="jumpToStep" data-index="${index}" ${selected === index ? `class="selected"`: ''}>${step.title}</li>`;
+            }
+          }).join(' ') }
+        </ul>
+      `;
     }
   },
   views: {
     step: (step) => {
       return `
-        <h3>${step.title}</h3>
-        ${step.elements ? step.elements.map(element => {
-          return COMPONENTS.elements[element]();
-        }).join(' ') : ''}
-        ${step.inputs ? step.inputs.map(input => {
-          if(!STEPS[input]) {
-            return `<h4>${input}</h4>`;
-          }
-          input = STEPS[input];
-          const valueHasBeenEntered = STATE.quote[input.id];
-          const conditional = input.hidden !== undefined && input.hidden === false;
-          input.value = valueHasBeenEntered || input.value;
-          input.label = input.label && input.tooltip ? input.label.replace('*tooltip*', input.tooltip) : input.label;
-          return `
-            <div class="form-group ${input.hidden ? 'hidden' : ''} ${conditional ? 'child-indent' : ''} ${input.size ? input.size : 'skip'}">
-              ${input.label && input.component !== 'checkBox' && input.component !== 'submit' ? `<label>${input.label}</label>` : ''}
-              ${COMPONENTS.inputs[input.component](input ? input : '')}
-              ${input.description ? `<p class="note">${input.description}</p>` : ''}
-            </div>`;
-        }).join(' ') : ''}
-        <hr>
-        <div class="button-group">
-          ${step.actions.map(action => {
-            action = ACTION_COMPONENTS[action];
-            return COMPONENTS.actions[action.component](action);
-          }).join(' ')}
+        <div class="question-container">
+          ${step.title ? `<h3>${step.title}</h3>` : ''}
+          ${step.elements ? step.elements.map(element => {
+            return COMPONENTS.elements[element]();
+          }).join(' ') : ''}
+          ${step.inputs ? step.inputs.map(input => {
+            if(!STEPS[input]) {
+              return `<h4>${input}</h4>`;
+            }
+            input = STEPS[input];
+            const valueHasBeenEntered = STATE.quote[input.id];
+            const conditional = input.hidden !== undefined && input.hidden === false;
+            input.value = valueHasBeenEntered || input.value;
+            input.label = input.label && input.tooltip ? input.label.replace('*tooltip*', input.tooltip) : input.label;
+            return `
+              <div class="form-group ${input.hidden ? 'hidden' : ''} ${conditional ? 'child-indent' : ''} ${input.size ? input.size : 'skip'}">
+                ${input.label && input.component !== 'checkBox' && input.component !== 'submit' ? `<label>${input.label}</label>` : ''}
+                ${COMPONENTS.inputs[input.component](input ? input : '')}
+                ${input.description ? `<p class="note">${input.description}</p>` : ''}
+              </div>`;
+          }).join(' ') : ''}
+          <hr>
+          <div class="button-group">
+            ${step.actions.map(action => {
+              action = ACTION_COMPONENTS[action];
+              return COMPONENTS.actions[action.component](action);
+            }).join(' ')}
+          </div>
         </div>`;
+    },
+    quoteFlow: (index) => {
+      return `
+        ${COMPONENTS.elements.breadCrumbs(index)}
+        ${COMPONENTS.views.step(SCHEMA[index])}
+      `;
     },
     accountPolicyList: (quotes) => {
       if(quotes.length > 0) {

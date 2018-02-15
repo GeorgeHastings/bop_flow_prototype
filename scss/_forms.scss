@@ -66,10 +66,6 @@ select,
   }
 }
 
-// .half-size {
-//   margin-left: 1rem;
-// }
-
 .skip + .half-size,
 .half-size:first-of-type,
 .half-size:not(.skip) + .half-size:not(.skip) + .half-size:not(.skip) {
@@ -80,14 +76,6 @@ select,
 .half-size:not(.skip) + .half-size:not(.skip) + .half-size:not(.skip) + .half-size:not(.skip){
   margin-left: 1rem;
 }
-
-// .half-size ~ .skip {
-//   margin-left: 0;
-// }
-// .half-size:nth-of-type(2n + 1):not(.skip) {
-//   margin-left: 1rem;
-// }
-
 
 label {
   display: inline-block;
@@ -161,9 +149,6 @@ input[type=number]::-webkit-outer-spin-button {
   transform: translate(-50%, -50%) rotate(90deg);
 }
 
-// button ~ input[type=number] {
-//   max-width: calc(100% - 100px);
-// }
 
 //checkboxes
 
@@ -240,13 +225,14 @@ input[type=checkbox]:checked + label:before {
   display: flex;
 
   output {
-    min-width: 55px;
+    // min-width: 55px;
     height: 35px;
     margin-left: 10px;
     padding: 0 1em;
     border: 1px solid $field-border-color;
     border-radius: 2px;
     line-height: 35px;
+    text-align: center;
   }
 }
 

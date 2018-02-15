@@ -177,13 +177,13 @@ input[type=checkbox]:checked + label:before {
 .range-slider {
   display: flex; }
   .range-slider output {
-    min-width: 55px;
     height: 35px;
     margin-left: 10px;
     padding: 0 1em;
     border: 1px solid #95A4B3;
     border-radius: 2px;
-    line-height: 35px; }
+    line-height: 35px;
+    text-align: center; }
 
 input[type=range] {
   -webkit-appearance: none;

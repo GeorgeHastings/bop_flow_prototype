@@ -22,7 +22,7 @@ export const ACTIONS = {
     animateStepTransition();
     setTimeout(function() {
       scrollElement.scrollTop = 0;
-      render(QUOTE_FLOW, COMPONENTS.views.step(SCHEMA[STATE.index]));
+      render(QUOTE_FLOW, COMPONENTS.views.quoteFlow(STATE.index));
       adjustProgressBar(SCHEMA.length);
     }, 150);
   },
@@ -31,6 +31,11 @@ export const ACTIONS = {
   },
   previousStep: () => {
     ACTIONS.navigate(-1);
+  },
+  jumpToStep: (e) => {
+    const index = e.target.getAttribute('data-index') || e;
+    const inc = index - STATE.index;
+    ACTIONS.navigate(inc);
   },
   addAdditionalInsured: () => {
     STATE.quote.additionalInsureds = STATE.quote.additionalInsureds || [];
@@ -46,7 +51,6 @@ export const ACTIONS = {
   maskMoney: (event) => {
     let el = event.target || event;
     let val = el.value.toString();
-    console.log(val)
     let commator = 3;
     val = val.replace(/\,/g,'');
     val = val.replace(/\$/g,'');
@@ -57,15 +61,13 @@ export const ACTIONS = {
       val = val.splice(comma, 0, ',');
       commator += 3;
     }
-    console.log(el, el.value);
     el.value = '$' + val;
   },
   sliderMaskMoney: (event) => {
     let el = event.target;
     let output = el.nextElementSibling;
-    console.log(output.value)
     output.value = el.value;
-    output.value = ACTIONS.maskMoney(output);
+    ACTIONS.maskMoney(output);
   },
   maskTelephone: (event) => {
     let val = event.target.value.toString();
@@ -116,7 +118,7 @@ export const ACTIONS = {
     ACCOUNT_WRAPPER.classList.add('quote-open');
     document.getElementById('flowTitle').innerText = 'New BOP Quote';
     adjustProgressBar(SCHEMA.length);
-    render(QUOTE_FLOW, COMPONENTS.views.step(SCHEMA[1]));
+    render(QUOTE_FLOW, COMPONENTS.views.quoteFlow(1));
   },
   createAccount: () => {
     const newAccount = generateAccount();

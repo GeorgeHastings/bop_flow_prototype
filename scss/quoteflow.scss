@@ -5,8 +5,8 @@
   width: 100%;
   height: 100%;
   background-color: white;
-  overflow-y: scroll;
   overflow-x: hidden;
+  overflow-y: scroll;
 
   &.new-account-open {
     left: -300px;
@@ -28,10 +28,6 @@
     visibility: hidden;
   }
 
-  h4 {
-    margin-top: 3rem;
-  }
-
   .header {
     width: calc(100% - 360px);
   }
@@ -47,9 +43,46 @@
   }
 }
 
+.question-flow-container {
+  max-width: 900px;
+  // height: 100%;
+  margin: 60px auto 0 3rem;
+  @include flex-row;
+}
+
+.breadcrumb-container {
+  position: fixed;
+  max-width: 200px;
+  margin-top: 2rem;
+
+  li {
+    line-height: 2rem;
+    font-size: 0.85rem;
+    color: $darkgray;
+    cursor: pointer;
+
+    &:hover {
+      color: $black;
+    }
+  }
+
+  li.selected {
+    color: $green;
+    font-weight: bold;
+
+    & ~ li {
+      color: $gray;
+
+      &:hover {
+        color: $darkgray;
+      }
+    }
+  }
+}
+
 .question-container {
-  max-width: 700px;
-  margin: calc(60px + 3rem) auto 0 auto;
+  width: 700px;
+  margin-left: 200px;
   padding: 0rem 3rem 3rem 3rem;
 }
 
