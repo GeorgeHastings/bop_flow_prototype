@@ -50,7 +50,7 @@
 .question-flow-container {
   max-width: 900px;
   // height: 100%;
-  margin: 60px auto 0 3rem;
+  margin: calc(60px + 1rem) auto 0 3rem;
   @include flex-row;
 }
 

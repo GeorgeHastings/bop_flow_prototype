@@ -467,7 +467,7 @@ class for each line of the result
 
 .question-flow-container {
   max-width: 900px;
-  margin: 60px auto 0 3rem;
+  margin: calc(60px + 1rem) auto 0 3rem;
   display: flex;
   justify-content: space-between; }
 

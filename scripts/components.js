@@ -60,6 +60,9 @@ export const COMPONENTS = {
       <input id="${options.id}" type="checkbox" />
       <label for="${options.id}">${options.label}</label>
     `,
+    date: (options) => `
+      <input type="text" class="${options.style || ''}" id="${options.id}" placeholder="${options.placeholder}" value="${options.value || ''}" data-valid-example="05/18/2019" pattern="(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/\d{4}">
+    `,
     submit: (options) => COMPONENTS.actions.button(options)
   },
   actions: {

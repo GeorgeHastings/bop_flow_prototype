@@ -448,10 +448,10 @@ export const STEPS = {
   },
   eblCoverageRetroactiveDate: {
     label: 'Retroactive Date',
-    component: 'input',
+    component: 'date',
+    placeholder:"dd/mm/yyyy",
     hidden: true,
     id: 'eblCoverageRetroactiveDate',
-    type: 'date'
   },
   eblEachEmployeeLimit: {
     label: 'Each Employee Limit',
@@ -507,10 +507,10 @@ export const STEPS = {
   },
   eplCoverageRetroactiveDate: {
     label: 'Retroactive Date',
-    component: 'input',
+    component: 'date',
+    placeholder:"dd/mm/yyyy",
     hidden: true,
     id: 'eplCoverageRetroactiveDate',
-    type: 'date'
   },
   eplEachEmployeeLimit: {
     label: 'Each Employment Wrongful Act Limit',
