@@ -43,9 +43,9 @@ export const COMPONENTS = {
       </div>
     `,
     rangeSlider: (options) => `
-      <form class="range-slider" oninput="result.value=${options.id}.value">
+      <form class="range-slider" data-oninput="sliderMaskMoney">
         <input type="range" name="${options.id}" value="${options.value || options.min}" min="${options.min}" max="${options.max}" step="${options.step}"/>
-        <output name="result">0</output>
+        <output name="result">${options.value}</output>
       </form>
     `,
     dropDown: (options) => `
@@ -100,7 +100,7 @@ export const COMPONENTS = {
       for(let prop in STATE.quote) {
         if(!Array.isArray(STATE.quote[prop])) {
           if(STEPS[prop]) {
-            summary += `<p class="flex-row ${STEPS[prop].hidden ? 'indent' : ''}"><span>${STEPS[prop].label}</span>:<span>${STATE.quote[prop]}</span></p>`;
+            summary += `<p class="flex-row ${STEPS[prop].hidden ? 'indent' : ''}"><span>${STEPS[prop].label}:</span><span>${STATE.quote[prop]}</span></p>`;
           }
         }
       }
@@ -150,7 +150,7 @@ export const COMPONENTS = {
         `;
       }
       else {
-        // return `<img src="assets/images/emptystate.png">`;
+        return `<img src="assets/images/emptystate.png">`;
       }
     },
     accounts: () => {
@@ -185,11 +185,11 @@ export const COMPONENTS = {
               </div>
               <div class="account-detail-item">
                 <h5>Billing status</h5>
-                <span class="tag quoted">Paid</span>
+                ${account.quotes.length > 0 ? `<span class="tag quoted">Paid</span>` : `<span>N/A</span>`}
               </div>
               <div class="account-detail-item">
                 <h5>Next invoice due:</h5>
-                <span>3/16/18</span>
+                ${account.quotes.length > 0 ? `<span>3/16/18</span>` : `<span>N/A</span>`}
               </div>
               <hr>
               <div class="account-detail-item">

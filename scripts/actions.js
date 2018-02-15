@@ -44,7 +44,9 @@ export const ACTIONS = {
     ACTIONS.navigate(0);
   },
   maskMoney: (event) => {
-    let val = event.target.value.toString();
+    let el = event.target || event;
+    let val = el.value.toString();
+    console.log(val)
     let commator = 3;
     val = val.replace(/\,/g,'');
     val = val.replace(/\$/g,'');
@@ -55,7 +57,15 @@ export const ACTIONS = {
       val = val.splice(comma, 0, ',');
       commator += 3;
     }
-    event.target.value = '$' + val;
+    console.log(el, el.value);
+    el.value = '$' + val;
+  },
+  sliderMaskMoney: (event) => {
+    let el = event.target;
+    let output = el.nextElementSibling;
+    console.log(output.value)
+    output.value = el.value;
+    output.value = ACTIONS.maskMoney(output);
   },
   maskTelephone: (event) => {
     let val = event.target.value.toString();

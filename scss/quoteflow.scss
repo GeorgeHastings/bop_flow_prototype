@@ -39,7 +39,6 @@
   .header,
   .prog-bar {
     z-index: 99999;
-    overflow-x: hidden;
   }
 
   @media screen and (max-width: $breakpoint-mobile) {
@@ -85,12 +84,37 @@
 
 .prog-bar {
   position: absolute;
-  top: 0px;
+  bottom: 0px;
   left: 0;
   width: 0%;
-  height: 3px;
+  height: 4px;
   background-color: $green;
   transition: all 0.3s cubic-bezier(0,0,0,1);
+
+  &:after {
+    content: "";
+    position: absolute;
+    right: -3px;
+    top: -1px;
+    z-index: 2;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: $green;
+    animation: pulse 1s ease infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0px 6px rgba(80,277,194,0.3);
+    }
+    50% {
+      box-shadow: 0 0 0px 7px rgba(80,277,194,0.2);
+    }
+    100% {
+      box-shadow: 0 0 0px 6px rgba(80,277,194,0.3);
+    }
+  }
 }
 
 .additional-insured {

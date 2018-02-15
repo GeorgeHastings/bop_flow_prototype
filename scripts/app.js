@@ -92,7 +92,7 @@ const bindStaticEvents = () => {
 const render = (container, component) => {
   container.innerHTML = component;
 
-  const inputs = container.querySelectorAll('input, select');
+  const inputs = container.querySelectorAll('input, select, form');
   const buttons = container.querySelectorAll('.button');
   const clickeEvents = container.querySelectorAll('[data-onclick]');
 
