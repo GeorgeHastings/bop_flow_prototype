@@ -56,6 +56,12 @@ export const STEPS = {
     type: 'text',
     placeholder: 'policyholder@email.com'
   },
+  buildingSameAsMailing: {
+    label: 'Add new building with the same address as the mailing address?',
+    component: 'radioGroup',
+    id: 'buildingSameAsMailing',
+    values: ['Yes', 'No']
+  },
   locationSameAsMailing: {
     label: 'Is the business address the same as the mailing address?',
     component: 'radioGroup',

@@ -8,12 +8,17 @@ import {
   ACCOUNT_LIST
 } from './app.js';
 import { STATE } from './state.js';
-import { SCHEMA } from './bopschema.js';
+import { NEW_ACCOUNT, BOP_QUOTE } from './schemas.js';
 import { ACCOUNTS } from './accounts.js';
 import { generateAccount } from './accountgen.js';
 import { deselectAccounts, sanitizeInputs, adjustProgressBar } from './helpers.js';
 import { COMPONENTS } from './components.js';
 import { bindNaicsEvents } from './modules/naics.js';
+
+// const SCHEMAS = {
+//   'NEW_ACCOUNT': NEW_ACCOUNT,
+//   'BOP_QUOTE': BOP_QUOTE
+// };
 
 export const ACTIONS = {
   navigate: (direction) => {
@@ -23,7 +28,7 @@ export const ACTIONS = {
     setTimeout(function() {
       scrollElement.scrollTop = 0;
       render(QUOTE_FLOW, COMPONENTS.views.quoteFlow(STATE.index));
-      adjustProgressBar(SCHEMA.length);
+      adjustProgressBar(STATE.schema.length);
     }, 150);
   },
   advanceStep: () => {
@@ -44,7 +49,7 @@ export const ACTIONS = {
         name: STATE.quote.additionalInsuredBizName,
         address: STATE.quote.additionalInsuredBizAddress
       });
-      sanitizeInputs(SCHEMA[8].inputs);
+      sanitizeInputs(STATE.schema[8].inputs);
     }
     ACTIONS.navigate(0);
   },
@@ -110,15 +115,17 @@ export const ACTIONS = {
     BOP_CONTAINER.classList.remove('new-account-open');
     ACCOUNT_WRAPPER.classList.remove('quote-open');
     ACCOUNT_WRAPPER.classList.remove('account-open');
-    STATE.index = 1;
-    adjustProgressBar(SCHEMA.length);
+    STATE.index = 0;
+    adjustProgressBar(STATE.schema.length);
   },
   startNewQuote: () => {
+    STATE.schema = BOP_QUOTE;
     BOP_CONTAINER.classList.remove('hidden');
     ACCOUNT_WRAPPER.classList.add('quote-open');
     document.getElementById('flowTitle').innerText = 'New BOP Quote';
-    adjustProgressBar(SCHEMA.length);
-    render(QUOTE_FLOW, COMPONENTS.views.quoteFlow(1));
+    adjustProgressBar(STATE.schema.length);
+    // render(document.getElementById('toastLoader'), COMPONENTS.elements.toastLoader());
+    render(QUOTE_FLOW, COMPONENTS.views.quoteFlow(0));
   },
   createAccount: () => {
     const newAccount = generateAccount();

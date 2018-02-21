@@ -1,6 +1,6 @@
-export const SCHEMA = [
+export const NEW_ACCOUNT = [
   {
-    title: 'New Account',
+    title: 'Basic Info',
     inputs: [
       'legalBusinessName',
       'doesBusinessAs',
@@ -11,19 +11,37 @@ export const SCHEMA = [
       'mailingAddress'
     ],
     actions: [
-      'createAccount'
-    ]
-  },
-  {
-    title: 'Business Location',
-    inputs: [
-      'locationSameAsMailing',
-      'locationAddress'
-    ],
-    actions: [
       'nextStep'
     ]
   },
+  {
+    title: 'Add Buildings',
+    inputs: [
+      'buildingSameAsMailing',
+      'buildingClassCode',
+      'buildingCoverage',
+      'buildingPersonalPropertyLimit',
+      'yearBuilt',
+      'constructionType',
+      'numEmployees',
+      'areaSquareFeet',
+      'numStories',
+      'yearRoofReplaced',
+      'plumbingElectricalUpdated',
+      'sprinklerSystem',
+      'burglerAlarm',
+      'fireAlarm',
+      'totalSales',
+      'alcoholSales',
+      'payroll',
+    ],
+    actions: [
+      'createAccount'
+    ]
+  },
+];
+
+export const BOP_QUOTE = [
   {
     title: 'Liability Coverages',
     inputs: [

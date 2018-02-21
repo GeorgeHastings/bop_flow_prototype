@@ -1,4 +1,5 @@
 export const STATE = {
-  index: 1,
-  quote: {}
+  index: 0,
+  quote: {},
+  schema: {}
 };

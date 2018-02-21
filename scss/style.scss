@@ -18,7 +18,7 @@ body {
 }
 
 body {
-  font-family: "Roboto";
+  font-family: "Inter UI";
   -webkit-font-smoothing: antialiased;
   -webkit-text-rendering: optimizeLegibility;
   font-smoothing: antialiased;
@@ -113,6 +113,7 @@ section {
   min-width: 300px;
   max-width: 300px;
   height: 100%;
+  background-color: $lightgray;
 
   .header {
     width: 300px;
@@ -126,11 +127,10 @@ section {
 
 .accounts-list li {
   color: $black;
-  padding: 1rem;
-  border-bottom: 1px solid $gray;
+  padding: 0.75rem 1rem;
+  // border-bottom: 1px solid $gray;
   background-color: white;
   font-size: 0.85rem;
-  font-weight: 500;
   line-height: 150%;
   cursor: pointer;
 
@@ -329,4 +329,57 @@ section {
 .quote-quoting {
   background-color: lighten($blue, 35%);
   @include borderanimate;
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 1rem;
+  left: calc(1rem + 360px);
+  background-color: $green;
+  padding: 1rem 2rem;
+  z-index: 99999;
+  align-items: center;
+  opacity: 1;
+  transform: translate3d(0, 0rem, 0);
+  transition: all 0.3s cubic-bezier(1,0,0,1);
+  @include flex-row;
+
+  &:empty {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0);
+  }
+}
+
+.toast-spinner {
+  margin-right: 1rem;
+}
+
+.toast-message {
+  &:after {
+    content: "";
+    color: white;
+    font-weight: bold;
+    animation: loadtext 6s steps(4, end);
+  }
+
+  @keyframes loadtext {
+    0% {
+      content: "Looking up address...";
+    }
+    25% {
+      content: "Pulling business data...";
+    }
+    50% {
+      content: "Pulling location data...";
+    }
+    75% {
+      content: "Pulling building data...";
+    }
+    90% {
+      content: "Prefilling...";
+    }
+    100% {
+      content: "Done!";
+    }
+  }
 }

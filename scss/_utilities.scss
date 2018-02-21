@@ -19,3 +19,32 @@
   background-color: white;
   color: $black;
 }
+
+.loader {
+  polygon {
+    display: inline-block;
+    animation: wave 0.5s ease infinite;
+
+    @for $i from 1 through 11 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i*-0.05}s;
+      }
+    }
+  }
+}
+
+
+@keyframes wave {
+  0% {
+    opacity: 1;
+    margin-top: 0px;
+  }
+  0% {
+    opacity: 0;
+    height: 10px;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 0px;
+  }
+}

@@ -1,7 +1,7 @@
 import { STEPS, ACTION_COMPONENTS } from './steps.js';
 import { STATE } from './state.js';
 import { sanitizeInputs } from './helpers.js';
-import { SCHEMA } from './bopschema.js';
+import { BOP_QUOTE } from './schemas.js';
 import { ACCOUNTS } from './accounts.js';
 import { generateAccount } from './accountgen.js';
 import { tippet } from './libs/tippet.js';
@@ -70,7 +70,7 @@ export const COMPONENTS = {
   },
   elements: {
     progressBar: (options) => {
-      const progress = (((STATE.index + 1) / (SCHEMA.length)) * 100).toFixed(0);
+      const progress = (((STATE.index + 1) / (BOP_QUOTE.length)) * 100).toFixed(0);
       return `<div class="prog-bar" style="width: ${progress}%;"></div>`;
     },
     additionalInsuredAdded: () => {
@@ -116,14 +116,37 @@ export const COMPONENTS = {
     breadCrumbs: (selected) => {
       return `
         <ul class="breadcrumb-container" id="breadcrumbs">
-          ${SCHEMA.map((step, index) => {
-            if(index > 0) {
+          ${BOP_QUOTE.map((step, index) => {
+            if(index > -1) {
               return `<li data-onclick="jumpToStep" data-index="${index}" ${selected === index ? `class="selected"`: ''}>${step.title}</li>`;
             }
           }).join(' ') }
         </ul>
       `;
-    }
+    },
+    loader: (color) => {
+      return `
+        <svg width="60" height="60" class="loader" viewBox="0 0 44 37" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(1 1)" fill="${color}" stroke="${color}" stroke-width=".5" fill-rule="evenodd">
+            <polygon transform="scale(-1 1) rotate(25 0 -65.682)" points="18.3696412 23.6266976 17.610605 10.729616 19.1286773 10.729616"/>
+            <polygon transform="scale(-1 1) rotate(57 0 -9.025)" points="15.5865086 26.1304155 14.8274725 13.233334 16.3455448 13.233334"/>
+            <polygon transform="matrix(0 1 1 0 -8.674 8.674)" points="14.3599162 29.482746 13.6008801 16.5856645 15.1189524 16.5856645"/>
+            <polygon transform="rotate(-119 10.88 28.604)" points="10.8795181 40.0594874 9.61445783 17.147534 12.1445783 17.147534"/>
+            <polygon transform="rotate(-155 18.37 28.89)" points="18.3696412 35.3387944 17.610605 22.4417129 19.1286773 22.4417129"/>
+            <polygon transform="scale(1 -1) rotate(25 153.998 0)" points="23.6828942 35.3387944 22.923858 22.4417129 24.4419303 22.4417129"/>
+            <polygon transform="scale(1 -1) rotate(61 79.68 0)" points="31.1204819 40.0594874 29.8554217 17.147534 32.3855422 17.147534"/>
+            <polygon transform="rotate(90 27.517 23.034)" points="27.5165427 29.482746 26.7575066 16.5856645 28.2755789 16.5856645"/>
+            <polygon transform="rotate(57 26.213 19.682)" points="26.2130147 26.1304155 25.4539785 13.233334 26.9720508 13.233334"/>
+            <polygon transform="rotate(25 23.683 17.178)" points="23.6828942 23.6266976 22.923858 10.729616 24.4419303 10.729616"/>
+            <polygon points="21 23.0342052 19.7349398 0.122251854 22.2650602 0.122251854"/>
+          </g>
+        </svg>`;
+    },
+    toastLoader: () => {
+      return `
+        <div class="toast-spinner">${COMPONENTS.elements.loader('#fff')}</div>
+        <div class="toast-message"></div>`;
+    },
   },
   views: {
     step: (step) => {
@@ -159,9 +182,10 @@ export const COMPONENTS = {
         </div>`;
     },
     quoteFlow: (index) => {
+      // console.log(STATE.schema, index)
       return `
         ${COMPONENTS.elements.breadCrumbs(index)}
-        ${COMPONENTS.views.step(SCHEMA[index])}
+        ${COMPONENTS.views.step(STATE.schema[index])}
       `;
     },
     accountPolicyList: (quotes) => {
@@ -215,7 +239,7 @@ export const COMPONENTS = {
               </div>
               <hr>
               <div class="account-detail-item">
-                <h5>NAICS code</h5>
+                <h5>NAICS</h5>
                 <p>Coffee Merchant - 722515</p>
               </div>
               <div class="account-detail-item">
@@ -227,7 +251,7 @@ export const COMPONENTS = {
                 <p>$180,000</p>
               </div>
               <div class="account-detail-item">
-                <h5>Number of employees</h5>
+                <h5>No. Employees</h5>
                 <p>5</p>
               </div>
             </div>

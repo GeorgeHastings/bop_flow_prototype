@@ -46,7 +46,7 @@ select,
   margin-top: 2rem; }
   .form-group.half-size {
     display: inline-block;
-    width: calc(50% - (0.5rem + 2px)); }
+    width: calc(50% - (0.5rem + 2.2px)); }
   .form-group.two-col, .form-group.three-col {
     display: flex;
     flex-direction: row;

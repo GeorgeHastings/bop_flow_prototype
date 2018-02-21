@@ -56,6 +56,43 @@ table {
   background-color: white;
   color: #373A4B; }
 
+.loader polygon {
+  display: inline-block;
+  animation: wave 0.5s ease infinite; }
+  .loader polygon:nth-child(1) {
+    animation-delay: -0.05s; }
+  .loader polygon:nth-child(2) {
+    animation-delay: -0.1s; }
+  .loader polygon:nth-child(3) {
+    animation-delay: -0.15s; }
+  .loader polygon:nth-child(4) {
+    animation-delay: -0.2s; }
+  .loader polygon:nth-child(5) {
+    animation-delay: -0.25s; }
+  .loader polygon:nth-child(6) {
+    animation-delay: -0.3s; }
+  .loader polygon:nth-child(7) {
+    animation-delay: -0.35s; }
+  .loader polygon:nth-child(8) {
+    animation-delay: -0.4s; }
+  .loader polygon:nth-child(9) {
+    animation-delay: -0.45s; }
+  .loader polygon:nth-child(10) {
+    animation-delay: -0.5s; }
+  .loader polygon:nth-child(11) {
+    animation-delay: -0.55s; }
+
+@keyframes wave {
+  0% {
+    opacity: 1;
+    margin-top: 0px; }
+  0% {
+    opacity: 0;
+    height: 10px; }
+  100% {
+    opacity: 1;
+    margin-top: 0px; } }
+
 h1, h2, h3, h4, h5 {
   font-weight: 700;
   margin: 1.414em 0 0;
@@ -186,7 +223,7 @@ select,
   margin-top: 2rem; }
   .form-group.half-size {
     display: inline-block;
-    width: calc(50% - (0.5rem + 2px)); }
+    width: calc(50% - (0.5rem + 2.2px)); }
   .form-group.two-col, .form-group.three-col {
     display: flex;
     flex-direction: row;
@@ -594,7 +631,7 @@ body {
   overflow-x: hidden; }
 
 body {
-  font-family: "Roboto";
+  font-family: "Inter UI";
   -webkit-font-smoothing: antialiased;
   -webkit-text-rendering: optimizeLegibility;
   font-smoothing: antialiased;
@@ -666,7 +703,8 @@ section + section {
   position: relative;
   min-width: 300px;
   max-width: 300px;
-  height: 100%; }
+  height: 100%;
+  background-color: #EFF4F8; }
   .accounts-list .header {
     width: 300px; }
   .accounts-list ul {
@@ -675,11 +713,9 @@ section + section {
 
 .accounts-list li {
   color: #373A4B;
-  padding: 1rem;
-  border-bottom: 1px solid #E2EAF0;
+  padding: 0.75rem 1rem;
   background-color: white;
   font-size: 0.85rem;
-  font-weight: 500;
   line-height: 150%;
   cursor: pointer; }
   .accounts-list li:hover {
@@ -868,3 +904,43 @@ section + section {
     line-height: 100px;
     text-align: center;
     background-color: white; }
+
+.toast-container {
+  position: fixed;
+  bottom: 1rem;
+  left: calc(1rem + 360px);
+  background-color: #50E3C2;
+  padding: 1rem 2rem;
+  z-index: 99999;
+  align-items: center;
+  opacity: 1;
+  transform: translate3d(0, 0rem, 0);
+  transition: all 0.3s cubic-bezier(1, 0, 0, 1);
+  display: flex;
+  justify-content: space-between; }
+  .toast-container:empty {
+    opacity: 0;
+    transform: translate3d(0, 1rem, 0); }
+
+.toast-spinner {
+  margin-right: 1rem; }
+
+.toast-message:after {
+  content: "";
+  color: white;
+  font-weight: bold;
+  animation: loadtext 6s steps(4, end); }
+
+@keyframes loadtext {
+  0% {
+    content: "Looking up address..."; }
+  25% {
+    content: "Pulling business data..."; }
+  50% {
+    content: "Pulling location data..."; }
+  75% {
+    content: "Pulling building data..."; }
+  90% {
+    content: "Prefilling..."; }
+  100% {
+    content: "Done!"; } }

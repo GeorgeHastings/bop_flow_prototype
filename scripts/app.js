@@ -1,6 +1,6 @@
 import { STATE } from './state.js';
 import { STEPS, ACTION_COMPONENTS } from './steps.js';
-import { SCHEMA } from './bopschema.js';
+import { BOP_QUOTE, NEW_ACCOUNT } from './schemas.js';
 import { ACTIONS } from './actions.js';
 import { COMPONENTS } from './components.js';
 import { NESTED_CONDITIONALS } from './conditionals.js';
@@ -73,11 +73,12 @@ const bindInputEvents = (inputs) =>
 
 const bindStaticEvents = () => {
   document.getElementById('newAccount').onclick = () => {
+    STATE.schema = NEW_ACCOUNT;
     BOP_CONTAINER.classList.remove('hidden');
     BOP_CONTAINER.classList.add('new-account-open');
     ACCOUNT_WRAPPER.classList.add('account-open');
     FLOW_TITLE.innerText = 'New Account';
-    render(QUOTE_FLOW, COMPONENTS.views.step(SCHEMA[0]));
+    render(QUOTE_FLOW, COMPONENTS.views.step(NEW_ACCOUNT[0]));
   };
 
   document.getElementById('newQuote').onclick = ACTIONS.startNewQuote;
@@ -122,7 +123,7 @@ init();
 
 export {
   STATE,
-  SCHEMA,
+  BOP_QUOTE,
   animateStepTransition,
   render,
   QUOTE_FLOW,
