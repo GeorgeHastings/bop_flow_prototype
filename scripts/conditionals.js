@@ -1,9 +1,9 @@
 const NESTED_CONDITIONALS = {
-  'locationSameAsMailing': {
-    'No': [
-      'locationAddress'
-    ]
-  },
+  // 'locationSameAsMailing': {
+  //   'No': [
+  //     'locationAddress'
+  //   ]
+  // },
   'eblCoverage': {
     'Yes': [
       'eblCoverageRetroactiveDate',

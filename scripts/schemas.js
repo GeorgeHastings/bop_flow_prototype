@@ -1,23 +1,35 @@
 export const NEW_ACCOUNT = [
   {
-    title: 'Basic Info',
+    title: 'Basic info',
     inputs: [
       'legalBusinessName',
       'doesBusinessAs',
-      'legalEntityType',
+      // 'legalEntityType',
       'naicsCode',
-      'policyHolderPhoneNumber',
-      'policyHolderEmail',
-      'mailingAddress'
+      // 'policyHolderPhoneNumber',
+      // 'policyHolderEmail',
+      'mailingAddress',
+      'locationSameAsMailing'
+      // 'totalSales',
+      // 'payroll',
     ],
     actions: [
       'nextStep'
     ]
   },
   {
-    title: 'Add Buildings',
+    title: 'Number of buildings',
     inputs: [
-      'buildingSameAsMailing',
+      'numLocations'
+    ],
+    actions: [
+      'previousStep',
+      'chooseNumBuildings'
+    ]
+  },
+  {
+    title: 'Building 1',
+    inputs: [
       'buildingClassCode',
       'buildingCoverage',
       'buildingPersonalPropertyLimit',
@@ -36,7 +48,8 @@ export const NEW_ACCOUNT = [
       'payroll',
     ],
     actions: [
-      'createAccount'
+      'previousStep',
+      'nextStep'
     ]
   },
 ];
@@ -75,31 +88,31 @@ export const BOP_QUOTE = [
       'nextStep'
     ],
   },
-  {
-    title: 'Building Exposure',
-    inputs: [
-      'buildingClassCode',
-      'buildingCoverage',
-      'buildingPersonalPropertyLimit',
-      'yearBuilt',
-      'constructionType',
-      'numEmployees',
-      'areaSquareFeet',
-      'numStories',
-      'yearRoofReplaced',
-      'plumbingElectricalUpdated',
-      'sprinklerSystem',
-      'burglerAlarm',
-      'fireAlarm',
-      'totalSales',
-      'alcoholSales',
-      'payroll',
-    ],
-    actions: [
-      'previousStep',
-      'nextStep'
-    ],
-  },
+  // {
+  //   title: 'Building Exposure',
+  //   inputs: [
+  //     'buildingClassCode',
+  //     'buildingCoverage',
+  //     'buildingPersonalPropertyLimit',
+  //     'yearBuilt',
+  //     'constructionType',
+  //     'numEmployees',
+  //     'areaSquareFeet',
+  //     'numStories',
+  //     'yearRoofReplaced',
+  //     'plumbingElectricalUpdated',
+  //     'sprinklerSystem',
+  //     'burglerAlarm',
+  //     'fireAlarm',
+  //     'totalSales',
+  //     'alcoholSales',
+  //     'payroll',
+  //   ],
+  //   actions: [
+  //     'previousStep',
+  //     'nextStep'
+  //   ],
+  // },
   {
     title: 'Building Coverage',
     inputs: [
@@ -130,26 +143,26 @@ export const BOP_QUOTE = [
       'nextStep'
     ],
   },
-  {
-    title: 'Additional Building',
-    inputs: [
-      'additionalBuilding'
-    ],
-    actions: [
-      'previousStep',
-      'nextStep'
-    ],
-  },
-  {
-    title: 'Additional Location',
-    inputs: [
-      'additionalLocation'
-    ],
-    actions: [
-      'previousStep',
-      'nextStep'
-    ],
-  },
+  // {
+  //   title: 'Additional Building',
+  //   inputs: [
+  //     'additionalBuilding'
+  //   ],
+  //   actions: [
+  //     'previousStep',
+  //     'nextStep'
+  //   ],
+  // },
+  // {
+  //   title: 'Additional Location',
+  //   inputs: [
+  //     'additionalLocation'
+  //   ],
+  //   actions: [
+  //     'previousStep',
+  //     'nextStep'
+  //   ],
+  // },
   {
     title: 'Additional Insureds',
     elements: [

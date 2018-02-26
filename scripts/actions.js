@@ -135,6 +135,18 @@ export const ACTIONS = {
     render(ACCOUNT_LIST, COMPONENTS.views.accounts());
     ACTIONS.showAccountDetail(0);
   },
+  addMultiBuildings: () => {
+    const bldgs = parseInt(STATE.quote.numLocations);
+    for(let i = 1; i < bldgs; i++) {
+      const action = i >= bldgs - 1 ? 'createAccount' : 'nextStep';
+      let newStep = JSON.parse(JSON.stringify(NEW_ACCOUNT[2]));
+      newStep.title = `Building ${i + 1}`;
+      newStep.actions.pop();
+      newStep.actions.push(action);
+      NEW_ACCOUNT.push(newStep);
+    }
+    ACTIONS.advanceStep();
+  },
   getQuote: () => {
     BOP_CONTAINER.classList.add('hidden');
     document.getElementById('accountWrapper').classList.remove('quote-open');
@@ -154,6 +166,7 @@ export const ACTIONS = {
       sound.setAttribute('src', src);
       sound.play();
       sound.remove();
+      STATE.index = 0;
     }, 5000);
   }
 };

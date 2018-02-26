@@ -62,11 +62,18 @@ export const STEPS = {
     id: 'buildingSameAsMailing',
     values: ['Yes', 'No']
   },
-  locationSameAsMailing: {
-    label: 'Is the business address the same as the mailing address?',
+  numLocations: {
+    label: 'How many buildings at this location?',
     component: 'radioGroup',
+    id: 'numLocations',
+    values: ['1', '2', '3', '4', '5+'],
+    value: '1'
+  },
+  locationSameAsMailing: {
+    label: 'Business address is the same as mailing address',
+    component: 'checkBox',
     id: 'locationSameAsMailing',
-    values: ['Yes', 'No']
+    checked: true
   },
   locationAddress: {
     label: 'What\'s the locations\' address?',
@@ -690,6 +697,12 @@ export const ACTION_COMPONENTS = {
     style: 'button-big button-primary',
     label: 'Next',
     action: 'advanceStep'
+  },
+  chooseNumBuildings: {
+    component: 'button',
+    style: 'button-big button-primary',
+    label: 'Next',
+    action: 'addMultiBuildings'
   },
   addAdditionalInsured: {
     component: 'button',

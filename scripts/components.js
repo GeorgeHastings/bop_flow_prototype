@@ -57,7 +57,7 @@ export const COMPONENTS = {
       </select>
     `,
     checkBox: (options) => `
-      <input id="${options.id}" type="checkbox" />
+      <input id="${options.id}" type="checkbox" ${options.checked ? 'checked' : ''}/>
       <label for="${options.id}">${options.label}</label>
     `,
     date: (options) => `
@@ -182,9 +182,9 @@ export const COMPONENTS = {
         </div>`;
     },
     quoteFlow: (index) => {
-      // console.log(STATE.schema, index)
+      const showBreadCrumbs = !document.querySelector('.new-account-open');
       return `
-        ${COMPONENTS.elements.breadCrumbs(index)}
+        ${showBreadCrumbs ? COMPONENTS.elements.breadCrumbs(index) : ''}
         ${COMPONENTS.views.step(STATE.schema[index])}
       `;
     },
@@ -217,7 +217,6 @@ export const COMPONENTS = {
             <h3>${account.name}</h3>
             <div class="account-info-wrapper">
               <div class="account-contact-info">
-                <h5>Contact info</h5>
                 <ul class="contact-info">
                   <li>${account.contactInfo.phone}</li>
                   <li><a>${account.contactInfo.email}</a></li>
@@ -225,34 +224,24 @@ export const COMPONENTS = {
                 </ul>
               </div>
               <hr>
-              <div class="account-detail-item">
-                <h5>Account No.</h5>
-                <p>${account.number}</p>
-              </div>
-              <div class="account-detail-item">
-                <h5>Billing status</h5>
-                ${account.quotes.length > 0 ? `<span class="tag quoted">Paid</span>` : `<span>N/A</span>`}
-              </div>
-              <div class="account-detail-item">
-                <h5>Next invoice due:</h5>
-                ${account.quotes.length > 0 ? `<span>3/16/18</span>` : `<span>N/A</span>`}
-              </div>
-              <hr>
-              <div class="account-detail-item">
-                <h5>NAICS</h5>
-                <p>Coffee Merchant - 722515</p>
-              </div>
-              <div class="account-detail-item">
-                <h5>Annual Revenue</h5>
-                <p>$450,000</p>
-              </div>
-              <div class="account-detail-item">
-                <h5>Total Payroll</h5>
-                <p>$180,000</p>
-              </div>
-              <div class="account-detail-item">
-                <h5>No. Employees</h5>
-                <p>5</p>
+              <h4>Operations info</h4>
+              <div class="account-detail-group">
+                <div class="account-detail-item">
+                  <h6>NAICS</h6>
+                  <p>722515</p>
+                </div>
+                <div class="account-detail-item">
+                  <h6>Annual Revenue</h6>
+                  <p>$450,000</p>
+                </div>
+                <div class="account-detail-item">
+                  <h6>Total Payroll</h6>
+                  <p>$180,000</p>
+                </div>
+                <div class="account-detail-item">
+                  <h6>No. Employees</h6>
+                  <p>5</p>
+                </div>
               </div>
             </div>
           </div>
