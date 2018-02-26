@@ -26,32 +26,7 @@ export const NEW_ACCOUNT = [
       'previousStep',
       'chooseNumBuildings'
     ]
-  },
-  {
-    title: 'Building 1',
-    inputs: [
-      'buildingClassCode',
-      'buildingCoverage',
-      'buildingPersonalPropertyLimit',
-      'yearBuilt',
-      'constructionType',
-      'numEmployees',
-      'areaSquareFeet',
-      'numStories',
-      'yearRoofReplaced',
-      'plumbingElectricalUpdated',
-      'sprinklerSystem',
-      'burglerAlarm',
-      'fireAlarm',
-      'totalSales',
-      'alcoholSales',
-      'payroll',
-    ],
-    actions: [
-      'previousStep',
-      'nextStep'
-    ]
-  },
+  }
 ];
 
 export const BOP_QUOTE = [

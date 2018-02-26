@@ -136,15 +136,43 @@ export const ACTIONS = {
     ACTIONS.showAccountDetail(0);
   },
   addMultiBuildings: () => {
-    const bldgs = parseInt(STATE.quote.numLocations);
-    for(let i = 1; i < bldgs; i++) {
+    const bldgs = STATE.quote.numLocations || 1;
+    const base = {
+      title: 'Building 1',
+      inputs: [
+        'buildingClassCode',
+        'buildingCoverage',
+        'buildingPersonalPropertyLimit',
+        'yearBuilt',
+        'constructionType',
+        'numEmployees',
+        'areaSquareFeet',
+        'numStories',
+        'yearRoofReplaced',
+        'plumbingElectricalUpdated',
+        'sprinklerSystem',
+        'burglerAlarm',
+        'fireAlarm',
+        'totalSales',
+        'alcoholSales',
+        'payroll',
+      ],
+      actions: [
+        'previousStep',
+        'nextStep'
+      ]
+    };
+    const buildingSteps = [];
+    for(let i = 0; i < bldgs; i++) {
       const action = i >= bldgs - 1 ? 'createAccount' : 'nextStep';
-      let newStep = JSON.parse(JSON.stringify(NEW_ACCOUNT[2]));
+      let newStep = JSON.parse(JSON.stringify(base));
       newStep.title = `Building ${i + 1}`;
       newStep.actions.pop();
       newStep.actions.push(action);
-      NEW_ACCOUNT.push(newStep);
+      buildingSteps.push(newStep);
     }
+    NEW_ACCOUNT.length = 2;
+    NEW_ACCOUNT.push(...buildingSteps);
     ACTIONS.advanceStep();
   },
   getQuote: () => {
