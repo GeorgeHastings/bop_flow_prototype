@@ -236,6 +236,8 @@ select,
     width: calc(50% - 1rem); }
   .form-group.three-col .form-group {
     width: calc(33.3% - 1rem); }
+  .form-group + h4 {
+    margin-top: 3rem; }
 
 .skip + .half-size,
 .half-size:first-of-type,

@@ -64,6 +64,10 @@ select,
       width: calc(33.3% - 1rem);
     }
   }
+
+  & + h4 {
+    margin-top: 3rem;
+  }
 }
 
 .skip + .half-size,
