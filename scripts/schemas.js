@@ -89,20 +89,12 @@ export const BOP_QUOTE = [
   //   ],
   // },
   {
-    title: 'Building Coverage',
+    title: 'Building 1 Coverage',
     inputs: [
       'buildingDeductible',
       'windPercentage',
       'businessIncomeExtraExpensePeriod',
-    ],
-    actions: [
-      'previousStep',
-      'nextStep'
-    ],
-  },
-  {
-    title: 'Additional Building Coverage',
-    inputs: [
+      'Additional Coverage',
       'equipmentBreakdown',
       'greenUpgrades',
       'utilityServicesTimeElement',
@@ -118,6 +110,24 @@ export const BOP_QUOTE = [
       'nextStep'
     ],
   },
+  // {
+  //   title: 'Additional Building Coverage',
+  //   inputs: [
+  //     'equipmentBreakdown',
+  //     'greenUpgrades',
+  //     'utilityServicesTimeElement',
+  //     'utilityServicesDirectDamage',
+  //     'additionalDebrisRemoval',
+  //     'spoilage',
+  //     'Ordinance or Law Coverage',
+  //     'ordinanceOrLawOne',
+  //     'ordinanceOrLawTwoThree',
+  //   ],
+  //   actions: [
+  //     'previousStep',
+  //     'nextStep'
+  //   ],
+  // },
   // {
   //   title: 'Additional Building',
   //   inputs: [

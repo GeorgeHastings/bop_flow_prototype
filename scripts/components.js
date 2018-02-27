@@ -196,7 +196,7 @@ export const COMPONENTS = {
         `;
       }
       else {
-        return `<img src="assets/images/emptystate.png">`;
+        return `<img style="-webkit-filter: grayscale(1); filter: grayscale(1); opacity: 0.25" src="https://i.pinimg.com/originals/13/7c/a9/137ca9e2a4de70b11d0ae475997e8004.gif">`;
       }
     },
     accounts: () => {

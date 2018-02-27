@@ -66,7 +66,7 @@ export const STEPS = {
     label: 'How many buildings at this location?',
     component: 'radioGroup',
     id: 'numLocations',
-    values: ['1', '2', '3', '4', '5+'],
+    values: ['1', '2', '3', '4', '5'],
     value: '1'
   },
   locationSameAsMailing: {

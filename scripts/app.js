@@ -23,8 +23,14 @@ const animateStepTransition = () => {
 
 const handleInput = (e) => {
   const inputResult = getInputValue(e);
-  STATE.quote[inputResult.id] = inputResult.value;
-  console.log(STATE.quote);
+  const addingBuildings = STATE.schema[0].title === 'Basic info' && STATE.index > 1;
+  if(addingBuildings) {
+    STATE.quote.buildings[STATE.index - 2][inputResult.id] = inputResult.value;
+  }
+  else {
+    STATE.quote[inputResult.id] = inputResult.value;
+  }
+  console.log(STATE)
   handleConditionalLogic(inputResult);
 };
 

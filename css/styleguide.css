@@ -235,9 +235,8 @@ class for each line of the result
 .pac-item,
 #naicsResults li {
   font: inherit;
-  height: 50px;
-  line-height: 50px;
-  padding: 0 1rem; }
+  line-height: 150%;
+  padding: 1rem 1rem; }
 
 #naicsResults li {
   border-bottom: 1px solid #EFF4F8;

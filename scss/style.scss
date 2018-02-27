@@ -224,6 +224,7 @@ section {
   background-color: white;
   border: 1px solid $gray;
   cursor: pointer;
+  text-align: left;
   @include flex-row;
 
   &:hover {
@@ -238,7 +239,6 @@ section {
   max-height: 50px;
   background-color: $lightblue;
   border-radius: 50%;
-  text-align: center;
 
   img {
     width: 70%;

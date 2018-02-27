@@ -55,7 +55,7 @@ const bindNaicsEvents = () => {
   naicsInput.oninput = function () {
      var lookUp = this.value.toLowerCase();
 
-     if(this.value.length > 4) {
+     if(this.value.length > 3) {
        searchprops(lookUp);
      }
 
@@ -75,7 +75,7 @@ const bindNaicsEvents = () => {
   naicsInput.onblur = function(){
     setTimeout(() => {
       naicsResults.style.display = 'none';
-    }, 100);
+    }, 150);
   };
 };
 

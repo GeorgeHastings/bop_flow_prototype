@@ -416,9 +416,8 @@ class for each line of the result
 .pac-item,
 #naicsResults li {
   font: inherit;
-  height: 50px;
-  line-height: 50px;
-  padding: 0 1rem; }
+  line-height: 150%;
+  padding: 1rem 1rem; }
 
 #naicsResults li {
   border-bottom: 1px solid #EFF4F8;
@@ -497,7 +496,7 @@ class for each line of the result
     left: -99999rem;
     visibility: hidden; }
   .quote-flow-container .header {
-    width: calc(100% - 360px); }
+    width: calc(100% - 330px); }
   .quote-flow-container .header,
   .quote-flow-container .prog-bar {
     z-index: 99999; }
@@ -796,6 +795,7 @@ section + section {
   background-color: white;
   border: 1px solid #E2EAF0;
   cursor: pointer;
+  text-align: left;
   display: flex;
   justify-content: space-between; }
   .policy:hover {
@@ -807,8 +807,7 @@ section + section {
   max-width: 50px;
   max-height: 50px;
   background-color: #E5ECFF;
-  border-radius: 50%;
-  text-align: center; }
+  border-radius: 50%; }
   .policy-icon img {
     width: 70%;
     padding: 30% 10%; }

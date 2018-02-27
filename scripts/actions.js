@@ -132,11 +132,20 @@ export const ACTIONS = {
     newAccount.quotes = [];
     ACCOUNTS.unshift(newAccount);
     ACTIONS.closePanelModal();
-    render(ACCOUNT_LIST, COMPONENTS.views.accounts());
     ACTIONS.showAccountDetail(0);
+    BOP_CONTAINER.scrollTop = 0;
+    render(ACCOUNT_LIST, COMPONENTS.views.accounts());
+
+    const base = BOP_QUOTE[1];
+    for(let i = STATE.quote.buildings.length - 1; i > 0; i--){
+      let newStep = JSON.parse(JSON.stringify(base));
+      newStep.title = `Building ${i + 1} Coverage`;
+      BOP_QUOTE.splice(2, 0, newStep);
+    }
   },
   addMultiBuildings: () => {
     const bldgs = STATE.quote.numLocations || 1;
+    const buildingSteps = [];
     const base = {
       title: 'Building 1',
       inputs: [
@@ -162,7 +171,9 @@ export const ACTIONS = {
         'nextStep'
       ]
     };
-    const buildingSteps = [];
+
+    STATE.quote.buildings = [];
+
     for(let i = 0; i < bldgs; i++) {
       const action = i >= bldgs - 1 ? 'createAccount' : 'nextStep';
       let newStep = JSON.parse(JSON.stringify(base));
@@ -170,6 +181,13 @@ export const ACTIONS = {
       newStep.actions.pop();
       newStep.actions.push(action);
       buildingSteps.push(newStep);
+
+      const building = {};
+      base.inputs.forEach(input => {
+        building[input] = null;
+      });
+      building.name = newStep.title;
+      STATE.quote.buildings.push(building);
     }
     NEW_ACCOUNT.length = 2;
     NEW_ACCOUNT.push(...buildingSteps);

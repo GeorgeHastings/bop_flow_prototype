@@ -90,7 +90,7 @@ const getInputValue = (e) => {
       break;
     case 'checkbox':
       id = el.getAttribute('id');
-      value = 'Yes';
+      value = el.checked;
       break;
   }
   return {
@@ -115,7 +115,7 @@ const deselectAccounts = () => {
 const adjustProgressBar = (length) => {
   const PROGRESSBAR = document.getElementById('progressBar');
   let progress;
-  progress = (((STATE.index) / length) * 100).toFixed(0);
+  progress = (((STATE.index + 1) / length) * 100).toFixed(0);
   PROGRESSBAR.setAttribute('style', `width: ${progress}%`);
 };
 
