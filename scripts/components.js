@@ -210,13 +210,10 @@ export const COMPONENTS = {
       const query = account.name.split('Dba')[0];
       console.log(query)
       return `
-        <iframe
-        width="500"
-        height="200"
-        frameborder="0" style="border:0"
-        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyASP82h4Dj6so3GHv1ngvdFcm7ypWqcAP0
-          &q=${STATE.quote.doesBusinessAs || query}" allowfullscreen>
-        </iframe>
+        <div class="header small-pad">
+          <h5>Account details</h5>
+          <div class="button button-small button-secondary">Edit</div>
+        </div>
         <div class="account-detail-content">
           <div class="account-info">
             <h3>${STATE.quote.doesBusinessAs || query}</h3>
