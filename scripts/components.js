@@ -196,7 +196,7 @@ export const COMPONENTS = {
         `;
       }
       else {
-        return `<img style="-webkit-filter: grayscale(1); filter: grayscale(1); opacity: 0.25" src="https://i.pinimg.com/originals/13/7c/a9/137ca9e2a4de70b11d0ae475997e8004.gif">`;
+        return `<img id="emptyState" style="-webkit-filter: grayscale(1); filter: grayscale(1); opacity: 0.25" src="https://i.pinimg.com/originals/13/7c/a9/137ca9e2a4de70b11d0ae475997e8004.gif">`;
       }
     },
     accounts: () => {
@@ -207,20 +207,25 @@ export const COMPONENTS = {
       `;
     },
     accountDetail: (account) => {
+      const query = account.name.split('Dba')[0];
+      console.log(query)
       return `
-        <div class="header small-pad">
-          <h5>Account details</h5>
-          <div class="button button-small button-secondary">Edit</div>
-        </div>
+        <iframe
+        width="500"
+        height="200"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyASP82h4Dj6so3GHv1ngvdFcm7ypWqcAP0
+          &q=${STATE.quote.doesBusinessAs || query}" allowfullscreen>
+        </iframe>
         <div class="account-detail-content">
           <div class="account-info">
-            <h3>${account.name}</h3>
+            <h3>${STATE.quote.doesBusinessAs || query}</h3>
             <div class="account-info-wrapper">
               <div class="account-contact-info">
                 <ul class="contact-info">
                   <li>${account.contactInfo.phone}</li>
                   <li><a>${account.contactInfo.email}</a></li>
-                  <li>${account.contactInfo.mailingAddress}</li>
+                  <li>${STATE.quote.mailingAddress || account.contactInfo.mailingAddress}</li>
                 </ul>
               </div>
               <hr>

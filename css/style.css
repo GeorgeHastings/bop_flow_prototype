@@ -961,3 +961,6 @@ section + section {
     content: "Prefilling..."; }
   100% {
     content: "Done!"; } }
+
+.gmnoprint ~ div {
+  display: none; }

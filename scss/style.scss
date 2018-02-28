@@ -394,3 +394,9 @@ section {
     }
   }
 }
+
+.gmnoprint {
+  & ~ div {
+    display: none;
+  }
+}

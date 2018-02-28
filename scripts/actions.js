@@ -195,6 +195,7 @@ export const ACTIONS = {
   },
   getQuote: () => {
     BOP_CONTAINER.classList.add('hidden');
+    document.getElementById('emptyState').remove();
     document.getElementById('accountWrapper').classList.remove('quote-open');
     let options = {
       type: 'Business Owners Policy',
