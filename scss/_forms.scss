@@ -229,13 +229,13 @@ input[type=checkbox]:checked + label:before {
   display: flex;
 
   output {
-    // min-width: 55px;
     height: 35px;
     margin-left: 10px;
     padding: 0 1em;
     border: 1px solid $field-border-color;
     border-radius: 2px;
     line-height: 35px;
+    background-color: white;
     text-align: center;
   }
 }
@@ -248,6 +248,7 @@ input[type=range] {
   cursor: pointer;
   border-radius: 4px;
   display: inline-block;
+  background-color: transparent;
 }
 input[type=range]::-webkit-slider-runnable-track {
   height: 1px;

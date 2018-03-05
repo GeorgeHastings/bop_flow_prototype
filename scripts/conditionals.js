@@ -4,6 +4,16 @@ const NESTED_CONDITIONALS = {
   //     'locationAddress'
   //   ]
   // },
+  'numLocations': {
+    '5+': [
+      'tooManyLocations'
+    ]
+  },
+  'numBuildings': {
+    '5+': [
+      'tooManyBuildings'
+    ]
+  },
   'eblCoverage': {
     'Yes': [
       'eblCoverageRetroactiveDate',
@@ -25,6 +35,12 @@ const NESTED_CONDITIONALS = {
       'cyberRetroactiveDate',
       'cyberAggregateLimit',
       'cyberDeductible'
+    ]
+  },
+  'ordinanceOrLaw': {
+    'Yes': [
+      'ordinanceOrLawOne',
+      'ordinanceOrLawTwoThree'
     ]
   },
   'additionalInsuredOption': {

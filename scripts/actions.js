@@ -11,14 +11,9 @@ import { STATE } from './state.js';
 import { NEW_ACCOUNT, BOP_QUOTE } from './schemas.js';
 import { ACCOUNTS } from './accounts.js';
 import { generateAccount } from './accountgen.js';
-import { deselectAccounts, sanitizeInputs, adjustProgressBar } from './helpers.js';
+import { deselectAccounts, sanitizeInputs, adjustProgressBar, getIndices } from './helpers.js';
 import { COMPONENTS } from './components.js';
 import { bindNaicsEvents } from './modules/naics.js';
-
-// const SCHEMAS = {
-//   'NEW_ACCOUNT': NEW_ACCOUNT,
-//   'BOP_QUOTE': BOP_QUOTE
-// };
 
 export const ACTIONS = {
   navigate: (direction) => {
@@ -119,7 +114,7 @@ export const ACTIONS = {
     adjustProgressBar(STATE.schema.length);
   },
   startNewQuote: () => {
-    STATE.schema = BOP_QUOTE;
+    // STATE.schema = JSON.parse(JSON.stringify(BOP_QUOTE));
     BOP_CONTAINER.classList.remove('hidden');
     ACCOUNT_WRAPPER.classList.add('quote-open');
     document.getElementById('flowTitle').innerText = 'New BOP Quote';
@@ -127,34 +122,112 @@ export const ACTIONS = {
     // render(document.getElementById('toastLoader'), COMPONENTS.elements.toastLoader());
     render(QUOTE_FLOW, COMPONENTS.views.quoteFlow(0));
   },
+  startNewAccount: () => {
+    STATE.schema = JSON.parse(JSON.stringify(NEW_ACCOUNT));
+    console.log(STATE.schema)
+    BOP_CONTAINER.classList.remove('hidden');
+    BOP_CONTAINER.classList.add('new-account-open');
+    ACCOUNT_WRAPPER.classList.add('account-open');
+    document.getElementById('flowTitle').innerText = 'New Account';
+    render(QUOTE_FLOW, COMPONENTS.views.quoteFlow(0));
+  },
   createAccount: () => {
     const newAccount = generateAccount();
+    const base = BOP_QUOTE[0];
+    const TITLES = [];
     newAccount.quotes = [];
     ACCOUNTS.unshift(newAccount);
     ACTIONS.closePanelModal();
     ACTIONS.showAccountDetail(0);
     BOP_CONTAINER.scrollTop = 0;
-    render(ACCOUNT_LIST, COMPONENTS.views.accounts());
+    STATE.quote.buildings = [];
+    STATE.schema = JSON.parse(JSON.stringify(BOP_QUOTE));
 
-    const base = BOP_QUOTE[1];
-    for(let i = STATE.quote.buildings.length - 1; i > 0; i--){
+    STATE.quote.locations.forEach((loc, index) => {
+      loc.buildings.forEach((bldg, bindex) => {
+        const newbldg = {};
+        base.inputs.forEach(input => {
+          location[input] = null;
+        });
+        newbldg.title = `Location ${index + 1}/Building ${bindex + 1} Coverage`;
+        STATE.quote.buildings.push(newbldg);
+        TITLES.unshift(`Location ${index + 1}/Building ${bindex + 1} Coverage`);
+      });
+    });
+
+    STATE.schema.shift();
+
+    for(let i = 0; i < STATE.quote.buildings.length; i++){
       let newStep = JSON.parse(JSON.stringify(base));
-      newStep.title = `Building ${i + 1} Coverage`;
-      BOP_QUOTE.splice(2, 0, newStep);
+      newStep.title = TITLES[i];
+      STATE.schema.unshift(newStep);
     }
+    render(ACCOUNT_LIST, COMPONENTS.views.accounts());
+  },
+  addMultiLocations: () => {
+    const locations = STATE.quote.numLocations || 1;
+    const locationSteps = [];
+    const base = {
+      title: 'Location 1',
+      type: 'location',
+      inputs: [
+        'locationAddress',
+        'totalSales',
+        'payroll',
+        'numEmployees',
+        'numBuildings',
+        'tooManyBuildings'
+      ],
+      actions: [
+        'previousStep',
+        'chooseNumBuildings'
+      ]
+    };
+
+    STATE.quote.locations = [];
+
+    for(let i = 0; i < locations; i++) {
+      let newStep = JSON.parse(JSON.stringify(base));
+      newStep.title = `Location ${i + 1}`;
+      locationSteps.push(newStep);
+
+      const location = {};
+      base.inputs.forEach(input => {
+        location[input] = null;
+      });
+      location.numBuildings = '1';
+      location.name = newStep.title;
+      location.buildings = [];
+      STATE.quote.locations.push(location);
+    }
+
+    const getExistingLocations = () => {
+      let count = 0;
+      STATE.schema.forEach(step => {
+        if(step.type && step.type === 'location') {
+          count++;
+        }
+      });
+      return count;
+    };
+    STATE.schema.splice(1, getExistingLocations());
+    STATE.schema.splice(1, 0, ...locationSteps);
+    ACTIONS.advanceStep();
+
   },
   addMultiBuildings: () => {
-    const bldgs = STATE.quote.numLocations || 1;
+    const indices = getIndices();
+    const bldgs = STATE.quote.locations[indices.location].numBuildings || 1;
     const buildingSteps = [];
     const base = {
       title: 'Building 1',
+      type: 'building',
       inputs: [
         'buildingClassCode',
         'buildingCoverage',
         'buildingPersonalPropertyLimit',
         'yearBuilt',
         'constructionType',
-        'numEmployees',
         'areaSquareFeet',
         'numStories',
         'yearRoofReplaced',
@@ -162,9 +235,6 @@ export const ACTIONS = {
         'sprinklerSystem',
         'burglerAlarm',
         'fireAlarm',
-        'totalSales',
-        'alcoholSales',
-        'payroll',
       ],
       actions: [
         'previousStep',
@@ -172,12 +242,12 @@ export const ACTIONS = {
       ]
     };
 
-    STATE.quote.buildings = [];
+    STATE.quote.locations[indices.location].buildings.length = 0;
 
     for(let i = 0; i < bldgs; i++) {
-      const action = i >= bldgs - 1 ? 'createAccount' : 'nextStep';
+      const action = i >= bldgs - 1 && STATE.index === STATE.schema.length - 1 ? 'createAccount' : 'nextStep';
       let newStep = JSON.parse(JSON.stringify(base));
-      newStep.title = `Building ${i + 1}`;
+      newStep.title = `Location ${indices.location + 1}: Building ${i + 1}`;
       newStep.actions.pop();
       newStep.actions.push(action);
       buildingSteps.push(newStep);
@@ -187,10 +257,26 @@ export const ACTIONS = {
         building[input] = null;
       });
       building.name = newStep.title;
-      STATE.quote.buildings.push(building);
+      STATE.quote.locations[indices.location].buildings.push(building);
     }
-    NEW_ACCOUNT.length = 2;
-    NEW_ACCOUNT.push(...buildingSteps);
+
+    const getNumBuildings = () => {
+      let count = 0;
+      for(let i = STATE.index; i < STATE.schema.length; i++) {
+        if(STATE.schema[i+1].type && STATE.schema[i+1].type === 'building') {
+          count++;
+        }
+        else {
+          return count;
+        }
+      }
+    };
+
+    if(STATE.schema[STATE.index + 1]) {
+      STATE.schema.splice(STATE.index+1, getNumBuildings());
+    }
+
+    STATE.schema.splice(STATE.index+1, 0, ...buildingSteps);
     ACTIONS.advanceStep();
   },
   getQuote: () => {

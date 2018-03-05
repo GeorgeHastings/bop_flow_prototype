@@ -366,6 +366,7 @@ input[type=checkbox]:checked + label:before {
     border: 1px solid #95A4B3;
     border-radius: 2px;
     line-height: 35px;
+    background-color: white;
     text-align: center; }
 
 input[type=range] {
@@ -375,7 +376,8 @@ input[type=range] {
   width: 100%;
   cursor: pointer;
   border-radius: 4px;
-  display: inline-block; }
+  display: inline-block;
+  background-color: transparent; }
 
 input[type=range]::-webkit-slider-runnable-track {
   height: 1px;
@@ -477,22 +479,19 @@ class for each line of the result
 .quote-flow-container {
   position: absolute;
   top: 0;
-  right: 0px;
+  left: 330px;
   width: 100%;
   height: 100%;
   background-color: white;
   overflow-x: hidden;
   overflow-y: scroll; }
   .quote-flow-container.new-account-open {
-    left: -280px;
-    width: 100%;
-    max-width: 780px; }
+    left: 50px;
+    width: calc(100% - 50px); }
     .quote-flow-container.new-account-open .header {
-      max-width: 780px; }
+      width: calc(100% - 50px); }
     .quote-flow-container.new-account-open .prog-bar {
       display: none; }
-    .quote-flow-container.new-account-open .question-container {
-      margin-left: 0px; }
   .quote-flow-container.hidden {
     position: absolute;
     left: -99999rem;
@@ -508,7 +507,6 @@ class for each line of the result
       padding: 1rem; } }
 
 .question-flow-container {
-  max-width: 900px;
   margin: calc(60px + 1rem) auto 0 3rem;
   display: flex;
   justify-content: space-between; }
@@ -518,15 +516,17 @@ class for each line of the result
   max-width: 200px;
   margin-top: 2rem; }
   .breadcrumb-container li {
-    line-height: 2rem;
     font-size: 0.85rem;
+    padding: 1rem 1rem;
+    line-height: 140%;
+    border-radius: 2px;
     color: #95A4B3;
     cursor: pointer; }
     .breadcrumb-container li:hover {
       color: #373A4B; }
   .breadcrumb-container li.selected {
-    color: #50E3C2;
-    font-weight: bold; }
+    color: #4579FF;
+    background-color: #E5ECFF; }
     .breadcrumb-container li.selected ~ li {
       color: #E2EAF0; }
       .breadcrumb-container li.selected ~ li:hover {
@@ -550,7 +550,7 @@ class for each line of the result
     border-top: none; }
   .hidden + .child-indent {
     margin-top: 1em; }
-  .child-indent input,
+  .child-indent input:not([type="range"]),
   .child-indent select,
   .child-indent .radio-button label {
     background-color: white; }
@@ -615,6 +615,18 @@ class for each line of the result
 
 .animate-transition {
   animation: animate-transition 0.3s cubic-bezier(1, 0, 0, 1); }
+
+.warning {
+  margin-top: calc(-2rem - 2px);
+  margin-left: calc(-2rem - 2px);
+  margin-bottom: calc(-2rem - 2px);
+  width: calc(100% + 4rem + 4px);
+  background-color: #FFF8D7;
+  color: #BC8F00;
+  line-height: 140%;
+  padding: 2rem; }
+  .warning h5 {
+    margin-top: 0; }
 
 @keyframes animate-transition {
   0% {
@@ -699,16 +711,6 @@ section + section {
   width: 360px;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 9999; }
-
-.account-wrapper.account-open:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 500px;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
-  z-index: 2; }
 
 .accounts-list {
   position: relative;

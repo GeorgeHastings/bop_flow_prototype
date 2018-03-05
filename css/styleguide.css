@@ -185,6 +185,7 @@ input[type=checkbox]:checked + label:before {
     border: 1px solid #95A4B3;
     border-radius: 2px;
     line-height: 35px;
+    background-color: white;
     text-align: center; }
 
 input[type=range] {
@@ -194,7 +195,8 @@ input[type=range] {
   width: 100%;
   cursor: pointer;
   border-radius: 4px;
-  display: inline-block; }
+  display: inline-block;
+  background-color: transparent; }
 
 input[type=range]::-webkit-slider-runnable-track {
   height: 1px;

@@ -4,7 +4,7 @@ import { BOP_QUOTE, NEW_ACCOUNT } from './schemas.js';
 import { ACTIONS } from './actions.js';
 import { COMPONENTS } from './components.js';
 import { NESTED_CONDITIONALS } from './conditionals.js';
-import { createNode, getRadioValue, getFormElement, getClosest, getInputValue } from './helpers.js';
+import { createNode, getRadioValue, getFormElement, getClosest, getInputValue, getIndices } from './helpers.js';
 import { tippet } from './libs/tippet.js';
 
 const ACCOUNT_LIST = document.getElementById('accountsList');
@@ -12,7 +12,6 @@ const QUOTE_FLOW = document.getElementById('quoteFlow');
 const BOP_CONTAINER = document.getElementById('bopQuote');
 const ACCOUNT_WRAPPER = document.getElementById('accountWrapper');
 const POLICY_DETAIL_WRAPPER = document.querySelector('.policy-detail-wrapper');
-const FLOW_TITLE = document.getElementById('flowTitle');
 
 const animateStepTransition = () => {
   QUOTE_FLOW.classList.remove('animate-transition');
@@ -20,17 +19,44 @@ const animateStepTransition = () => {
   QUOTE_FLOW.classList.add('animate-transition');
 };
 
+const getHandlerDataTree = (inputResult) => {
+  const indices = getIndices();
+  STATE.locationIndex = indices.location;
+  STATE.buildingIndex = indices.building;
+  logInputValue(indices, inputResult);
+};
 
-const handleInput = (e) => {
-  const inputResult = getInputValue(e);
-  const addingBuildings = STATE.schema[0].title === 'Basic info' && STATE.index > 1;
-  if(addingBuildings) {
-    STATE.quote.buildings[STATE.index - 2][inputResult.id] = inputResult.value;
+const logInputValue = (indices, inputResult) => {
+  const isLocation = STATE.schema[STATE.index].type && STATE.schema[STATE.index].type === 'location';
+  const isBuilding = STATE.schema[STATE.index].type && STATE.schema[STATE.index].type === 'building';
+  const locationIndex = indices.location;
+  const buildingIndex = indices.building;
+  const doingQuote = STATE.schema[0].title !== 'Basic info';
+
+  if(doingQuote) {
+    if(STATE.index < STATE.quote.buildings.length) {
+      STATE.quote.buildings[STATE.index][inputResult.id] = inputResult.value;
+    }
+    else {
+      STATE.quote[inputResult.id] = inputResult.value;
+    }
+  }
+  else if(isBuilding) {
+    STATE.quote.locations[locationIndex].buildings[buildingIndex][inputResult.id] = inputResult.value;
+  }
+  else if(isLocation) {
+    STATE.quote.locations[locationIndex][inputResult.id] = inputResult.value;
   }
   else {
     STATE.quote[inputResult.id] = inputResult.value;
   }
-  console.log(STATE)
+};
+
+const handleInput = (e) => {
+  const inputResult = getInputValue(e);
+  const addingLocations = STATE.schema[0].title === 'Basic info' && STATE.index > 0;
+  getHandlerDataTree(inputResult);
+  console.log(STATE);
   handleConditionalLogic(inputResult);
 };
 
@@ -78,14 +104,7 @@ const bindInputEvents = (inputs) =>
 });
 
 const bindStaticEvents = () => {
-  document.getElementById('newAccount').onclick = () => {
-    STATE.schema = NEW_ACCOUNT;
-    BOP_CONTAINER.classList.remove('hidden');
-    BOP_CONTAINER.classList.add('new-account-open');
-    ACCOUNT_WRAPPER.classList.add('account-open');
-    FLOW_TITLE.innerText = 'New Account';
-    render(QUOTE_FLOW, COMPONENTS.views.step(NEW_ACCOUNT[0]));
-  };
+  document.getElementById('newAccount').onclick = ACTIONS.startNewAccount;
 
   document.getElementById('newQuote').onclick = ACTIONS.startNewQuote;
 

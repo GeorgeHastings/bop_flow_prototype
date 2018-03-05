@@ -63,11 +63,32 @@ export const STEPS = {
     values: ['Yes', 'No']
   },
   numLocations: {
-    label: 'How many buildings at this location?',
+    label: 'How many locations does this business have?',
     component: 'radioGroup',
     id: 'numLocations',
-    values: ['1', '2', '3', '4', '5'],
-    value: '1'
+    values: ['1', '2', '3', '4', '5+'],
+    default: '1'
+  },
+  numBuildings: {
+    label: 'How many buildings does this location have?',
+    component: 'radioGroup',
+    id: 'numBuildings',
+    values: ['1', '2', '3', '4', '5+'],
+    default: '1'
+  },
+  tooManyLocations: {
+    component: 'warning',
+    id: 'tooManyLocations',
+    header: 'Whoah there cowboy',
+    copy: 'That might be too many locations. Give us a call at 1-800-555-5555 or chat with one of our reps.',
+    hidden: true
+  },
+  tooManyBuildings: {
+    component: 'warning',
+    id: 'tooManyBuildings',
+    header: 'Hold on there chief',
+    copy: 'That might be too many buildings. Give us a call at 1-800-555-5555 or chat with one of our reps.',
+    hidden: true
   },
   locationSameAsMailing: {
     label: 'Business address is the same as mailing address',
@@ -81,7 +102,6 @@ export const STEPS = {
     id: 'locationAddress',
     placeholder: 'Search street address',
     type:'text',
-    hidden: true
   },
   mailingAddress: {
     label: 'Business mailing address',
@@ -202,13 +222,13 @@ export const STEPS = {
       '$7,500',
       '$10,000'
     ],
-    value: '$1,000'
+    default: '$1,000'
   },
   buildingCoverage: {
     label: 'Building limit',
     component: 'money',
     id: 'buildingCoverage',
-    value: '$0'
+    placeholder: '$0'
   },
   buildingCoverageAmount: {
     label: 'Building coverage limit',
@@ -221,7 +241,7 @@ export const STEPS = {
     label: 'Building Personal Property limit',
     component: 'money',
     id: 'buildingPersonalPropertyLimit',
-    value: '$0'
+    placeholder: '$0'
   },
   buildingPersonalPropertyLimitAmount: {
       label: 'Building personal property coverage limit',
@@ -247,15 +267,15 @@ export const STEPS = {
     label: 'BI/EE Period of Indemnity (months)',
     component: 'radioGroup',
     id: 'businessIncomeExtraExpensePeriod',
-    values: [6,9,12,18,24],
-    value: 12
+    values: ['6','9','12','18','24'],
+    default: '12'
   },
   windPercentage: {
     label: 'Wind Deductible',
     component: 'dropDown',
     id: 'windPercentage',
     values: ['0%','1%','2%','3%','4%','5%','6%','7%','8%','9%','10%'],
-    value: '0%'
+    default: '0%'
   },
   equipmentBreakdown: {
     label: `Would you like <span class="tooltip-underline" data-tippet="*tooltip*">Equipment Breakdown</span> coverage?`,
@@ -290,19 +310,24 @@ export const STEPS = {
     label: 'Apply Coverage 1? (Undamaged portion of the building)',
     component: 'radioGroup',
     id: 'ordinanceOrLawOne',
-    values: ['Yes', 'No']
+    values: ['Yes', 'No'],
+    hidden: true
   },
   ordinanceOrLawTwoThree: {
     label: 'Apply Coverage 2 and 3? (Demolition Costs and Increased Cost of Construction coverage)',
-    component: 'money',
+    component: 'rangeSlider',
     id: 'ordinanceOrLawTwoThree',
-    value: '$0',
-    description: 'Cannot exceed $100,000'
+    // default: '$0',
+    // description: 'Cannot exceed $100,000',
+    min: 0,
+    max: 100000,
+    step: 1000,
+    default: 0,
+    hidden: true
   },
   utilityServicesTimeElement: {
     label: 'Utility Services - Time Element limit',
     component: 'dropDown',
-    size: 'half-size',
     id: 'utilityServicesTimeElement',
     placeholder: '$0',
     values: [
@@ -313,12 +338,11 @@ export const STEPS = {
       '$40,000',
       '$50,000',
     ],
-    value: '$0',
+    default: '$0',
   },
   utilityServicesDirectDamage: {
     label: 'Utility Services - Direct Damage limit',
     component: 'dropDown',
-    size: 'half-size',
     id: 'utilityServicesDirectDamage',
     placeholder: '$0',
     values: [
@@ -328,12 +352,11 @@ export const STEPS = {
       '$75,000',
       '$100,000',
     ],
-    value: '$0',
+    default: '$0',
   },
   additionalDebrisRemoval: {
     label: 'Additional Debris Removal',
     component: 'dropDown',
-    size: 'half-size',
     id: 'additionalDebrisRemoval',
     values: [
       '$0',
@@ -342,12 +365,11 @@ export const STEPS = {
       '$75,000',
       '$100,000',
     ],
-    value: '$0'
+    default: '$0'
   },
   spoilage: {
     label: 'Spoilage',
     component: 'dropDown',
-    size: 'half-size',
     id: 'spoilage',
     values: [
       '$0',
@@ -357,7 +379,7 @@ export const STEPS = {
       '$40,000',
       '$50,000',
     ],
-    value: '$0'
+    default: '$0'
   },
   additionalBuilding: {
     label: 'Would you like to insure another building at this location?',
@@ -383,7 +405,7 @@ export const STEPS = {
       '$1,000,000',
       '$2,000,000'
     ],
-    value: '$1,000,000'
+    default: '$1,000,000'
   },
   glAggregateLimit: {
     label: 'Aggregate Limit',
@@ -393,7 +415,7 @@ export const STEPS = {
       '$1,000,000',
       '$2,000,000'
     ],
-    value: '$2,000,000'
+    default: '$2,000,000'
   },
   glDamageToRentedPremises: {
     label: 'Damage to premises rented to you',
@@ -402,7 +424,7 @@ export const STEPS = {
     min: 50000,
     max: 1000000,
     step: 50000,
-    value: 50000
+    default: 50000
   },
   medicalExpenses: {
     label: 'Medical Expenses',
@@ -412,7 +434,7 @@ export const STEPS = {
       '$5,000',
       '$10,000'
     ],
-    value: '$5,000'
+    default: '$5,000'
   },
   actsOfTerror: {
     label: 'Certified Acts of Terror coverage?',
@@ -703,6 +725,12 @@ export const ACTION_COMPONENTS = {
     style: 'button-big button-primary',
     label: 'Next',
     action: 'addMultiBuildings'
+  },
+  chooseNumLocations: {
+    component: 'button',
+    style: 'button-big button-primary',
+    label: 'Next',
+    action: 'addMultiLocations'
   },
   addAdditionalInsured: {
     component: 'button',

@@ -95,18 +95,18 @@ section {
       z-index: 9999;
     }
   }
-  &.account-open {
-    &:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 500px;
-      height: 100%;
-      width: 100%;
-      background-color: rgba(0,0,0,.3);
-      z-index: 2;
-    }
-  }
+  // &.account-open {
+  //   &:before {
+  //     content: "";
+  //     position: absolute;
+  //     top: 0;
+  //     left: 500px;
+  //     height: 100%;
+  //     width: 100%;
+  //     background-color: rgba(0,0,0,.3);
+  //     z-index: 2;
+  //   }
+  // }
 }
 
 

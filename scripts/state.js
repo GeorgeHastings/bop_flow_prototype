@@ -1,5 +1,7 @@
 export const STATE = {
   index: 0,
-  quote: {},
+  quote: {
+    numLocations: '1',
+  },
   schema: {}
 };

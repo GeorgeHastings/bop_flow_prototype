@@ -23,7 +23,8 @@ const getRadioValue = (radios) => {
 
 const getFormElement = (id) => {
   const el = document.getElementById(id) || document.querySelector(`[name=${id}`);
-  return getClosest(el, '.form-group');
+  const form = getClosest(el, '.form-group') || el;
+  return form;
 };
 
 const createPhoneNumbers = () => {
@@ -75,6 +76,7 @@ const getInputValue = (e) => {
       break;
     case 'range':
       id = el.getAttribute('name');
+      value = el.nextElementSibling.innerText;
       break;
     case 'number':
       id = el.getAttribute('name');
@@ -119,6 +121,26 @@ const adjustProgressBar = (length) => {
   PROGRESSBAR.setAttribute('style', `width: ${progress}%`);
 };
 
+const getIndices = () => {
+  let locationIndex = -1;
+  let buildingIndex = -1;
+
+  for(let i = 0; i < STATE.index + 1; i++) {
+    const type = STATE.schema[i].type;
+    if(type === 'location') {
+      locationIndex++;
+      buildingIndex = -1;
+    }
+    if(type === 'building') {
+      buildingIndex++;
+    }
+  }
+  return {
+    location: locationIndex < 0 ? 0 : locationIndex,
+    building: buildingIndex < 0 ? 0 : buildingIndex
+  };
+};
+
 export {
   createNode,
   getRadioValue,
@@ -127,5 +149,6 @@ export {
   getInputValue,
   sanitizeInputs,
   deselectAccounts,
-  adjustProgressBar
+  adjustProgressBar,
+  getIndices
 };

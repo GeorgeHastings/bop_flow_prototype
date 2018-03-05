@@ -63,7 +63,14 @@ export const COMPONENTS = {
     date: (options) => `
       <input type="text" class="${options.style || ''}" id="${options.id}" placeholder="${options.placeholder}" value="${options.value || ''}" data-valid-example="05/18/2019" pattern="(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/\d{4}">
     `,
-    submit: (options) => COMPONENTS.actions.button(options)
+    submit: (options) => COMPONENTS.actions.button(options),
+    warning: (options) => {
+      return `
+        <div id="${options.id}" class="warning">
+          <h5>${options.header}</h5>
+          <p>${options.copy}</p>
+        </div>`;
+    }
   },
   actions: {
     button: (options) => `<div id="${options.id}" class="button ${options.style || ''}" data-onclick="${options.action}">${options.label}</div>`
@@ -106,6 +113,16 @@ export const COMPONENTS = {
             summary += `<p class="flex-row ${STEPS[prop].hidden ? 'indent' : ''}"><span>${STEPS[prop].label}:</span><span>${STATE.quote[prop]}</span></p>`;
           }
         }
+        else if(prop === 'buildings') {
+          STATE.quote.buildings.forEach(bldg => {
+            summary += `<p><b>${bldg.title}</b></p>`;
+            for(let prop in bldg) {
+              if(prop !== 'title') {
+                summary += `<p class="flex-row"><span>${STEPS[prop].label}:</span><span>${bldg[prop]}</span></p>`;
+              }
+            }
+          });
+        }
       }
       return `
         <div class="summary-container">
@@ -116,10 +133,8 @@ export const COMPONENTS = {
     breadCrumbs: (selected) => {
       return `
         <ul class="breadcrumb-container" id="breadcrumbs">
-          ${BOP_QUOTE.map((step, index) => {
-            if(index > -1) {
-              return `<li data-onclick="jumpToStep" data-index="${index}" ${selected === index ? `class="selected"`: ''}>${step.title}</li>`;
-            }
+          ${STATE.schema.map((step, index) => {
+            return `<li data-onclick="jumpToStep" data-index="${index}" ${selected === index ? `class="selected"`: ''}>${step.title}</li>`;
           }).join(' ') }
         </ul>
       `;
@@ -160,10 +175,17 @@ export const COMPONENTS = {
             if(!STEPS[input]) {
               return `<h4>${input}</h4>`;
             }
+            let valueHasBeenEntered;
+            const selectingBldgCoverage = STATE.quote.buildings && STATE.index < STATE.quote.buildings.length;
             input = STEPS[input];
-            const valueHasBeenEntered = STATE.quote[input.id];
+            if(selectingBldgCoverage) {
+              valueHasBeenEntered = STATE.quote.buildings[STATE.index][input.id];
+            }
+            else if(STATE.quote[input.id]) {
+              valueHasBeenEntered = STATE.quote[input.id];
+            }
             const conditional = input.hidden !== undefined && input.hidden === false;
-            input.value = valueHasBeenEntered || input.value;
+            input.value = valueHasBeenEntered || input.default;
             input.label = input.label && input.tooltip ? input.label.replace('*tooltip*', input.tooltip) : input.label;
             return `
               <div class="form-group ${input.hidden ? 'hidden' : ''} ${conditional ? 'child-indent' : ''} ${input.size ? input.size : 'skip'}">
@@ -182,9 +204,9 @@ export const COMPONENTS = {
         </div>`;
     },
     quoteFlow: (index) => {
-      const showBreadCrumbs = !document.querySelector('.new-account-open');
+      const showBreadCrumbs = STATE.schema[0].title === 'Basic info' && STATE.index === 0;
       return `
-        ${showBreadCrumbs ? COMPONENTS.elements.breadCrumbs(index) : ''}
+        ${showBreadCrumbs ? '' : COMPONENTS.elements.breadCrumbs(index)}
         ${COMPONENTS.views.step(STATE.schema[index])}
       `;
     },
@@ -208,7 +230,6 @@ export const COMPONENTS = {
     },
     accountDetail: (account) => {
       const query = account.name.split('Dba')[0];
-      console.log(query)
       return `
         <div class="header small-pad">
           <h5>Account details</h5>
@@ -216,7 +237,7 @@ export const COMPONENTS = {
         </div>
         <div class="account-detail-content">
           <div class="account-info">
-            <h3>${STATE.quote.doesBusinessAs || query}</h3>
+            <h3>${STATE.quote.doesBusinessAs || STATE.quote.legalBusinessName || query}</h3>
             <div class="account-info-wrapper">
               <div class="account-contact-info">
                 <ul class="contact-info">

@@ -4,65 +4,36 @@ export const NEW_ACCOUNT = [
     inputs: [
       'legalBusinessName',
       'doesBusinessAs',
-      // 'legalEntityType',
+      'legalEntityType',
       'naicsCode',
       // 'policyHolderPhoneNumber',
       // 'policyHolderEmail',
       'mailingAddress',
-      'locationSameAsMailing'
+      'numLocations',
+      'tooManyLocations'
+      // 'locationSameAsMailing'
       // 'totalSales',
       // 'payroll',
     ],
     actions: [
-      'nextStep'
+      'chooseNumLocations'
     ]
   },
-  {
-    title: 'Number of buildings',
-    inputs: [
-      'numLocations'
-    ],
-    actions: [
-      'previousStep',
-      'chooseNumBuildings'
-    ]
-  }
+  // {
+  //   title: 'Number of locations',
+  //   inputs: [
+  //     'numLocations',
+  //     'tooManyLocations'
+  //   ],
+  //   actions: [
+  //     'previousStep',
+  //     'chooseNumLocations'
+  //   ]
+  // }
 ];
 
 export const BOP_QUOTE = [
-  {
-    title: 'Liability Coverages',
-    inputs: [
-      'liabilityAndMedical',
-      'glAggregateLimit',
-      'medicalExpenses',
-      'glDamageToRentedPremises',
-      'eblCoverage',
-      'eblCoverageRetroactiveDate',
-      'eblEachEmployeeLimit',
-      'eblAggregateLimit',
-      'eblDeductible',
-      'eplCoverage',
-      'eplCoverageRetroactiveDate',
-      'eplEachEmployeeLimit',
-      'eplAggregateLimit',
-      'eplDeductible',
-      'actsOfTerror',
-      'cyberLiability',
-      'cyberRetroactiveDate',
-      'cyberAggregateLimit',
-      'cyberDeductible',
-      'employeeDishonestyLimit',
-      'Operations specific optional coverages',
-      'professionalLiability',
-      'snowPlowProducts',
-      'hiredNonOwnedAutoCoverage',
-    ],
-    actions: [
-      'previousStep',
-      'nextStep'
-    ],
-  },
+
   // {
   //   title: 'Building Exposure',
   //   inputs: [
@@ -90,6 +61,7 @@ export const BOP_QUOTE = [
   // },
   {
     title: 'Building 1 Coverage',
+    type: 'building',
     inputs: [
       'buildingDeductible',
       'windPercentage',
@@ -101,9 +73,41 @@ export const BOP_QUOTE = [
       'utilityServicesDirectDamage',
       'additionalDebrisRemoval',
       'spoilage',
-      'Ordinance or Law Coverage',
+      'ordinanceOrLaw',
       'ordinanceOrLawOne',
       'ordinanceOrLawTwoThree',
+    ],
+    actions: [
+      'previousStep',
+      'nextStep'
+    ],
+  },
+  {
+    title: 'Liability Coverages',
+    inputs: [
+      'liabilityAndMedical',
+      'glAggregateLimit',
+      'medicalExpenses',
+      'glDamageToRentedPremises',
+      'eblCoverage',
+      'eblCoverageRetroactiveDate',
+      'eblEachEmployeeLimit',
+      'eblAggregateLimit',
+      'eblDeductible',
+      'eplCoverage',
+      'eplCoverageRetroactiveDate',
+      'eplEachEmployeeLimit',
+      'eplAggregateLimit',
+      'eplDeductible',
+      'actsOfTerror',
+      'cyberLiability',
+      'cyberRetroactiveDate',
+      'cyberAggregateLimit',
+      'cyberDeductible',
+      'Operations specific optional coverages',
+      'professionalLiability',
+      'snowPlowProducts',
+      'hiredNonOwnedAutoCoverage',
     ],
     actions: [
       'previousStep',
