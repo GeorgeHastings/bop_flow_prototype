@@ -681,8 +681,9 @@ body {
   color: #373A4B;
   background-color: #EFF4F8; }
 
-.main-wrapper.open-mobile .accounts-list {
-  margin-left: -100%; }
+@media (max-width: 480px) {
+  .main-wrapper.open-mobile .accounts-list {
+    margin-left: -100%; } }
 
 section + section {
   margin-top: 4rem; }
@@ -738,6 +739,7 @@ section + section {
 
 @media (max-width: 480px) {
   .account-wrapper {
+    overflow-y: scroll;
     flex-direction: column; } }
 
 .accounts-list {

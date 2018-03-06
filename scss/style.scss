@@ -35,7 +35,9 @@ body {
   &.open-mobile {
 
     .accounts-list {
-      margin-left: -100%;
+      @media (max-width: $breakpoint-mobile) {
+        margin-left: -100%;
+      }
     }
   }
 }
@@ -111,6 +113,7 @@ section {
   }
 
   @media (max-width: $breakpoint-mobile) {
+    overflow-y: scroll;
     flex-direction: column;
   }
 }

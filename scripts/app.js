@@ -144,7 +144,7 @@ const isMobileDevice = () =>
 
 const init = () => {
   render($('accountsList'), COMPONENTS.views.accounts());
-  if(!isMobileDevice) {
+  if(!isMobileDevice()) {
     ACTIONS.showAccountDetail(0);
   }
   bindStaticEvents();
