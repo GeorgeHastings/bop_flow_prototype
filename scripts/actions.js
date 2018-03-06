@@ -97,6 +97,7 @@ export const ACTIONS = {
     let index = e.target ? e.target.getAttribute('data-index') : e;
     const account = ACCOUNTS[index];
     deselectAccounts();
+    $('mainWrapper').classList.add('open-mobile');
     document.querySelectorAll('#accountsList li')[index].classList.add('account-selected');
     render($('accountDetail'), COMPONENTS.views.accountDetail(account));
     render($('policyContainer'), COMPONENTS.views.accountPolicyList(account.quotes));

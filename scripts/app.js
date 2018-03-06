@@ -139,9 +139,14 @@ const render = (container, component) => {
   tippet.init();
 };
 
+const isMobileDevice = () =>
+  (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+
 const init = () => {
   render($('accountsList'), COMPONENTS.views.accounts());
-  ACTIONS.showAccountDetail(0);
+  if(!isMobileDevice) {
+    ACTIONS.showAccountDetail(0);
+  }
   bindStaticEvents();
 };
 

@@ -30,6 +30,16 @@ body {
   background-color: $lightgray;
 }
 
+.main-wrapper {
+
+  &.open-mobile {
+
+    .accounts-list {
+      margin-left: -100%;
+    }
+  }
+}
+
 section {
   & + section {
     margin-top: 4rem;
@@ -80,6 +90,10 @@ section {
   min-width: 50px;
   height: 100%;
   background-color: $blue;
+
+  @media (max-width: $breakpoint-mobile) {
+    display: none;
+  }
 }
 
 .account-wrapper {
@@ -95,18 +109,10 @@ section {
       z-index: 9999;
     }
   }
-  // &.account-open {
-  //   &:before {
-  //     content: "";
-  //     position: absolute;
-  //     top: 0;
-  //     left: 500px;
-  //     height: 100%;
-  //     width: 100%;
-  //     background-color: rgba(0,0,0,.3);
-  //     z-index: 2;
-  //   }
-  // }
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+  }
 }
 
 
@@ -114,7 +120,6 @@ section {
   position: relative;
   min-width: 280px;
   max-width: 280px;
-  height: 100%;
   background-color: $lightgray;
 
   .header {
@@ -124,6 +129,12 @@ section {
   ul {
     height: 100%;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    min-width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -152,6 +163,12 @@ section {
   height: inherit;
   background-color: white;
   border-left: 1px solid $gray;
+
+  @media (max-width: $breakpoint-mobile) {
+    max-width: none;
+    width: 100vw;
+    padding-bottom: 2rem;
+  }
 }
 
 .account-detail-content {
@@ -201,9 +218,16 @@ section {
 .account-policies {
   position: relative;
   width: 100%;
-  min-width: 400px;
   border-left: 1px solid $gray;
   background-color: $lightgray;
+
+  @media (min-width: $breakpoint-mobile) {
+    min-width: 400px;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    max-width: none;
+  }
 }
 
 .policy-container {
