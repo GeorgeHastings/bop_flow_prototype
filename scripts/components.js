@@ -108,14 +108,20 @@ export const COMPONENTS = {
     summary: () => {
       let summary = '';
       for(let prop in STATE.quote) {
-        if(!Array.isArray(STATE.quote[prop])) {
+        if(prop === 'generalLiability') {
+          summary += `<h5>General Liability</h5>`;
+          for(let prop in STATE.quote.generalLiability) {
+            summary += `<p class="flex-row"><span>${STEPS[prop].label}:</span><span>${STATE.quote.generalLiability[prop]}</span></p>`;
+          }
+        }
+        else if(!Array.isArray(STATE.quote[prop])) {
           if(STEPS[prop]) {
             summary += `<p class="flex-row ${STEPS[prop].hidden ? 'indent' : ''}"><span>${STEPS[prop].label}:</span><span>${STATE.quote[prop]}</span></p>`;
           }
         }
         else if(prop === 'buildings') {
           STATE.quote.buildings.forEach(bldg => {
-            summary += `<p><b>${bldg.title}</b></p>`;
+            summary += `<h5>${bldg.title}</h5>`;
             for(let prop in bldg) {
               if(prop !== 'title') {
                 summary += `<p class="flex-row"><span>${STEPS[prop].label}:</span><span>${bldg[prop]}</span></p>`;

@@ -141,6 +141,10 @@ const getIndices = () => {
   };
 };
 
+const $ = (id) => {
+  return document.getElementById(id);
+};
+
 export {
   createNode,
   getRadioValue,
@@ -150,5 +154,6 @@ export {
   sanitizeInputs,
   deselectAccounts,
   adjustProgressBar,
-  getIndices
+  getIndices,
+  $
 };

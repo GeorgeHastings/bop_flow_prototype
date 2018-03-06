@@ -12,55 +12,16 @@ export const NEW_ACCOUNT = [
       'numLocations',
       'tooManyLocations'
       // 'locationSameAsMailing'
-      // 'totalSales',
-      // 'payroll',
     ],
     actions: [
       'chooseNumLocations'
     ]
   },
-  // {
-  //   title: 'Number of locations',
-  //   inputs: [
-  //     'numLocations',
-  //     'tooManyLocations'
-  //   ],
-  //   actions: [
-  //     'previousStep',
-  //     'chooseNumLocations'
-  //   ]
-  // }
 ];
 
 export const BOP_QUOTE = [
-
-  // {
-  //   title: 'Building Exposure',
-  //   inputs: [
-  //     'buildingClassCode',
-  //     'buildingCoverage',
-  //     'buildingPersonalPropertyLimit',
-  //     'yearBuilt',
-  //     'constructionType',
-  //     'numEmployees',
-  //     'areaSquareFeet',
-  //     'numStories',
-  //     'yearRoofReplaced',
-  //     'plumbingElectricalUpdated',
-  //     'sprinklerSystem',
-  //     'burglerAlarm',
-  //     'fireAlarm',
-  //     'totalSales',
-  //     'alcoholSales',
-  //     'payroll',
-  //   ],
-  //   actions: [
-  //     'previousStep',
-  //     'nextStep'
-  //   ],
-  // },
   {
-    title: 'Building 1 Coverage',
+    title: 'Loc 1 / Bldg 1',
     type: 'building',
     inputs: [
       'buildingDeductible',
@@ -114,44 +75,6 @@ export const BOP_QUOTE = [
       'nextStep'
     ],
   },
-  // {
-  //   title: 'Additional Building Coverage',
-  //   inputs: [
-  //     'equipmentBreakdown',
-  //     'greenUpgrades',
-  //     'utilityServicesTimeElement',
-  //     'utilityServicesDirectDamage',
-  //     'additionalDebrisRemoval',
-  //     'spoilage',
-  //     'Ordinance or Law Coverage',
-  //     'ordinanceOrLawOne',
-  //     'ordinanceOrLawTwoThree',
-  //   ],
-  //   actions: [
-  //     'previousStep',
-  //     'nextStep'
-  //   ],
-  // },
-  // {
-  //   title: 'Additional Building',
-  //   inputs: [
-  //     'additionalBuilding'
-  //   ],
-  //   actions: [
-  //     'previousStep',
-  //     'nextStep'
-  //   ],
-  // },
-  // {
-  //   title: 'Additional Location',
-  //   inputs: [
-  //     'additionalLocation'
-  //   ],
-  //   actions: [
-  //     'previousStep',
-  //     'nextStep'
-  //   ],
-  // },
   {
     title: 'Additional Insureds',
     elements: [

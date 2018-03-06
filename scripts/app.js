@@ -4,19 +4,16 @@ import { BOP_QUOTE, NEW_ACCOUNT } from './schemas.js';
 import { ACTIONS } from './actions.js';
 import { COMPONENTS } from './components.js';
 import { NESTED_CONDITIONALS } from './conditionals.js';
-import { createNode, getRadioValue, getFormElement, getClosest, getInputValue, getIndices } from './helpers.js';
+import { createNode, getRadioValue, getFormElement, getClosest, getInputValue, getIndices, $ } from './helpers.js';
 import { tippet } from './libs/tippet.js';
 
-const ACCOUNT_LIST = document.getElementById('accountsList');
-const QUOTE_FLOW = document.getElementById('quoteFlow');
-const BOP_CONTAINER = document.getElementById('bopQuote');
-const ACCOUNT_WRAPPER = document.getElementById('accountWrapper');
 const POLICY_DETAIL_WRAPPER = document.querySelector('.policy-detail-wrapper');
 
 const animateStepTransition = () => {
-  QUOTE_FLOW.classList.remove('animate-transition');
-  QUOTE_FLOW.setAttribute('width', QUOTE_FLOW.offsetWidth);
-  QUOTE_FLOW.classList.add('animate-transition');
+  const el = $('quoteFlow');
+  el.classList.remove('animate-transition');
+  el.setAttribute('width', $('quoteFlow').offsetWidth);
+  el.classList.add('animate-transition');
 };
 
 const getHandlerDataTree = (inputResult) => {
@@ -29,6 +26,7 @@ const getHandlerDataTree = (inputResult) => {
 const logInputValue = (indices, inputResult) => {
   const isLocation = STATE.schema[STATE.index].type && STATE.schema[STATE.index].type === 'location';
   const isBuilding = STATE.schema[STATE.index].type && STATE.schema[STATE.index].type === 'building';
+  const isGL = STATE.schema[STATE.index].title === 'Liability Coverages';
   const locationIndex = indices.location;
   const buildingIndex = indices.building;
   const doingQuote = STATE.schema[0].title !== 'Basic info';
@@ -36,6 +34,9 @@ const logInputValue = (indices, inputResult) => {
   if(doingQuote) {
     if(STATE.index < STATE.quote.buildings.length) {
       STATE.quote.buildings[STATE.index][inputResult.id] = inputResult.value;
+    }
+    else if(isGL) {
+      STATE.quote.generalLiability[inputResult.id] = inputResult.value;
     }
     else {
       STATE.quote[inputResult.id] = inputResult.value;
@@ -104,13 +105,13 @@ const bindInputEvents = (inputs) =>
 });
 
 const bindStaticEvents = () => {
-  document.getElementById('newAccount').onclick = ACTIONS.startNewAccount;
+  $('newAccount').onclick = ACTIONS.startNewAccount;
 
-  document.getElementById('newQuote').onclick = ACTIONS.startNewQuote;
+  $('newQuote').onclick = ACTIONS.startNewQuote;
 
-  document.getElementById('closeQuote').onclick = ACTIONS.closePanelModal;
+  $('closeQuote').onclick = ACTIONS.closePanelModal;
 
-  document.getElementById('closeQuoteDetail').onclick = () => {
+  $('closeQuoteDetail').onclick = () => {
     POLICY_DETAIL_WRAPPER.classList.add('hidden');
   };
 };
@@ -139,7 +140,7 @@ const render = (container, component) => {
 };
 
 const init = () => {
-  render(ACCOUNT_LIST, COMPONENTS.views.accounts());
+  render($('accountsList'), COMPONENTS.views.accounts());
   ACTIONS.showAccountDetail(0);
   bindStaticEvents();
 };
@@ -151,9 +152,5 @@ export {
   BOP_QUOTE,
   animateStepTransition,
   render,
-  QUOTE_FLOW,
-  BOP_CONTAINER,
-  ACCOUNT_WRAPPER,
-  POLICY_DETAIL_WRAPPER,
-  ACCOUNT_LIST
+  POLICY_DETAIL_WRAPPER
 };

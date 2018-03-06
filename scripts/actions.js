@@ -1,28 +1,24 @@
 import {
   animateStepTransition,
   render,
-  QUOTE_FLOW,
-  POLICY_DETAIL_WRAPPER,
-  BOP_CONTAINER,
-  ACCOUNT_WRAPPER,
-  ACCOUNT_LIST
+  POLICY_DETAIL_WRAPPER
 } from './app.js';
 import { STATE } from './state.js';
 import { NEW_ACCOUNT, BOP_QUOTE } from './schemas.js';
 import { ACCOUNTS } from './accounts.js';
 import { generateAccount } from './accountgen.js';
-import { deselectAccounts, sanitizeInputs, adjustProgressBar, getIndices } from './helpers.js';
+import { deselectAccounts, sanitizeInputs, adjustProgressBar, getIndices, $ } from './helpers.js';
 import { COMPONENTS } from './components.js';
 import { bindNaicsEvents } from './modules/naics.js';
 
 export const ACTIONS = {
   navigate: (direction) => {
-    const scrollElement = document.getElementById('bopQuote');
+    const scrollElement = $('bopQuote');
     STATE.index += direction;
     animateStepTransition();
     setTimeout(function() {
       scrollElement.scrollTop = 0;
-      render(QUOTE_FLOW, COMPONENTS.views.quoteFlow(STATE.index));
+      render($('quoteFlow'), COMPONENTS.views.quoteFlow(STATE.index));
       adjustProgressBar(STATE.schema.length);
     }, 150);
   },
@@ -91,7 +87,7 @@ export const ACTIONS = {
     });
   },
   bindNaicsSelector: () => {
-    const naicsInput = document.getElementById('naicsInput');
+    const naicsInput = $('naicsInput');
     bindNaicsEvents(naicsInput);
   },
   openPolicyDetail: () => {
@@ -102,34 +98,33 @@ export const ACTIONS = {
     const account = ACCOUNTS[index];
     deselectAccounts();
     document.querySelectorAll('#accountsList li')[index].classList.add('account-selected');
-    render(document.getElementById('accountDetail'), COMPONENTS.views.accountDetail(account));
-    render(document.getElementById('policyContainer'), COMPONENTS.views.accountPolicyList(account.quotes));
+    render($('accountDetail'), COMPONENTS.views.accountDetail(account));
+    render($('policyContainer'), COMPONENTS.views.accountPolicyList(account.quotes));
   },
   closePanelModal: () => {
-    BOP_CONTAINER.classList.add('hidden');
-    BOP_CONTAINER.classList.remove('new-account-open');
-    ACCOUNT_WRAPPER.classList.remove('quote-open');
-    ACCOUNT_WRAPPER.classList.remove('account-open');
+    $('bopQuote').classList.add('hidden');
+    $('bopQuote').classList.remove('new-account-open');
+    $('accountWrapper').classList.remove(...['quote-open', 'account-open']);
     STATE.index = 0;
     adjustProgressBar(STATE.schema.length);
   },
   startNewQuote: () => {
-    // STATE.schema = JSON.parse(JSON.stringify(BOP_QUOTE));
-    BOP_CONTAINER.classList.remove('hidden');
-    ACCOUNT_WRAPPER.classList.add('quote-open');
-    document.getElementById('flowTitle').innerText = 'New BOP Quote';
+    STATE.schema = STATE.schema || JSON.parse(JSON.stringify(BOP_QUOTE));
+    $('bopQuote').classList.remove('hidden');
+    $('accountWrapper').classList.add('quote-open');
+    $('flowTitle').innerText = 'New BOP Quote';
     adjustProgressBar(STATE.schema.length);
-    // render(document.getElementById('toastLoader'), COMPONENTS.elements.toastLoader());
-    render(QUOTE_FLOW, COMPONENTS.views.quoteFlow(0));
+    // render($('toastLoader'), COMPONENTS.elements.toastLoader());
+    render($('quoteFlow'), COMPONENTS.views.quoteFlow(0));
   },
   startNewAccount: () => {
     STATE.schema = JSON.parse(JSON.stringify(NEW_ACCOUNT));
     console.log(STATE.schema)
-    BOP_CONTAINER.classList.remove('hidden');
-    BOP_CONTAINER.classList.add('new-account-open');
-    ACCOUNT_WRAPPER.classList.add('account-open');
-    document.getElementById('flowTitle').innerText = 'New Account';
-    render(QUOTE_FLOW, COMPONENTS.views.quoteFlow(0));
+    $('bopQuote').classList.remove('hidden');
+    $('bopQuote').classList.add('new-account-open');
+    $('accountWrapper').classList.add('account-open');
+    $('flowTitle').innerText = 'New Account';
+    render($('quoteFlow'), COMPONENTS.views.quoteFlow(0));
   },
   createAccount: () => {
     const newAccount = generateAccount();
@@ -139,7 +134,7 @@ export const ACTIONS = {
     ACCOUNTS.unshift(newAccount);
     ACTIONS.closePanelModal();
     ACTIONS.showAccountDetail(0);
-    BOP_CONTAINER.scrollTop = 0;
+    $('bopQuote').scrollTop = 0;
     STATE.quote.buildings = [];
     STATE.schema = JSON.parse(JSON.stringify(BOP_QUOTE));
 
@@ -149,9 +144,9 @@ export const ACTIONS = {
         base.inputs.forEach(input => {
           location[input] = null;
         });
-        newbldg.title = `Location ${index + 1}/Building ${bindex + 1} Coverage`;
+        newbldg.title = `Loc ${index + 1}/Bldg ${bindex + 1} Coverage`;
         STATE.quote.buildings.push(newbldg);
-        TITLES.unshift(`Location ${index + 1}/Building ${bindex + 1} Coverage`);
+        TITLES.unshift(`Loc ${index + 1}/Bldg ${bindex + 1} Coverage`);
       });
     });
 
@@ -162,7 +157,7 @@ export const ACTIONS = {
       newStep.title = TITLES[i];
       STATE.schema.unshift(newStep);
     }
-    render(ACCOUNT_LIST, COMPONENTS.views.accounts());
+    render($('accountsList'), COMPONENTS.views.accounts());
   },
   addMultiLocations: () => {
     const locations = STATE.quote.numLocations || 1;
@@ -223,6 +218,7 @@ export const ACTIONS = {
       title: 'Building 1',
       type: 'building',
       inputs: [
+        'buildingLessorsRisk',
         'buildingClassCode',
         'buildingCoverage',
         'buildingPersonalPropertyLimit',
@@ -247,7 +243,7 @@ export const ACTIONS = {
     for(let i = 0; i < bldgs; i++) {
       const action = i >= bldgs - 1 && STATE.index === STATE.schema.length - 1 ? 'createAccount' : 'nextStep';
       let newStep = JSON.parse(JSON.stringify(base));
-      newStep.title = `Location ${indices.location + 1}: Building ${i + 1}`;
+      newStep.title = `Loc ${indices.location + 1} / Bldg ${i + 1}`;
       newStep.actions.pop();
       newStep.actions.push(action);
       buildingSteps.push(newStep);
@@ -280,18 +276,21 @@ export const ACTIONS = {
     ACTIONS.advanceStep();
   },
   getQuote: () => {
-    BOP_CONTAINER.classList.add('hidden');
-    document.getElementById('emptyState').remove();
-    document.getElementById('accountWrapper').classList.remove('quote-open');
+    $('bopQuote').classList.add('hidden');
+    if($('emptyState')){
+      $('emptyState').remove();
+    };
+
+    $('accountWrapper').classList.remove('quote-open');
     let options = {
       type: 'Business Owners Policy',
       status: 'quoted',
       premium: '$2,350',
       style: 'quote-quoting'
     };
-    document.getElementById('policyContainer').innerHTML += COMPONENTS.elements.quoteListing(options);
+    $('policyContainer').innerHTML += COMPONENTS.elements.quoteListing(options);
     setTimeout(() => {
-      const newQuote = document.getElementById('policyContainer').querySelector('.policy:last-child');
+      const newQuote = $('policyContainer').querySelector('.policy:last-child');
       newQuote.classList.remove('quote-quoting');
       newQuote.onclick = ACTIONS.openPolicyDetail;
       const src = `https://georgehastings.github.io/rome/assets/sounds/chaching.mp3`;

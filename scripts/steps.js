@@ -110,6 +110,12 @@ export const STEPS = {
     placeholder: 'Search street address',
     type:'text'
   },
+  buildingLessorsRisk: {
+    label: 'Is this building Lessors\' Risk only?',
+    component: 'radioGroup',
+    id: 'buildingClassCode',
+    values: ['Yes', 'No']
+  },
   buildingClassCode: {
     label: 'Type of business',
     component: 'input',
@@ -244,10 +250,10 @@ export const STEPS = {
     placeholder: '$0'
   },
   buildingPersonalPropertyLimitAmount: {
-      label: 'Building personal property coverage limit',
-      component: 'money',
-      id: 'buildingPersonalPropertyLimitAmount',
-      placeholder: '$0',
+    label: 'Building personal property coverage limit',
+    component: 'money',
+    id: 'buildingPersonalPropertyLimitAmount',
+    placeholder: '$0',
     hidden: true
   },
   condoAssociationCoverage: {
