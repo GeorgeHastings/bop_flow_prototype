@@ -97,7 +97,7 @@ export const STEPS = {
     checked: true
   },
   locationAddress: {
-    label: 'What\'s the locations\' address?',
+    label: 'Location business address',
     component: 'location',
     id: 'locationAddress',
     placeholder: 'Search street address',
@@ -117,7 +117,7 @@ export const STEPS = {
     values: ['Yes', 'No']
   },
   buildingClassCode: {
-    label: 'Type of business',
+    label: 'Business classification',
     component: 'input',
     id: 'buildingClassCode',
     type: 'text',
@@ -175,11 +175,19 @@ export const STEPS = {
     id: 'numStories',
     min: 0
   },
-  yearRoofReplaced: {
+  roofReplaced: {
     label: 'Has the roof been updated?',
     component: 'radioGroup',
-    id: 'yearRoofReplaced',
+    id: 'roofReplaced',
     values: ['Yes', 'No']
+  },
+  yearRoofReplaced: {
+    label: 'What year was it updated?',
+    component: 'input',
+    type: 'number',
+    placeholder: '1970',
+    id: 'yearRoofReplaced',
+    hidde: true
   },
   sprinklerSystem: {
     label: 'Is there an automatic sprinkler system in palce?',
@@ -200,7 +208,7 @@ export const STEPS = {
     values: ['Yes', 'No']
   },
   totalSales: {
-    label: 'Total sales',
+    label: 'Total location sales',
     component: 'money',
     id: 'totalSales',
     placeholder: '$0'
@@ -212,7 +220,7 @@ export const STEPS = {
     placeholder: '$0'
   },
   payroll: {
-    label: 'Payroll',
+    label: 'Payroll <span>(optional)</span>',
     component: 'money',
     id: 'payroll',
     placeholder: '$0'

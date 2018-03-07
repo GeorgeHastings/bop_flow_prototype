@@ -1,9 +1,9 @@
 const NESTED_CONDITIONALS = {
-  // 'locationSameAsMailing': {
-  //   'No': [
-  //     'locationAddress'
-  //   ]
-  // },
+  'roofReplaced': {
+    'Yes': [
+      'yearRoofReplaced'
+    ]
+  },
   'numLocations': {
     '5+': [
       'tooManyLocations'

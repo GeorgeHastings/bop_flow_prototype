@@ -19,7 +19,7 @@ export const ACTIONS = {
     setTimeout(function() {
       scrollElement.scrollTop = 0;
       render($('quoteFlow'), COMPONENTS.views.quoteFlow(STATE.index));
-      adjustProgressBar(STATE.schema.length);
+      // adjustProgressBar(STATE.schema.length);
     }, 150);
   },
   advanceStep: () => {
@@ -107,14 +107,14 @@ export const ACTIONS = {
     $('bopQuote').classList.remove('new-account-open');
     $('accountWrapper').classList.remove(...['quote-open', 'account-open']);
     STATE.index = 0;
-    adjustProgressBar(STATE.schema.length);
+    // adjustProgressBar(STATE.schema.length);
   },
   startNewQuote: () => {
     STATE.schema = STATE.schema || JSON.parse(JSON.stringify(BOP_QUOTE));
     $('bopQuote').classList.remove('hidden');
     $('accountWrapper').classList.add('quote-open');
     $('flowTitle').innerText = 'New BOP Quote';
-    adjustProgressBar(STATE.schema.length);
+    // adjustProgressBar(STATE.schema.length);
     // render($('toastLoader'), COMPONENTS.elements.toastLoader());
     render($('quoteFlow'), COMPONENTS.views.quoteFlow(0));
   },
@@ -227,6 +227,7 @@ export const ACTIONS = {
         'constructionType',
         'areaSquareFeet',
         'numStories',
+        'roofReplaced',
         'yearRoofReplaced',
         'plumbingElectricalUpdated',
         'sprinklerSystem',

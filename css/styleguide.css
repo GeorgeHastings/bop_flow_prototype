@@ -72,6 +72,8 @@ label {
   font-weight: 400;
   line-height: 140%;
   margin-bottom: 1rem; }
+  label span {
+    color: #95A4B3; }
   input + label {
     margin-top: 2rem; }
 

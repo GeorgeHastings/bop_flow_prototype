@@ -253,6 +253,8 @@ label {
   font-weight: 400;
   line-height: 140%;
   margin-bottom: 1rem; }
+  label span {
+    color: #95A4B3; }
   input + label {
     margin-top: 2rem; }
 
@@ -501,7 +503,10 @@ class for each line of the result
     left: -99999rem;
     visibility: hidden; }
   .quote-flow-container .header {
-    width: calc(100% - 330px); }
+    width: calc(100% - 330px);
+    background-color: transparent;
+    border-bottom: none;
+    box-shadow: none; }
     @media screen and (max-width: 480px) {
       .quote-flow-container .header {
         width: 100%; } }
@@ -527,7 +532,7 @@ class for each line of the result
   margin-top: 2rem; }
   .breadcrumb-container li {
     font-size: 0.85rem;
-    padding: 1rem 1rem;
+    padding: 0.75rem 1rem;
     line-height: 140%;
     border-radius: 2px;
     color: #95A4B3;
@@ -536,7 +541,7 @@ class for each line of the result
       color: #373A4B; }
   .breadcrumb-container li.selected {
     color: #4579FF;
-    background-color: #E5ECFF; }
+    background-color: #E5F2FF; }
     .breadcrumb-container li.selected ~ li {
       color: #E2EAF0; }
       .breadcrumb-container li.selected ~ li:hover {
@@ -768,7 +773,7 @@ section + section {
   .accounts-list li:hover {
     background-color: #fafbfd; }
   .accounts-list li.account-selected {
-    background-color: #E5ECFF;
+    background-color: #E5F2FF;
     color: #4579FF;
     font-weight: 500; }
 
@@ -854,7 +859,7 @@ section + section {
   min-height: 50px;
   max-width: 50px;
   max-height: 50px;
-  background-color: #E5ECFF;
+  background-color: #E5F2FF;
   border-radius: 50%; }
   .policy-icon img {
     width: 70%;

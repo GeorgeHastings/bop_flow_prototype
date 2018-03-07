@@ -55,6 +55,19 @@ export const BOP_QUOTE = [
       'eblEachEmployeeLimit',
       'eblAggregateLimit',
       'eblDeductible',
+      'Operations specific optional coverages',
+      'professionalLiability',
+      'snowPlowProducts',
+      'hiredNonOwnedAutoCoverage',
+    ],
+    actions: [
+      'previousStep',
+      'nextStep'
+    ],
+  },
+  {
+    title: 'Additional Coverages',
+    inputs: [
       'eplCoverage',
       'eplCoverageRetroactiveDate',
       'eplEachEmployeeLimit',
@@ -65,10 +78,7 @@ export const BOP_QUOTE = [
       'cyberRetroactiveDate',
       'cyberAggregateLimit',
       'cyberDeductible',
-      'Operations specific optional coverages',
-      'professionalLiability',
-      'snowPlowProducts',
-      'hiredNonOwnedAutoCoverage',
+      'employeeDishonestyLimit'
     ],
     actions: [
       'previousStep',
