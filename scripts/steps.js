@@ -331,8 +331,6 @@ export const STEPS = {
     label: 'Apply Coverage 2 and 3? (Demolition Costs and Increased Cost of Construction coverage)',
     component: 'rangeSlider',
     id: 'ordinanceOrLawTwoThree',
-    // default: '$0',
-    // description: 'Cannot exceed $100,000',
     min: 0,
     max: 100000,
     step: 1000,
@@ -636,13 +634,21 @@ export const STEPS = {
   },
   eachCoveredJobsite: {
     label: 'Each Covered Job Site Limit (Contractors Installation)',
-    component: 'checkBox',
-    id: 'eachCoveredJobsite'
+    id: 'eachCoveredJobsite',
+    component: 'rangeSlider',
+    min: 5000,
+    max: 100000,
+    step: 1000,
+    default: 5000,
   },
   propertyInTransit: {
-    label: 'Property in Transit (Contractors Installation)',
-    component: 'checkBox',
-    id: 'propertyInTransit'
+    label: 'Property in Transit Limit (Contractors Installation)',
+    id: 'propertyInTransit',
+    component: 'rangeSlider',
+    min: 5000,
+    max: 100000,
+    step: 1000,
+    default: 5000,
   },
   additionalInsuredOption: {
     label: 'Would you like to add an additional insured?',

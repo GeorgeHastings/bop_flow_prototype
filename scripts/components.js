@@ -187,6 +187,9 @@ export const COMPONENTS = {
             if(selectingBldgCoverage) {
               valueHasBeenEntered = STATE.quote.buildings[STATE.index][input.id];
             }
+            else if(STATE.quote.generalLiability[input.id]) {
+              valueHasBeenEntered = STATE.quote.generalLiability[input.id];
+            }
             else if(STATE.quote[input.id]) {
               valueHasBeenEntered = STATE.quote[input.id];
             }
