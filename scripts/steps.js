@@ -634,6 +634,16 @@ export const STEPS = {
     id: 'snowPlowProducts',
     label: 'Snow plow products/Completed ops'
   },
+  eachCoveredJobsite: {
+    label: 'Each Covered Job Site Limit (Contractors Installation)',
+    component: 'checkBox',
+    id: 'eachCoveredJobsite'
+  },
+  propertyInTransit: {
+    label: 'Property in Transit (Contractors Installation)',
+    component: 'checkBox',
+    id: 'propertyInTransit'
+  },
   additionalInsuredOption: {
     label: 'Would you like to add an additional insured?',
     component: 'radioGroup',

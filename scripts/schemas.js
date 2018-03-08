@@ -59,6 +59,8 @@ export const BOP_QUOTE = [
       'professionalLiability',
       'snowPlowProducts',
       'hiredNonOwnedAutoCoverage',
+      'eachCoveredJobsite',
+      'propertyInTransit'
     ],
     actions: [
       'previousStep',
