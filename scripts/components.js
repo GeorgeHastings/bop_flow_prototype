@@ -9,10 +9,10 @@ import { tippet } from './libs/tippet.js';
 export const COMPONENTS = {
   inputs: {
     input: (options) => `
-      <input type="${options.type}" class="${options.style || ''}" id="${options.id}" placeholder="${options.placeholder || ''}" value="${options.value || ''}">
+      <input type="${options.type}" class="${options.style || ''}" id="${options.id}" placeholder="${options.placeholder || ''}" value="${options.value || ''}" ${options.disabled ? `disabled` : ''} ${options.onchange ? `data-onchange="${options.onchange}"` : ''}>
     `,
     location: (options) => `
-      <input type="text" class="${options.style || ''}" id="${options.id}" value="${options.value || ''}" data-onload="bindGoogleSearchAPI">
+      <input type="text" class="${options.style || ''}" id="${options.id}" value="${options.value || ''}" data-onload="bindGoogleSearchAPI" ${options.disabled ? `disabled` : ''} ${options.onchange ? `data-onchange="${options.onchange}"` : ''}>
     `,
     naics: (options) => `
       <input type="text" class="${options.style || ''}" id="naicsInput" value="${options.value || ''}" data-onload="bindNaicsSelector" placeholder="${options.placeholder}">
@@ -23,7 +23,7 @@ export const COMPONENTS = {
     `,
     number: (options) => `
       <div class="number-input">
-        <input class="quantity" min="${options.min}" max="${options.max}" name="${options.id}" value="${options.value || ''}" placeholder="0" type="number">
+        <input class="quantity" min="${options.min}" max="${options.max}" name="${options.id}" value="${options.value || ''}" ${options.disabled ? `disabled` : ''} ${options.onchange ? `data-onchange="${options.onchange}"` : ''} placeholder="0" type="number">
         ${options.increment ? `<button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
         <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>` : ''}
       </div>
@@ -44,12 +44,12 @@ export const COMPONENTS = {
     `,
     rangeSlider: (options) => `
       <form class="range-slider" data-oninput="sliderMaskMoney">
-        <input type="range" name="${options.id}" value="${options.value || options.min}" min="${options.min}" max="${options.max}" step="${options.step}"/>
+        <input type="range" name="${options.id}" value="${options.value || options.min}" min="${options.min}" max="${options.max}" step="${options.step}" ${options.disabled ? `disabled` : ''} ${options.onchange ? `data-onchange="${options.onchange}"` : ''}/>
         <output name="result">$${options.value}</output>
       </form>
     `,
     dropDown: (options) => `
-      <select id=${options.id} value="${options.value || ''}" ${options.disabled ? `disabled` : ''}>
+      <select id=${options.id} value="${options.value || ''}" ${options.disabled ? `disabled` : ''} ${options.onchange ? `data-onchange="${options.onchange}"` : ''}>
         <option class="placeholder" selected disabled value="">Choose one</option>
         ${options.values.map((value) => {
           return `<option value="${value}" ${options.value === value ? 'selected' : ''}>${value}</option>`;
@@ -57,11 +57,11 @@ export const COMPONENTS = {
       </select>
     `,
     checkBox: (options) => `
-      <input id="${options.id}" type="checkbox" ${options.checked ? 'checked' : ''}/>
+      <input id="${options.id}" type="checkbox" ${options.checked ? 'checked' : ''} ${options.disabled ? `disabled` : ''} ${options.onchange ? `data-onchange="${options.onchange}"` : ''}/>
       <label for="${options.id}">${options.label}</label>
     `,
     date: (options) => `
-      <input type="text" class="${options.style || ''}" id="${options.id}" placeholder="${options.placeholder}" value="${options.value || ''}" data-valid-example="05/18/2019" pattern="(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/\d{4}">
+      <input type="text" class="${options.style || ''}" id="${options.id}" placeholder="${options.placeholder}" value="${options.value || ''}" ${options.disabled ? `disabled` : ''} ${options.onchange ? `data-onchange="${options.onchange}"` : ''} data-valid-example="05/18/2019" pattern="(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/\d{4}">
     `,
     submit: (options) => COMPONENTS.actions.button(options),
     warning: (options) => {

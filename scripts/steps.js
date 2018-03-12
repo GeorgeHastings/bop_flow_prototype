@@ -498,6 +498,7 @@ export const STEPS = {
     component: 'dropDown',
     hidden: true,
     id: 'liquorLiabilityEEC',
+    onchange: 'updateLiquorLiabilityAggregate',
     values: [
       '$50,000',
       '$100,000',

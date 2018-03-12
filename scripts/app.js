@@ -97,6 +97,10 @@ const bindInputEvents = (inputs) =>
       const fn = input.getAttribute('data-oninput');
       input.oninput = ACTIONS[fn];
     }
+    if(input.getAttribute('data-onchange')){
+      const fn = input.getAttribute('data-onchange');
+      input.oninput = ACTIONS[fn];
+    }
     if(input.getAttribute('data-onload')){
       const fn = input.getAttribute('data-onload');
       ACTIONS[fn](input);
