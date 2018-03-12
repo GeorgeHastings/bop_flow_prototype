@@ -40,7 +40,8 @@ export const ACTIONS = {
         name: STATE.quote.additionalInsuredBizName,
         address: STATE.quote.additionalInsuredBizAddress
       });
-      sanitizeInputs(STATE.schema[8].inputs);
+      console.log(STATE.index)
+      sanitizeInputs(STATE.schema[3].inputs);
     }
     ACTIONS.navigate(0);
   },
