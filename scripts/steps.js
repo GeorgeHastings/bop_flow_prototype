@@ -487,6 +487,36 @@ export const STEPS = {
       '$2,500',
     ]
   },
+  liquorLiability: {
+    label: 'Liquor Liability coverage?',
+    component: 'radioGroup',
+    id: 'liquorLiability',
+    values: ['Yes', 'No']
+  },
+  liquorLiabilityEEC: {
+    label: 'Each Common Cause Limit',
+    component: 'dropDown',
+    hidden: true,
+    id: 'liquorLiabilityEEC',
+    values: [
+      '$50,000',
+      '$100,000',
+      '$300,000',
+      '$500,000',
+      '$1,000,000',
+    ]
+  },
+  liquorLiabilityAggregate: {
+    label: 'Aggregate Limit',
+    component: 'money',
+    hidden: true,
+    disabled: true,
+    id: 'liquorLiabilityAggregate',
+    default: '$1,000,000'
+  },
+  employeeDishonestyLimit: {
+
+  },
   eblCoverage: {
     label: 'Employee Benefits Liability coverage?',
     component: 'radioGroup',

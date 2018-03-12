@@ -80,6 +80,9 @@ export const BOP_QUOTE = [
       'cyberRetroactiveDate',
       'cyberAggregateLimit',
       'cyberDeductible',
+      'liquorLiability',
+      'liquorLiabilityEEC',
+      'liquorLiabilityAggregate',
       'employeeDishonestyLimit'
     ],
     actions: [

@@ -19,7 +19,7 @@ export const COMPONENTS = {
       <div id="naicsResults"></div>
     `,
     money: (options) => `
-      <input type="text" class="${options.style || ''}" id="${options.id}" placeholder="${options.placeholder}" value="${options.value || ''}" data-oninput="maskMoney">
+      <input type="text" class="${options.style || ''}" id="${options.id}" placeholder="${options.placeholder}" value="${options.value || ''}" data-oninput="maskMoney" ${options.disabled ? `disabled` : ''}>
     `,
     number: (options) => `
       <div class="number-input">
@@ -49,7 +49,7 @@ export const COMPONENTS = {
       </form>
     `,
     dropDown: (options) => `
-      <select id=${options.id} value="${options.value || ''}">
+      <select id=${options.id} value="${options.value || ''}" ${options.disabled ? `disabled` : ''}>
         <option class="placeholder" selected disabled value="">Choose one</option>
         ${options.values.map((value) => {
           return `<option value="${value}" ${options.value === value ? 'selected' : ''}>${value}</option>`;

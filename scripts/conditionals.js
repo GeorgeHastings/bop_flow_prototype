@@ -43,6 +43,12 @@ const NESTED_CONDITIONALS = {
       'ordinanceOrLawTwoThree'
     ]
   },
+  'liquorLiability': {
+    'Yes': [
+      'liquorLiabilityEEC',
+      'liquorLiabilityAggregate'
+    ]
+  },
   'additionalInsuredOption': {
     'Yes': [
       'additionalInsuredBizName',
