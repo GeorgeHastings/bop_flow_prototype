@@ -292,15 +292,11 @@ export const STEPS = {
   },
   windPercentage: {
     label: 'Wind Deductible',
-    component: 'rangeSlider',
+    component: 'dropDown',
     id: 'windPercentage',
-    mask: 'sliderMaskPercentage',
-    step: 1,
-    min: 0,
-    max: 10,
     hidden: true,
-    // values: ['0%','1%','2%','3%','4%','5%','6%','7%','8%','9%','10%'],
-    default: 0
+    values: ['Use All Other Perils Deductible','1%','2%','3%','4%','5%','6%','7%','8%','9%','10%'],
+    default: '1%'
   },
   equipmentBreakdown: {
     label: `Would you like <span class="tooltip-underline" data-tippet="*tooltip*">Equipment Breakdown</span> coverage?`,
