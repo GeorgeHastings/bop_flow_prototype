@@ -43,9 +43,9 @@ export const COMPONENTS = {
       </div>
     `,
     rangeSlider: (options) => `
-      <form class="range-slider" data-oninput="sliderMaskMoney">
+      <form class="range-slider" data-oninput="${options.mask}">
         <input type="range" name="${options.id}" value="${options.value || options.min}" min="${options.min}" max="${options.max}" step="${options.step}" ${options.disabled ? `disabled` : ''} ${options.onchange ? `data-onchange="${options.onchange}"` : ''}/>
-        <output name="result">$${options.value}</output>
+        <output name="result">${options.value}</output>
       </form>
     `,
     dropDown: (options) => `

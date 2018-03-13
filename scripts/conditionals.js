@@ -43,6 +43,11 @@ const NESTED_CONDITIONALS = {
       'ordinanceOrLawTwoThree'
     ]
   },
+  'winderCoverage': {
+    'Yes': [
+      'windPercentage'
+    ]
+  },
   'liquorLiability': {
     'Yes': [
       'liquorLiabilityEEC',

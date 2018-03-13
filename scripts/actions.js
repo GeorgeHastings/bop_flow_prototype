@@ -70,12 +70,16 @@ export const ACTIONS = {
     output.value = el.value;
     ACTIONS.maskMoney(output);
   },
+  sliderMaskPercentage: (event) => {
+    let el = event.target;
+    let output = el.nextElementSibling;
+    output.value = el.value + '%';
+  },
   updateLiquorLiabilityAggregate: (event) => {
     const el = event.target;
     const result = el.value.match(/\d+/g).map(Number);
     const value = (result[0] * Math.pow(10, (result.length - 1))) * (100);
     const aggregateLimit = value * 2 === 20000 ? 1000000 : value * 2;
-    console.log(value)
     $('liquorLiabilityAggregate').value = ACTIONS.getMoneyMask(aggregateLimit);
   },
   maskTelephone: (event) => {

@@ -284,12 +284,23 @@ export const STEPS = {
     values: ['6','9','12','18','24'],
     default: '12'
   },
+  winderCoverage: {
+    label: 'Would you like Wind Coverage?',
+    component: 'radioGroup',
+    id: 'winderCoverage',
+    values: ['Yes', 'No']
+  },
   windPercentage: {
     label: 'Wind Deductible',
-    component: 'dropDown',
+    component: 'rangeSlider',
     id: 'windPercentage',
-    values: ['0%','1%','2%','3%','4%','5%','6%','7%','8%','9%','10%'],
-    default: '0%'
+    mask: 'sliderMaskPercentage',
+    step: 1,
+    min: 0,
+    max: 10,
+    hidden: true,
+    // values: ['0%','1%','2%','3%','4%','5%','6%','7%','8%','9%','10%'],
+    default: 0
   },
   equipmentBreakdown: {
     label: `Would you like <span class="tooltip-underline" data-tippet="*tooltip*">Equipment Breakdown</span> coverage?`,
@@ -331,6 +342,7 @@ export const STEPS = {
     label: 'Apply Coverage 2 and 3? (Demolition Costs and Increased Cost of Construction coverage)',
     component: 'rangeSlider',
     id: 'ordinanceOrLawTwoThree',
+    mask: 'sliderMaskMoney',
     min: 0,
     max: 100000,
     step: 1000,
@@ -432,6 +444,7 @@ export const STEPS = {
   glDamageToRentedPremises: {
     label: 'Damage to premises rented to you',
     component: 'rangeSlider',
+    mask: 'sliderMaskMoney',
     id: 'glDamageToRentedPremises',
     min: 50000,
     max: 1000000,
@@ -667,6 +680,7 @@ export const STEPS = {
     label: 'Each Covered Job Site Limit (Contractors Installation)',
     id: 'eachCoveredJobsite',
     component: 'rangeSlider',
+    mask: 'sliderMaskMoney',
     min: 5000,
     max: 100000,
     step: 1000,
@@ -676,6 +690,7 @@ export const STEPS = {
     label: 'Property in Transit Limit (Contractors Installation)',
     id: 'propertyInTransit',
     component: 'rangeSlider',
+    mask: 'sliderMaskMoney',
     min: 5000,
     max: 100000,
     step: 1000,

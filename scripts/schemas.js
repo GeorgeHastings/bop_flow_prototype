@@ -25,8 +25,10 @@ export const BOP_QUOTE = [
     type: 'building',
     inputs: [
       'buildingDeductible',
-      'windPercentage',
       'businessIncomeExtraExpensePeriod',
+      'Catastrophe Coverage',
+      'winderCoverage',
+      'windPercentage',
       'Additional Coverage',
       'equipmentBreakdown',
       'greenUpgrades',
