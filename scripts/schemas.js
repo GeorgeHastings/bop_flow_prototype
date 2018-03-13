@@ -39,7 +39,6 @@ export const BOP_QUOTE = [
       'ordinanceOrLawTwoThree',
     ],
     actions: [
-      'previousStep',
       'nextStep'
     ],
   },
