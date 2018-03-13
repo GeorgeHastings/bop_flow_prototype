@@ -285,10 +285,11 @@ export const STEPS = {
     default: '12'
   },
   winderCoverage: {
-    label: 'Would you like Wind Coverage?',
+    label: 'Would you like <span class="tooltip-underline" data-tippet="*tooltip*">Wind Coverage</span>?',
     component: 'radioGroup',
     id: 'winderCoverage',
-    values: ['Yes', 'No']
+    values: ['Yes', 'No'],
+    tooltip: `Tip - By choosing No Wind Coverage, the wind exclusion will be added to the policy.  Wind Coverage is required for FL, NY, LA, and TX`
   },
   windPercentage: {
     label: 'Wind Deductible',
