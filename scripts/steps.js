@@ -102,6 +102,7 @@ export const STEPS = {
     id: 'locationAddress',
     placeholder: 'Search street address',
     type:'text',
+    onchange: 'loadPreFill'
   },
   mailingAddress: {
     label: 'Business mailing address',
@@ -138,7 +139,8 @@ export const STEPS = {
     size: 'half-size',
     id: 'yearBuilt',
     type: 'text',
-    placeholder: '1970'
+    placeholder: '1970',
+    default: 1992
   },
   plumbingElectricalUpdated: {
     label: 'Was the plumbing, HVAC, and electrical updated within past 30 years?',
@@ -158,14 +160,16 @@ export const STEPS = {
       'Masonry Non-Combustible',
       'Modified Fire-Resistive',
       'Non-Combustible'
-    ]
+    ],
+    default: 'Joisted Masonry'
   },
   areaSquareFeet: {
     label: 'Occupied area (square feet)',
     component: 'number',
     size: 'half-size',
     id: 'areaSquareFeet',
-    min: 0
+    min: 0,
+    default: 2700
   },
   numStories: {
     label: 'Number of stories',
@@ -173,7 +177,8 @@ export const STEPS = {
     increment: true,
     size: 'half-size',
     id: 'numStories',
-    min: 0
+    min: 0,
+    default: 1
   },
   roofReplaced: {
     label: 'Has the roof been updated?',
@@ -676,12 +681,16 @@ export const STEPS = {
   eachCoveredJobsite: {
     label: 'Each Covered Job Site Limit (Contractors Installation)',
     id: 'eachCoveredJobsite',
-    component: 'rangeSlider',
-    mask: 'sliderMaskMoney',
-    min: 5000,
-    max: 100000,
-    step: 1000,
-    default: 5000,
+    component: 'dropDown',
+    values: [
+      '$3,000',
+      '$5,000',
+      '$10,000',
+      '$15,000',
+      '$20,000',
+      '$25,000',
+    ],
+    default: '$5,000'
   },
   propertyInTransit: {
     label: 'Property in Transit Limit (Contractors Installation)',

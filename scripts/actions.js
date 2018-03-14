@@ -119,6 +119,12 @@ export const ACTIONS = {
     render($('accountDetail'), COMPONENTS.views.accountDetail(account));
     render($('policyContainer'), COMPONENTS.views.accountPolicyList(account.quotes));
   },
+  loadPreFill: () => {
+    render($('toastLoader'), COMPONENTS.elements.toastLoader());
+    setTimeout(() => {
+      $('toastLoader').innerHTML = '';
+    }, 6000);
+  },
   closePanelModal: () => {
     $('bopQuote').classList.add('hidden');
     $('bopQuote').classList.remove('new-account-open');
@@ -132,7 +138,6 @@ export const ACTIONS = {
     $('accountWrapper').classList.add('quote-open');
     $('flowTitle').innerText = 'New BOP Quote';
     // adjustProgressBar(STATE.schema.length);
-    // render($('toastLoader'), COMPONENTS.elements.toastLoader());
     render($('quoteFlow'), COMPONENTS.views.quoteFlow(0));
   },
   startNewAccount: () => {
@@ -278,7 +283,7 @@ export const ACTIONS = {
     const getNumBuildings = () => {
       let count = 0;
       for(let i = STATE.index; i < STATE.schema.length; i++) {
-        if(STATE.schema[i+1].type && STATE.schema[i+1].type === 'building') {
+        if(STATE.schema[i+1] && STATE.schema[i+1].type && STATE.schema[i+1].type === 'building') {
           count++;
         }
         else {

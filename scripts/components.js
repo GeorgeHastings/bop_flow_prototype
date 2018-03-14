@@ -1,5 +1,6 @@
 import { STEPS, ACTION_COMPONENTS } from './steps.js';
 import { STATE } from './state.js';
+import { logInputValue } from './app.js';
 import { sanitizeInputs } from './helpers.js';
 import { BOP_QUOTE } from './schemas.js';
 import { ACCOUNTS } from './accounts.js';
@@ -184,6 +185,7 @@ export const COMPONENTS = {
             let valueHasBeenEntered;
             const selectingBldgCoverage = STATE.quote.buildings && STATE.index < STATE.quote.buildings.length;
             input = STEPS[input];
+            console.log(logInputValue(false))
             if(selectingBldgCoverage) {
               valueHasBeenEntered = STATE.quote.buildings[STATE.index][input.id];
             }

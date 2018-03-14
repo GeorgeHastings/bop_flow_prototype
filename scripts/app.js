@@ -20,16 +20,29 @@ const getHandlerDataTree = (inputResult) => {
   const indices = getIndices();
   STATE.locationIndex = indices.location;
   STATE.buildingIndex = indices.building;
-  logInputValue(indices, inputResult);
+  logInputValue(inputResult);
 };
 
-const logInputValue = (indices, inputResult) => {
+const logInputValue = (inputResult) => {
+  const indices = getIndices();
   const isLocation = STATE.schema[STATE.index].type && STATE.schema[STATE.index].type === 'location';
   const isBuilding = STATE.schema[STATE.index].type && STATE.schema[STATE.index].type === 'building';
   const isGL = STATE.schema[STATE.index].title === 'Liability Coverages';
   const locationIndex = indices.location;
   const buildingIndex = indices.building;
   const doingQuote = STATE.schema[0].title !== 'Basic info';
+
+  if(inputResult === false) {
+    if(isBuilding) {
+      return STATE.quote.locations[locationIndex].buildings[buildingIndex][inputResult.id];
+    }
+    else if(isLocation) {
+      return STATE.quote.locations[locationIndex][inputResult.id];
+    }
+    else {
+      return false;
+    }
+  }
 
   if(doingQuote) {
     if(STATE.index < STATE.quote.buildings.length) {
@@ -161,5 +174,6 @@ export {
   BOP_QUOTE,
   animateStepTransition,
   render,
-  POLICY_DETAIL_WRAPPER
+  POLICY_DETAIL_WRAPPER,
+  logInputValue
 };
