@@ -102,7 +102,7 @@ export const STEPS = {
     id: 'locationAddress',
     placeholder: 'Search street address',
     type:'text',
-    onchange: 'loadPreFill'
+    // onchange: 'loadPreFill'
   },
   mailingAddress: {
     label: 'Business mailing address',

@@ -1,7 +1,6 @@
 import { STEPS, ACTION_COMPONENTS } from './steps.js';
 import { STATE } from './state.js';
-import { logInputValue } from './app.js';
-import { sanitizeInputs } from './helpers.js';
+import { sanitizeInputs, getIndices } from './helpers.js';
 import { BOP_QUOTE } from './schemas.js';
 import { ACCOUNTS } from './accounts.js';
 import { generateAccount } from './accountgen.js';
@@ -184,8 +183,9 @@ export const COMPONENTS = {
             }
             let valueHasBeenEntered;
             const selectingBldgCoverage = STATE.quote.buildings && STATE.index < STATE.quote.buildings.length;
+            const creatingAccount = STATE.schema[0].title === 'Basic info';
             input = STEPS[input];
-            console.log(logInputValue(false))
+
             if(selectingBldgCoverage) {
               valueHasBeenEntered = STATE.quote.buildings[STATE.index][input.id];
             }
@@ -194,6 +194,14 @@ export const COMPONENTS = {
             }
             else if(STATE.quote[input.id]) {
               valueHasBeenEntered = STATE.quote[input.id];
+            }
+            if(creatingAccount) {
+              const indices = getIndices();
+              const isLocation = STATE.schema[STATE.index].type && STATE.schema[STATE.index].type === 'location';
+              const locationIndex = indices.location;
+              if(isLocation) {
+                valueHasBeenEntered = STATE.quote.locations[locationIndex][input.id];
+              }
             }
             const conditional = input.hidden !== undefined && input.hidden === false;
             input.value = valueHasBeenEntered || input.default;
@@ -235,7 +243,7 @@ export const COMPONENTS = {
     accounts: () => {
       return `
         ${ACCOUNTS.map((account, index) => {
-          return `<li data-index="${index}" data-onclick="showAccountDetail">${account.name}</li>`;
+          return `<li data-index="${index}" ${index === 0 ? `class="account-selected"` : ''} data-onclick="showAccountDetail">${account.name}</li>`;
         }).join(' ')}
       `;
     },
@@ -262,19 +270,19 @@ export const COMPONENTS = {
               <div class="account-detail-group">
                 <div class="account-detail-item">
                   <h6>NAICS</h6>
-                  <p>722515</p>
+                  <p>${account.naics || '722515'}</p>
                 </div>
                 <div class="account-detail-item">
                   <h6>Annual Revenue</h6>
-                  <p>$450,000</p>
+                  <p>${account.revenue || '$450,000'}</p>
                 </div>
                 <div class="account-detail-item">
                   <h6>Total Payroll</h6>
-                  <p>$180,000</p>
+                  <p>${account.payroll || '$180,000'}</p>
                 </div>
                 <div class="account-detail-item">
                   <h6>No. Employees</h6>
-                  <p>5</p>
+                  <p>${account.employees || '5'}</p>
                 </div>
               </div>
             </div>

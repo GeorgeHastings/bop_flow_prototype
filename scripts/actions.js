@@ -130,19 +130,16 @@ export const ACTIONS = {
     $('bopQuote').classList.remove('new-account-open');
     $('accountWrapper').classList.remove(...['quote-open', 'account-open']);
     STATE.index = 0;
-    // adjustProgressBar(STATE.schema.length);
   },
   startNewQuote: () => {
     STATE.schema = STATE.schema || JSON.parse(JSON.stringify(BOP_QUOTE));
     $('bopQuote').classList.remove('hidden');
     $('accountWrapper').classList.add('quote-open');
     $('flowTitle').innerText = 'New BOP Quote';
-    // adjustProgressBar(STATE.schema.length);
     render($('quoteFlow'), COMPONENTS.views.quoteFlow(0));
   },
   startNewAccount: () => {
     STATE.schema = JSON.parse(JSON.stringify(NEW_ACCOUNT));
-    console.log(STATE.schema)
     $('bopQuote').classList.remove('hidden');
     $('bopQuote').classList.add('new-account-open');
     $('accountWrapper').classList.add('account-open');
@@ -180,7 +177,25 @@ export const ACTIONS = {
       newStep.title = TITLES[i];
       STATE.schema.unshift(newStep);
     }
+
+    const account = {
+      name: STATE.quote.doesBusinessAs || STATE.quote.legalBusinessName || 'New Account',
+      naics: STATE.quote.naicsCode,
+      revenue: STATE.quote.locations[0].totalSales || '$450,000',
+      payroll: STATE.quote.locations[0].payroll || '$180,000',
+      employees: STATE.quote.locations[0].numEmployees || 5,
+      contactInfo: {
+        phone: '1-800-555-5555',
+        email: 'business@businessemail.com',
+        mailingAddress: STATE.quote.mailingAddress || '19 Pulaski Ave. New Britain, CT 06051'
+      },
+      quotes: []
+    };
+
+    ACCOUNTS.unshift(account);
+
     render($('accountsList'), COMPONENTS.views.accounts());
+    render($('accountDetail'), COMPONENTS.views.accountDetail(account));
   },
   addMultiLocations: () => {
     const locations = STATE.quote.numLocations || 1;

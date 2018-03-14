@@ -32,18 +32,6 @@ const logInputValue = (inputResult) => {
   const buildingIndex = indices.building;
   const doingQuote = STATE.schema[0].title !== 'Basic info';
 
-  if(inputResult === false) {
-    if(isBuilding) {
-      return STATE.quote.locations[locationIndex].buildings[buildingIndex][inputResult.id];
-    }
-    else if(isLocation) {
-      return STATE.quote.locations[locationIndex][inputResult.id];
-    }
-    else {
-      return false;
-    }
-  }
-
   if(doingQuote) {
     if(STATE.index < STATE.quote.buildings.length) {
       STATE.quote.buildings[STATE.index][inputResult.id] = inputResult.value;
@@ -175,5 +163,4 @@ export {
   animateStepTransition,
   render,
   POLICY_DETAIL_WRAPPER,
-  logInputValue
 };
