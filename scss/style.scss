@@ -427,3 +427,12 @@ section {
     display: none;
   }
 }
+
+.passcode {
+  position: fixed;
+  top: calc(50% - 25px);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 200px;
+}

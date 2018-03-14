@@ -206,6 +206,7 @@ input[type="text"],
 input[type="number"],
 input[type="select"],
 input[type="date"],
+input[type="password"],
 select,
 .radio-button label {
   height: 50px;
@@ -219,6 +220,7 @@ select,
   input[type="number"]:focus,
   input[type="select"]:focus,
   input[type="date"]:focus,
+  input[type="password"]:focus,
   select:focus,
   .radio-button label:focus {
     border: 1px solid #373A4B; }
@@ -1016,3 +1018,11 @@ section + section {
 
 .gmnoprint ~ div {
   display: none; }
+
+.passcode {
+  position: fixed;
+  top: calc(50% - 25px);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  max-width: 200px; }

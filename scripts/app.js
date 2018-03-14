@@ -7,6 +7,9 @@ import { NESTED_CONDITIONALS } from './conditionals.js';
 import { createNode, getRadioValue, getFormElement, getClosest, getInputValue, getIndices, $ } from './helpers.js';
 import { tippet } from './libs/tippet.js';
 
+let locked = true;
+const passcode = 4000;
+
 const POLICY_DETAIL_WRAPPER = document.querySelector('.policy-detail-wrapper');
 
 const animateStepTransition = () => {
@@ -148,11 +151,25 @@ const isMobileDevice = () =>
   (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 
 const init = () => {
-  render($('accountsList'), COMPONENTS.views.accounts());
-  if(!isMobileDevice()) {
-    ACTIONS.showAccountDetail(0);
+  if(!locked) {
+    $('passcode').style.display = 'none';
+    render($('accountsList'), COMPONENTS.views.accounts());
+    if(!isMobileDevice()) {
+      ACTIONS.showAccountDetail(0);
+    }
+    bindStaticEvents();
   }
-  bindStaticEvents();
+  else {
+    $('mainWrapper').style.display = 'none';
+    $('passcode').style.display = 'inline-block';
+    $('passcode').onkeyup = (e) => {
+      if(parseInt(e.target.value) === passcode) {
+        $('mainWrapper').style.display = 'flex';
+        locked = false;
+        init();
+      }
+    };
+  }
 };
 
 init();
@@ -162,5 +179,5 @@ export {
   BOP_QUOTE,
   animateStepTransition,
   render,
-  POLICY_DETAIL_WRAPPER,
+  POLICY_DETAIL_WRAPPER
 };
