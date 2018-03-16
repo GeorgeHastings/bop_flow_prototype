@@ -7,7 +7,7 @@ import { NESTED_CONDITIONALS } from './conditionals.js';
 import { createNode, getRadioValue, getFormElement, getClosest, getInputValue, getIndices, $ } from './helpers.js';
 import { tippet } from './libs/tippet.js';
 
-let locked = true;
+let locked = false;
 const passcode = 4000;
 
 const POLICY_DETAIL_WRAPPER = document.querySelector('.policy-detail-wrapper');

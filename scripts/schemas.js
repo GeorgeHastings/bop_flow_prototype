@@ -60,8 +60,6 @@ export const BOP_QUOTE = [
       'professionalLiability',
       'snowPlowProducts',
       'hiredNonOwnedAutoCoverage',
-      'eachCoveredJobsite',
-      'propertyInTransit'
     ],
     actions: [
       'previousStep',
@@ -84,7 +82,9 @@ export const BOP_QUOTE = [
       'liquorLiability',
       'liquorLiabilityEEC',
       'liquorLiabilityAggregate',
-      'employeeDishonestyLimit'
+      'employeeDishonestyLimit',
+      'eachCoveredJobsite',
+      'propertyInTransit'
     ],
     actions: [
       'previousStep',
