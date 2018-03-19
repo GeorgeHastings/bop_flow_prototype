@@ -29,7 +29,7 @@ export const BOP_QUOTE = [
       'Catastrophe Coverage',
       'winderCoverage',
       'windPercentage',
-      'Additional Coverage',
+      'Additional Building Coverage',
       'equipmentBreakdown',
       'greenUpgrades',
       'utilityServicesTimeElement',
