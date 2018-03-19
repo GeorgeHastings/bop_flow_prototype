@@ -8,7 +8,7 @@ import { createNode, getRadioValue, getFormElement, getClosest, getInputValue, g
 import { tippet } from './libs/tippet.js';
 
 let locked = false;
-const passcode = 4000;
+const passcode = 9876;
 
 const POLICY_DETAIL_WRAPPER = document.querySelector('.policy-detail-wrapper');
 
