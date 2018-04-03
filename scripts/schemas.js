@@ -5,7 +5,6 @@ export const NEW_ACCOUNT = [
       'legalBusinessName',
       'doesBusinessAs',
       'legalEntityType',
-      'naicsCode',
       // 'policyHolderPhoneNumber',
       // 'policyHolderEmail',
       'mailingAddress',

@@ -48,9 +48,7 @@ export const ACTIONS = {
   getMoneyMask: (value) => {
     let val = value.toString();
     let commator = 3;
-    val = val.replace(/\,/g,'');
-    val = val.replace(/\$/g,'');
-    val = val.replace(/\D/g,'');
+    val = val.replace(/([,$]|\D)/g,'');
     let len = val.length;
     while(commator < len) {
       let comma = len - commator;
@@ -205,8 +203,6 @@ export const ACTIONS = {
       type: 'location',
       inputs: [
         'locationAddress',
-        'totalSales',
-        'payroll',
         'numEmployees',
         'numBuildings',
         'tooManyBuildings'
@@ -258,6 +254,7 @@ export const ACTIONS = {
       inputs: [
         'buildingLessorsRisk',
         'buildingClassCode',
+        'payroll',
         'buildingCoverage',
         'buildingPersonalPropertyLimit',
         'yearBuilt',
