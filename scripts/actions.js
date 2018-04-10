@@ -277,11 +277,11 @@ export const ACTIONS = {
     STATE.quote.locations[indices.location].buildings.length = 0;
 
     for(let i = 0; i < bldgs; i++) {
-      const action = i >= bldgs - 1 && STATE.index === STATE.schema.length - 1 ? 'createAccount' : 'nextStep';
+      // const action = i >= bldgs - 1 && STATE.index === STATE.schema.length - 1 ? 'createAccount' : 'nextStep';
       let newStep = JSON.parse(JSON.stringify(base));
       newStep.title = `Loc ${indices.location + 1} / Bldg ${i + 1}`;
-      newStep.actions.pop();
-      newStep.actions.push(action);
+      // newStep.actions.pop();
+      // newStep.actions.push(action);
       buildingSteps.push(newStep);
 
       const building = {};

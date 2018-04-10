@@ -16,6 +16,24 @@ export const NEW_ACCOUNT = [
       'chooseNumLocations'
     ]
   },
+  {
+    title: 'Additional Insureds',
+    elements: [
+      'additionalInsuredAdded'
+    ],
+    inputs: [
+      'additionalInsuredOption',
+      'additionalInsuredBizName',
+      'additionalInsuredBizType',
+      'additionalInsuredBizAddress',
+      'additionalInsuredBizAddressType',
+      'addAdditionalInsured'
+    ],
+    actions: [
+      'previousStep',
+      'createAccount'
+    ],
+  },
 ];
 
 export const BOP_QUOTE = [
@@ -88,24 +106,6 @@ export const BOP_QUOTE = [
     actions: [
       'previousStep',
       'nextStep'
-    ],
-  },
-  {
-    title: 'Additional Insureds',
-    elements: [
-      'additionalInsuredAdded'
-    ],
-    inputs: [
-      'additionalInsuredOption',
-      'additionalInsuredBizName',
-      'additionalInsuredBizType',
-      'additionalInsuredBizAddress',
-      'additionalInsuredBizAddressType',
-      'addAdditionalInsured'
-    ],
-    actions: [
-      'previousStep',
-      'reviewSummary'
     ],
   },
   {
