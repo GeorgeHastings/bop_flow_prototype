@@ -17,7 +17,7 @@ export const STEPS = {
     label: 'Type of business',
     component: 'naics',
     id: 'naicsCode',
-    placeholder: 'Search business type'
+    // placeholder: 'Search business type'
   },
   legalEntityType: {
     label: 'Legal entity type',
@@ -109,7 +109,6 @@ export const STEPS = {
     component: 'location',
     id: 'mailingAddress',
     placeholder: 'Search street address',
-    type:'text'
   },
   buildingLessorsRisk: {
     label: 'Is this building Lessors\' Risk only?',

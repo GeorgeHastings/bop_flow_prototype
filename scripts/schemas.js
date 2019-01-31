@@ -5,12 +5,12 @@ export const NEW_ACCOUNT = [
       'legalBusinessName',
       'doesBusinessAs',
       'legalEntityType',
-      // 'policyHolderPhoneNumber',
-      // 'policyHolderEmail',
+      'policyHolderPhoneNumber',
+      'policyHolderEmail',
       'mailingAddress',
       'numLocations',
-      'tooManyLocations'
-      // 'locationSameAsMailing'
+      'tooManyLocations',
+      'locationSameAsMailing'
     ],
     actions: [
       'chooseNumLocations'
